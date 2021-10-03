@@ -1,3 +1,5 @@
+package main.java;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -20,7 +22,7 @@ public class IO {
             {
                 String[] s = linea.split(",");
 
-                restaurantes.add(new Restaurante(s[1].trim()));
+                //restaurantes.add(new Restaurante(s[1].trim()));
                 linea = br.readLine();
             }
 

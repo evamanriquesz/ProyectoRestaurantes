@@ -1,16 +1,21 @@
+package main.java;
+
 import java.util.TreeSet;
 
 public class Restaurante {
 
-    private String nombre;
+    private String nombre, direccion;
 
-    public Restaurante (String nombre)
+    public Restaurante (String nombre, String direccion)
     {
         this.nombre=nombre;
+        this.direccion=direccion;
     }
+
+
 
     public String getNombre()
     {
-        return nombre;
+        return this.nombre;
     }
 }

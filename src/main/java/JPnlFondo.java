@@ -1,4 +1,4 @@
-//import grep.SwingLink;
+package main.java;//import grep.SwingLink;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -11,7 +11,7 @@ public class JPnlFondo extends JPanel
 {
 
     GridBagLayout layout = new GridBagLayout();
-    GridBagConstraints config = new GridBagConstraints();
+    public GridBagConstraints config = new GridBagConstraints();
 
 
     JLabel titulo, jlbllugar, jlblenvios,jlblesp;

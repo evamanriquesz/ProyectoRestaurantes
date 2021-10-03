@@ -1,3 +1,7 @@
+package main.java;
+
+import main.java.JPnlFondo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.TreeSet;
