@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.JPnlFondo;
+import main.java.Restaurante;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,11 +15,22 @@ public class PnlRestaurantes extends JPnlFondo {
 
     String[] listarestaurantes = new String[25];
 
-    JLabel label;
+    JLabel lblRestaurantes;
 
     public PnlRestaurantes()
     {
-        restaurantes = IO.leerFicheroRestaurantes();
+        // restaurantes = IO.leerFicheroRestaurantes();
+
+/*
+        restaurantes = new TreeSet<Restaurante>();
+
+        restaurantes.add(new Restaurante("Lateral", "Pº Castellana, 42"));
+        restaurantes.add(new Restaurante("Ginos", "Calle Julian Romea, 4 "));
+        restaurantes.add(new Restaurante("La Máquina", "Calle Ponzano, 39"));
+        restaurantes.add(new Restaurante("Five Guys", "Calle Gran Via, 44"));
+        System.out.println(restaurantes);
+*/
+/*
         jlistrestaurantes = new JList<>(listarestaurantes);
         JScrollPane barraDesplazamiento = new JScrollPane(jlistrestaurantes);
 
@@ -29,27 +41,40 @@ public class PnlRestaurantes extends JPnlFondo {
         //btonCarrito = new JButton();
 
 
-        label =new JLabel("Colgantes");
-        label.setFont(new Font("Freestyle Script", Font.BOLD, 40));
+         */
 
+       // this.setLayout(new BorderLayout(5,5));
+
+
+
+        lblRestaurantes =new JLabel("Restaurantes");
+        lblRestaurantes.setFont(new Font("Freestyle Script", Font.BOLD, 40));
+
+        JPanel pnlNorte = new JPanel(new FlowLayout());
+        //pnlNorte.add(lblRestaurantes);
 
         config.gridx=3;
         config.gridy=2;
         config.gridwidth=4;
         config.gridheight=1;
         config.weighty = 1.0;
+        config.weightx = 0.0;/////////////////////
         config.anchor= GridBagConstraints.CENTER;
         config.fill= GridBagConstraints.BOTH;
-        this.add(label,config);
+        this.add(lblRestaurantes,config);
 
 
+        /*
         barraDesplazamiento.setViewportView(jlistrestaurantes);
         jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
         jlistrestaurantes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         jlistrestaurantes.setBackground(new Color(249, 226, 219));
         jlistrestaurantes.setFont(new Font("Georgia", Font.BOLD, 20));
 
+         */
 
+
+        /*
         for (Restaurante r : restaurantes)
         {
             for (int i = 0; i < listarestaurantes.length; i++){
@@ -61,6 +86,8 @@ public class PnlRestaurantes extends JPnlFondo {
             }
         }
 
+         */
+
         config.gridx=2;
         config.gridy=3;
         config.gridwidth=3;
@@ -68,6 +95,6 @@ public class PnlRestaurantes extends JPnlFondo {
         config.weighty = 1.0;
         config.anchor= GridBagConstraints.CENTER;
         config.fill= GridBagConstraints.BOTH;
-        this.add(barraDesplazamiento,config);
+       // this.add(barraDesplazamiento,config);
     }
 }

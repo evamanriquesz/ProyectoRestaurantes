@@ -1,5 +1,6 @@
 package main.java;//import grep.SwingLink;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.File;
 
@@ -26,9 +27,9 @@ public class JPnlFondo extends JPanel
         this.setLayout(new FlowLayout());
 
 
-        titulo = new JLabel("Nombre Restaurante");
-        titulo.setFont(new Font("Freestyle Script", Font.BOLD | Font.ITALIC, 50));
-        titulo.setForeground(Color.BLACK);
+       // titulo = new JLabel("Nombre Amplicación");
+       // titulo.setFont(new Font("Freestyle Script", Font.BOLD | Font.ITALIC, 50));
+        //titulo.setForeground(Color.BLACK);
         config.gridx=0;
         config.gridy=0;
         config.gridwidth=9;
@@ -38,7 +39,7 @@ public class JPnlFondo extends JPanel
         //config.weighty = 1.0;
         config.anchor=GridBagConstraints.CENTER;
         config.fill= GridBagConstraints.CENTER;
-        this.add(titulo,config);
+      //  this.add(titulo,config);
         config.weighty = 0.0;
         config.ipadx=0;
         config.ipady=0;
