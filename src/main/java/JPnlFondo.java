@@ -24,10 +24,10 @@ public class JPnlFondo extends JPanel
      */
     public JPnlFondo() {
         this.setSize(800, 600);
-        this.setLayout(new FlowLayout());
+        this.setLayout(layout);
 
 
-       // titulo = new JLabel("Nombre Amplicación");
+       // titulo = new JLabel("Nombre Aplicación");
        // titulo.setFont(new Font("Freestyle Script", Font.BOLD | Font.ITALIC, 50));
         //titulo.setForeground(Color.BLACK);
         config.gridx=0;
