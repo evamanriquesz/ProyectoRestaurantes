@@ -26,6 +26,7 @@ public class JInicioSesion extends JFrame
 
     JButton btnRegistrarse;
 
+
     JPanel jPnlPassword;
     JPanel jPnlRestaurante; //este es el nuevo que intentamos hacer con las funcionalidades de intellij
      JLabel titulo;
