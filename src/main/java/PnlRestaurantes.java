@@ -21,7 +21,7 @@ public class PnlRestaurantes extends JPnlFondo {
     public PnlRestaurantes()
     {
         // restaurantes = IO.leerFicheroRestaurantes();
-        this.setBounds(171, 120, 600, 600);
+        this.setBounds(0, 0, 800, 600);
 
 
 
@@ -37,15 +37,11 @@ public class PnlRestaurantes extends JPnlFondo {
         jlistrestaurantes = new JList<>(listarestaurantes);
         JScrollPane barraDesplazamiento = new JScrollPane(jlistrestaurantes);
 
-        //btnAnadir = new JButton("Añadir al carrito");
-        //btonCarrito = new JButton();
-
-
 
         lblRestaurantes =new JLabel("Restaurantes");
         lblRestaurantes.setFont(new Font("Freestyle Script", Font.BOLD, 40));
 
-        lblRestaurantes.setBounds(500,200,300,200);
+        lblRestaurantes.setBounds(300,50,300,100);
         this.add(lblRestaurantes);
 
        //JPanel pnlNorte = new JPanel(new FlowLayout());
@@ -68,7 +64,7 @@ public class PnlRestaurantes extends JPnlFondo {
         jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
         jlistrestaurantes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jlistrestaurantes.setBackground(new Color(249, 226, 219));
+        jlistrestaurantes.setBackground(new Color(161, 201, 236));
         jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
 
         for (Restaurante r : restaurantes)
@@ -81,10 +77,10 @@ public class PnlRestaurantes extends JPnlFondo {
                 }
             }
         }
-        jlistrestaurantes.setBackground(new Color(249, 226, 219));
+        jlistrestaurantes.setBackground(new Color(113, 152, 180));
         jlistrestaurantes.setFont(new Font("Georgia", Font.BOLD, 20));
 
-        barraDesplazamiento.setBounds(500,500,600,400);
+        barraDesplazamiento.setBounds(250,150,300,150);
         this.add(barraDesplazamiento);
 
        /* config.gridx=2;
