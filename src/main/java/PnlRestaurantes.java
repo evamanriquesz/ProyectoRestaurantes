@@ -21,13 +21,15 @@ public class PnlRestaurantes extends JPnlFondo {
     public PnlRestaurantes()
     {
         // restaurantes = IO.leerFicheroRestaurantes();
+        this.setBounds(171, 120, 600, 600);
+
 
 
         restaurantes = new TreeSet<>();
 
-        restaurantes.add(new Restaurante("Lateral", "Pº Castellana, 42"));
         restaurantes.add(new Restaurante("Ginos", "Calle Julian Romea, 4 "));
         restaurantes.add(new Restaurante("La Máquina", "Calle Ponzano, 39"));
+        restaurantes.add(new Restaurante("Lateral", "Pº Castellana, 42"));
         restaurantes.add(new Restaurante("Five Guys", "Calle Gran Via, 44"));
         //System.out.println(restaurantes);
 
@@ -43,10 +45,13 @@ public class PnlRestaurantes extends JPnlFondo {
         lblRestaurantes =new JLabel("Restaurantes");
         lblRestaurantes.setFont(new Font("Freestyle Script", Font.BOLD, 40));
 
+        lblRestaurantes.setBounds(500,200,300,200);
+        this.add(lblRestaurantes);
+
        //JPanel pnlNorte = new JPanel(new FlowLayout());
         //pnlNorte.add(lblRestaurantes);
 
-        config.gridx=3;
+      /*  config.gridx=3;
         config.gridy=2;
         config.gridwidth=4;
         config.gridheight=1;
@@ -55,7 +60,7 @@ public class PnlRestaurantes extends JPnlFondo {
         config.fill= GridBagConstraints.BOTH;
         this.add(lblRestaurantes,config);
 
-        config.weighty = 0.0;
+        config.weighty = 0.0;*/
 
 
 
@@ -79,15 +84,16 @@ public class PnlRestaurantes extends JPnlFondo {
         jlistrestaurantes.setBackground(new Color(249, 226, 219));
         jlistrestaurantes.setFont(new Font("Georgia", Font.BOLD, 20));
 
+        barraDesplazamiento.setBounds(500,500,600,400);
+        this.add(barraDesplazamiento);
 
-
-        config.gridx=2;
+       /* config.gridx=2;
         config.gridy=3;
         config.gridwidth=3;
         config.gridheight=1;
         config.weighty = 1.0;
         config.anchor= GridBagConstraints.CENTER;
         config.fill= GridBagConstraints.BOTH;
-        this.add(barraDesplazamiento,config);
+        this.add(barraDesplazamiento,config);*/
     }
 }

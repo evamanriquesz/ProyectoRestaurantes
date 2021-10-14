@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.*;
+import java.io.File;
 import java.util.HashMap;
 
 
@@ -26,7 +27,11 @@ public class JInicioSesion extends JFrame
     JButton btnRegistrarse;
 
     JPanel jPnlPassword;
-    JPanel jPnlRestaurante;
+    JPanel jPnlRestaurante; //este es el nuevo que intentamos hacer con las funcionalidades de intellij
+    //JPanel jPnlRestaurante //este es el hecho a mano
+
+    //GridBagLayout layout = new GridBagLayout();
+    //GridBagConstraints config = new GridBagConstraints();
 
 
     public static void main(String[] args)
@@ -36,18 +41,35 @@ public class JInicioSesion extends JFrame
 
     public JInicioSesion()
     {
-        super("Nombre de la App");
+        super("Don't Choose By Yourself");
 
         /*AQUI VA TOOOODO LO DE DENTRO DE LA APP*/
 
+        this.setPreferredSize(new Dimension(800,600));
+
+        //this.setLayout(layout);
+
+        //jPnlRestaurante = new JPnlRestaurantes();
         jPnlRestaurante = new PnlRestaurantes();
+
 
         crearPanelInicioSesion();
 
 
-        this.add(jPnlPassword);
-        this.add(jPnlRestaurante);
 
+    /*    config.gridx=0;
+        config.gridy=0;
+        config.gridwidth=1;
+        config.gridheight=1;
+        config.weightx=1.0;
+        config.weighty=1.0;
+        config.ipadx=100;
+        config.ipady=100;
+        config.anchor=GridBagConstraints.CENTER;
+        config.fill= GridBagConstraints.BOTH;*/
+
+        this.add(jPnlRestaurante);//,config);
+        this.add(jPnlPassword);//,config);
 
         jPnlPassword.setVisible(true);
         jPnlRestaurante.setVisible(false);
@@ -65,30 +87,126 @@ public class JInicioSesion extends JFrame
 
     public void crearPanelInicioSesion()
     {
+
+        JLabel imagen = new JLabel(); //hay que elegir que imagen de inicio de sesion poner
+
         jPnlPassword = new JPnlFondo();
-
-        JLabel lblTitulo = new JLabel("Nombre Aplicación");
-         lblTitulo.setFont(new Font("Freestyle Script", Font.BOLD | Font.ITALIC, 50));
-        lblTitulo.setForeground(Color.BLACK);
+        jPnlPassword.setLayout(null);
 
 
+        //btnRegistrarse= new JButton("Registrarse");
+
+        ImageIcon dcby = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "dcbyoscuro.png");
+        ImageIcon imagendcby = new ImageIcon(dcby.getImage().getScaledInstance(200,-1,Image.SCALE_DEFAULT));
+        //imagen del logo
+        imagen.setIcon(imagendcby);
+        //.setBackground(new Color(249, 226, 219));
+        imagen.setBounds(500,20,200,200);
+        jPnlPassword.add(imagen);
+        /* config.gridx=1;
+        config.gridy=1;
+        config.gridwidth=9;
+        config.gridheight=1;
+        config.weighty = 1.0;
+        config.weightx = 1.0;
+        config.ipadx=100;
+        config.anchor= GridBagConstraints.CENTER;
+        config.fill= GridBagConstraints.CENTER;
+        jPnlPassword.add(imagen,config);
+        config.weighty = 0.0;
+        config.ipadx=0;*/
+
+
+
+        //lbl user
         JLabel lblUser = new JLabel ("Usuario");
-        JLabel lblPassword = new JLabel( "Contraseña");
-
-        txtUser = new JTextField(10);
-        txtPassword = new JPasswordField(10);
-
-        btnIniciar = new JButton();
-
-        btnRegistrarse= new JButton("Registrarse");
-
-        jPnlPassword.add(lblTitulo);
+        lblUser.setFont(new Font("Arial", Font.PLAIN, 25));
+        lblUser.setBounds(200,300,200,50);
         jPnlPassword.add(lblUser);
+        /*config.gridx=1;
+        config.gridy=2;
+        config.gridwidth=1;
+        config.gridheight=1;
+        //config.weighty = 1.0;
+        config.weightx = 1.0;
+        config.anchor= GridBagConstraints.CENTER;
+        config.fill= GridBagConstraints.CENTER;
+        jPnlPassword.add(lblUser,config);
+        config.weighty = 0.0;*/
+
+        //txt user
+        txtUser = new JTextField(10);
+        txtUser.setBounds(400,300,200,40);
         jPnlPassword.add(txtUser);
+       /* config.gridx=2;
+        config.gridy=2;
+        config.gridwidth=1;
+        config.gridheight=1;
+        //config.weighty = 1.0;
+        config.weightx = 1.0;
+        config.anchor= GridBagConstraints.CENTER;
+        config.fill= GridBagConstraints.HORIZONTAL;
+        jPnlPassword.add(txtUser,config);
+        config.weighty = 0.0;*/
+
+
+        //lbl password
+        JLabel lblPassword = new JLabel( "Contraseña");
+        lblPassword.setBounds(200,360,200,50);
+        lblPassword.setFont(new Font("Arial", Font.PLAIN, 25));
         jPnlPassword.add(lblPassword);
+        /*config.gridx=1;
+        config.gridy=3;
+        config.gridwidth=1;
+        config.gridheight=1;
+        //config.weighty = 1.0;
+        config.weightx = 1.0;
+        config.anchor= GridBagConstraints.CENTER;
+        config.fill= GridBagConstraints.CENTER;
+        jPnlPassword.add(lblPassword,config);
+        config.weighty = 0.0;*/
+
+        //txtpassword
+        txtPassword = new JPasswordField(10);
+        txtPassword.setBounds(400,360,200,40);
         jPnlPassword.add(txtPassword);
+        /*config.gridx=2;
+        config.gridy=3;
+        config.gridwidth=1;
+        config.gridheight=1;
+        //config.weighty = 1.0;
+        config.weightx = 1.0;
+        config.anchor= GridBagConstraints.CENTER;
+        config.fill= GridBagConstraints.HORIZONTAL;
+        jPnlPassword.add(txtPassword,config);
+        config.weighty = 0.0;*/
+
+        btnIniciar = new JButton("Iniciar Sesión");
+        btnIniciar.setFont(new Font("Arial", Font.BOLD, 30));
+        btnIniciar.setForeground(Color.BLACK);
+        btnIniciar.setHorizontalTextPosition( SwingConstants.CENTER );
+        btnIniciar.setVerticalTextPosition( SwingConstants.BOTTOM );
+        btnIniciar.setBackground(new Color(90, 130, 156));
+        //btnIniciar.setSize(new Dimension(120,20));
+
+        btnIniciar.setBounds(200,420,400,80);
         jPnlPassword.add(btnIniciar);
-        jPnlPassword.add(btnRegistrarse);
+        /*config.gridx=1;
+        config.gridy=4;
+        config.gridwidth=2;
+        config.gridheight=2;
+        config.weighty = 1.0;
+        config.weightx = 1.0;
+        config.anchor= GridBagConstraints.CENTER;
+        config.fill= GridBagConstraints.HORIZONTAL;
+        jPnlPassword.add(btnIniciar);
+        config.weighty = 0.0;
+        config.weightx=0.0;*/
+
+
+        //jPnlPassword.add(btnRegistrarse);
+
+        jPnlRestaurante.setLayout(null);
 
         txtUser.addKeyListener(new KeyAdapter()
         {
