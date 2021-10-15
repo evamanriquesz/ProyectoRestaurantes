@@ -28,12 +28,9 @@ public class JInicioSesion extends JFrame
 
 
     JPanel jPnlPassword;
-    JPanel jPnlRestaurante; //este es el nuevo que intentamos hacer con las funcionalidades de intellij
-     JLabel titulo;
-    //JPanel jPnlRestaurante //este es el hecho a mano
+    JPanel jPnlRestaurante;
+    JLabel titulo;
 
-    //GridBagLayout layout = new GridBagLayout();
-    //GridBagConstraints config = new GridBagConstraints();
 
 
     public static void main(String[] args)
@@ -45,14 +42,11 @@ public class JInicioSesion extends JFrame
     {
         super("Don't Choose By Yourself");
 
-        /*AQUI VA TOOOODO LO DE DENTRO DE LA APP*/
-
         this.setPreferredSize(new Dimension(800,600));
 
-        //this.setLayout(layout);
 
-        //jPnlRestaurante = new JPnlRestaurantes();
-        jPnlRestaurante = new PnlRestaurantes();
+        //jPnlRestaurante = new JPnlRestaurantes(); //el nuevo que intentamos crear con el gui
+        jPnlRestaurante = new PnlRestaurantes(); //el picado a mano
         jPnlRestaurante.setLayout(null);
 
 
@@ -61,20 +55,8 @@ public class JInicioSesion extends JFrame
 
 
 
-    /*    config.gridx=0;
-        config.gridy=0;
-        config.gridwidth=1;
-        config.gridheight=1;
-        config.weightx=1.0;
-        config.weighty=1.0;
-        config.ipadx=100;
-        config.ipady=100;
-        config.anchor=GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.BOTH;*/
-
-        this.add(jPnlRestaurante);//,config);
-        this.add(jPnlPassword);//,config);
-
+        this.add(jPnlRestaurante);
+        this.add(jPnlPassword);
         jPnlPassword.setVisible(true);
         jPnlRestaurante.setVisible(false);
 
@@ -92,7 +74,7 @@ public class JInicioSesion extends JFrame
     public void crearPanelInicioSesion()
     {
 
-        JLabel imagen = new JLabel(); //hay que elegir que imagen de inicio de sesion poner
+        JLabel imagen = new JLabel();
 
         jPnlPassword = new JPanel();
         jPnlPassword.setBounds(171, 120, 600, 600);
@@ -107,119 +89,61 @@ public class JInicioSesion extends JFrame
         titulo.setBounds(150,70,400,100);
         jPnlPassword.add(titulo);
 
+
+        //imagen del logo
         ImageIcon dcby = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "dcbyoscuro.png");
         ImageIcon imagendcby = new ImageIcon(dcby.getImage().getScaledInstance(200,-1,Image.SCALE_DEFAULT));
-        //imagen del logo
         imagen.setIcon(imagendcby);
-        //.setBackground(new Color(249, 226, 219));
         imagen.setBounds(500,20,200,200);
         jPnlPassword.add(imagen);
-        /* config.gridx=1;
-        config.gridy=1;
-        config.gridwidth=9;
-        config.gridheight=1;
-        config.weighty = 1.0;
-        config.weightx = 1.0;
-        config.ipadx=100;
-        config.anchor= GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.CENTER;
-        jPnlPassword.add(imagen,config);
-        config.weighty = 0.0;
-        config.ipadx=0;*/
 
 
 
-        //lbl user
+        //etiqueta de usuario
         JLabel lblUser = new JLabel ("Usuario");
         lblUser.setFont(new Font("Arial", Font.PLAIN, 25));
         lblUser.setBounds(200,250,200,50);
         jPnlPassword.add(lblUser);
-        /*config.gridx=1;
-        config.gridy=2;
-        config.gridwidth=1;
-        config.gridheight=1;
-        //config.weighty = 1.0;
-        config.weightx = 1.0;
-        config.anchor= GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.CENTER;
-        jPnlPassword.add(lblUser,config);
-        config.weighty = 0.0;*/
 
-        //txt user
+
+        //cuadro de etxto del usuario
         txtUser = new JTextField(10);
         txtUser.setBounds(400,250,200,40);
         jPnlPassword.add(txtUser);
-       /* config.gridx=2;
-        config.gridy=2;
-        config.gridwidth=1;
-        config.gridheight=1;
-        //config.weighty = 1.0;
-        config.weightx = 1.0;
-        config.anchor= GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.HORIZONTAL;
-        jPnlPassword.add(txtUser,config);
-        config.weighty = 0.0;*/
 
 
-        //lbl password
+
+        //etiqueta de contraseña
         JLabel lblPassword = new JLabel( "Contraseña");
         lblPassword.setBounds(200,300,200,50);
         lblPassword.setFont(new Font("Arial", Font.PLAIN, 25));
         jPnlPassword.add(lblPassword);
-        /*config.gridx=1;
-        config.gridy=3;
-        config.gridwidth=1;
-        config.gridheight=1;
-        //config.weighty = 1.0;
-        config.weightx = 1.0;
-        config.anchor= GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.CENTER;
-        jPnlPassword.add(lblPassword,config);
-        config.weighty = 0.0;*/
 
-        //txtpassword
+
+        //cuadro de texto para la contraseña
         txtPassword = new JPasswordField(10);
         txtPassword.setBounds(400,300,200,40);
         jPnlPassword.add(txtPassword);
-        /*config.gridx=2;
-        config.gridy=3;
-        config.gridwidth=1;
-        config.gridheight=1;
-        //config.weighty = 1.0;
-        config.weightx = 1.0;
-        config.anchor= GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.HORIZONTAL;
-        jPnlPassword.add(txtPassword,config);
-        config.weighty = 0.0;*/
 
+        //boton de Iniciar sesion
         btnIniciar = new JButton("Iniciar Sesión");
         btnIniciar.setFont(new Font("Arial", Font.BOLD, 30));
         btnIniciar.setForeground(Color.BLACK);
         btnIniciar.setHorizontalTextPosition( SwingConstants.CENTER );
         btnIniciar.setVerticalTextPosition( SwingConstants.BOTTOM );
         btnIniciar.setBackground(new Color(90, 130, 156));
-        //btnIniciar.setSize(new Dimension(120,20));
-
         btnIniciar.setBounds(200,350,400,80);
         jPnlPassword.add(btnIniciar);
-        /*config.gridx=1;
-        config.gridy=4;
-        config.gridwidth=2;
-        config.gridheight=2;
-        config.weighty = 1.0;
-        config.weightx = 1.0;
-        config.anchor= GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.HORIZONTAL;
-        jPnlPassword.add(btnIniciar);
-        config.weighty = 0.0;
-        config.weightx=0.0;*/
 
+
+        //pregunta para registrarse
         JLabel pregunta = new JLabel("¿Aún no tienes cuenta?");
         pregunta.setFont(new Font("Arial", Font.BOLD, 15));
         pregunta.setBackground(Color.BLACK);
         pregunta.setBounds(250, 500, 200, 20);
         jPnlPassword.add(pregunta);
 
+        //boton para registrarse si no se tiene cuenta
         btnRegistrarse= new JButton("Registrarse");
         btnRegistrarse.setFont(new Font("Arial", Font.BOLD, 10));
         btnRegistrarse.setForeground(Color.BLACK);
@@ -230,10 +154,7 @@ public class JInicioSesion extends JFrame
         jPnlPassword.add(btnRegistrarse);
 
 
-
-        //jPnlPassword.add(btnRegistrarse);
-
-
+        //cuando se apriete "enter" tras poner el usuario que se vaya al cuadro de la contraseña
         txtUser.addKeyListener(new KeyAdapter()
         {
             @Override
@@ -243,6 +164,7 @@ public class JInicioSesion extends JFrame
             }
         });
 
+        //cuando se apriete "enter" tras poner la contraseña que se vaya al boton de inicio de sesion
         txtPassword.addKeyListener (new KeyAdapter()
         {
             @Override
@@ -252,8 +174,7 @@ public class JInicioSesion extends JFrame
             }
         });
 
-        btnIniciar.setText("Iniciar Sesión");
-
+        //si se presiona "enter" que guarde los valores de usuario y contraseña
         btnIniciar.addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent keyEvent){
@@ -273,6 +194,7 @@ public class JInicioSesion extends JFrame
             }
         });
 
+        //cuando se pulse que compare si son correctos o no el usuario y contraseña
         btnIniciar.addActionListener(e -> {
             try{
                 String user1 = txtUser.getText();
@@ -287,7 +209,10 @@ public class JInicioSesion extends JFrame
                 txtUser.requestFocus();
             }
         });
-    /*
+
+        //funcionalidad delboton de Registrar
+        //hay que conectarlo con la base de datos para que vaya añadiendo filas
+        /*
         btnRegistrarse.addActionListener(e->{
             JRegistrarUsuario jRegistrarUsuario = new JRegistrarUsuario();
             jRegistrarUsuario.setVisible(true);
