@@ -1,12 +1,11 @@
 package main.java;
 
-import main.java.JPnlFondo;
-import main.java.Restaurante;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashSet;
 import java.util.TreeSet;
+
+//panel de restaurantes hecho a mano
 
 public class PnlRestaurantes extends JPnlFondo {
 
@@ -20,11 +19,11 @@ public class PnlRestaurantes extends JPnlFondo {
 
     public PnlRestaurantes()
     {
-        // restaurantes = IO.leerFicheroRestaurantes();
+        // restaurantes = IO.leerFicheroRestaurantes(); //no sirve porque no usamos la clase io ni ficheros
         this.setBounds(0, 0, 800, 600);
 
 
-
+        //lista de restaurantes de prueba que vamos usando para asegurarnos que se muestran en el scrollpane
         restaurantes = new TreeSet<>();
 
         restaurantes.add(new Restaurante("Ginos", "Calle Julian Romea, 4 "));
@@ -44,21 +43,6 @@ public class PnlRestaurantes extends JPnlFondo {
         lblRestaurantes.setBounds(300,50,300,100);
         this.add(lblRestaurantes);
 
-       //JPanel pnlNorte = new JPanel(new FlowLayout());
-        //pnlNorte.add(lblRestaurantes);
-
-      /*  config.gridx=3;
-        config.gridy=2;
-        config.gridwidth=4;
-        config.gridheight=1;
-        config.weighty = 1.0;
-        config.anchor= GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.BOTH;
-        this.add(lblRestaurantes,config);
-
-        config.weighty = 0.0;*/
-
-
 
         barraDesplazamiento.setViewportView(jlistrestaurantes);
         jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
@@ -67,6 +51,7 @@ public class PnlRestaurantes extends JPnlFondo {
         jlistrestaurantes.setBackground(new Color(161, 201, 236));
         jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
 
+        //recorremos el treeset de restaurantes para guardarlo en el vector de Strings que semete en el jlist
         for (Restaurante r : restaurantes)
         {
             for (int i = 0; i < listarestaurantes.length; i++){
@@ -83,13 +68,6 @@ public class PnlRestaurantes extends JPnlFondo {
         barraDesplazamiento.setBounds(250,150,300,150);
         this.add(barraDesplazamiento);
 
-       /* config.gridx=2;
-        config.gridy=3;
-        config.gridwidth=3;
-        config.gridheight=1;
-        config.weighty = 1.0;
-        config.anchor= GridBagConstraints.CENTER;
-        config.fill= GridBagConstraints.BOTH;
-        this.add(barraDesplazamiento,config);*/
+
     }
 }

@@ -1,6 +1,6 @@
 package main.java;
 
-public class Usuario
+public class Usuario //esta clase la conectaremos con el inicio desesion para poder mostrar los datos del usuario en su perfil
 {
 
     private String nombre;

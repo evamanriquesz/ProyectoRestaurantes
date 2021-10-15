@@ -8,6 +8,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.TreeSet;
 
+//clase que estamos intentado crear para el panel de restaurantes con la ayuda del gui
+
 public class JPnlRestaurantes extends JPanel{
     public JList jlistrestaurantes;
 
