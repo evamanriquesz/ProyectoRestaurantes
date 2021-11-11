@@ -31,6 +31,7 @@ public class JInicioSesion extends JFrame
     JPanel jPnlRestaurante;
     JLabel titulo;
 
+    public static JPanel panelperfil,panelregistrarse;
 
 
     public static void main(String[] args)
@@ -44,15 +45,14 @@ public class JInicioSesion extends JFrame
 
         this.setPreferredSize(new Dimension(800,600));
 
+        panelperfil =new JPanelPerfil();
 
         //jPnlRestaurante = new JPnlRestaurantes(); //el nuevo que intentamos crear con el gui
         jPnlRestaurante = new PnlRestaurantes(); //el picado a mano
         jPnlRestaurante.setLayout(null);
 
 
-
         crearPanelInicioSesion();
-
 
 
         this.add(jPnlRestaurante);
@@ -63,7 +63,6 @@ public class JInicioSesion extends JFrame
         this.setResizable(false);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setExtendedState(MAXIMIZED_BOTH);
 
         this.pack();
         this.setLocationRelativeTo(null);
@@ -214,8 +213,7 @@ public class JInicioSesion extends JFrame
         //hay que conectarlo con la base de datos para que vaya añadiendo filas
         /*
         btnRegistrarse.addActionListener(e->{
-            JRegistrarUsuario jRegistrarUsuario = new JRegistrarUsuario();
-            jRegistrarUsuario.setVisible(true);
+            crearPanel("
 
             jRegistrarUsuario.btnAceptar.addActionListener(new ActionListener()
             {
@@ -262,6 +260,12 @@ public class JInicioSesion extends JFrame
         {
             jPnlPassword.setVisible(false);
             jPnlRestaurante.setVisible(true);
+
+            //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
+            this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
+            this.setExtendedState(MAXIMIZED_BOTH);
+
+
         }
 
         else if (respuesta ==0)
@@ -271,12 +275,23 @@ public class JInicioSesion extends JFrame
 
     }
 
-/*
-    public void registrarUsuario(String usuario, String contra, int telefono, String email)
+    public static void crearPanel (String titulo, JPanel panel)
+    {
+        JFrame perfil = new JFrame(titulo);
+
+        perfil.setPreferredSize(new Dimension(600,400));
+        perfil.add(panel);
+        perfil.pack();
+        perfil.setLocationRelativeTo(null);
+        perfil.setVisible(true);
+    }
+
+
+    /*public void registrarUsuario(String usuario, String contra, int telefono, String email)
     {
 
-    }
-*/
+    }*/
+
 
 
 

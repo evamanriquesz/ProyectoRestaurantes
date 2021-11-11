@@ -35,7 +35,7 @@ public class Restaurante implements Comparable{
                 else
                     return this.getDireccion().compareTo(r.getDireccion());
             else
-                return this.getNombre().compareTo(r.getNombre());
+                return this.getNombre().compareTo(r .getNombre());
 
         }else
             return -1;
