@@ -27,10 +27,11 @@ public class JInicioSesion extends JFrame
     JButton btnRegistrarse;
 
     JPanel jPnlPassword;
-    JPanel jPnlRestaurante;
     JLabel titulo;
 
-    public static JPanel panelperfil,panelregistrarse;
+    public static Dimension screenSize =Toolkit. getDefaultToolkit(). getScreenSize();
+
+    public static JPanel panelperfil,panelregistrarse, panelNorte;
 
 
     public static void main(String[] args)
@@ -47,17 +48,17 @@ public class JInicioSesion extends JFrame
         panelperfil =new JPanelPerfil();
 
         //jPnlRestaurante = new JPnlRestaurantes(); //el nuevo que intentamos crear con el gui
-        jPnlRestaurante = new PnlRestaurantes(); //el picado a mano
-        jPnlRestaurante.setLayout(null);
+        //jPnlRestaurante = new PnlRestaurantes(); //el picado a mano
+        //jPnlRestaurante.setLayout(null);
 
 
         crearPanelInicioSesion();
 
 
-        this.add(jPnlRestaurante);
+        //this.add(jPnlRestaurante);
         this.add(jPnlPassword);
         jPnlPassword.setVisible(true);
-        jPnlRestaurante.setVisible(false);
+        //jPnlRestaurante.setVisible(false);
 
         this.setResizable(false);
 
@@ -258,11 +259,13 @@ public class JInicioSesion extends JFrame
         if(respuesta == 1)
         {
             jPnlPassword.setVisible(false);
-            jPnlRestaurante.setVisible(true);
+            this.setVisible(false);
+            crearPanelGrande("Don´t Choose By Yourself");
+            //jPnlRestaurante.setVisible(true);
 
             //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
-            this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
-            this.setExtendedState(MAXIMIZED_BOTH);
+            //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
+            //this.setExtendedState(MAXIMIZED_BOTH);
 
 
         }
@@ -274,15 +277,61 @@ public class JInicioSesion extends JFrame
 
     }
 
-    public static void crearPanel (String titulo, JPanel panel)
+    public static void crearPanelPeque (String titulo, JPanel panel)
     {
-        JFrame perfil = new JFrame(titulo);
+        JFrame ventana = new JFrame(titulo);
 
-        perfil.setPreferredSize(new Dimension(600,400));
-        perfil.add(panel);
-        perfil.pack();
-        perfil.setLocationRelativeTo(null);
-        perfil.setVisible(true);
+        ventana.setPreferredSize(new Dimension(800,700));
+        panelNorte =new JPnlFondo();//titulo);
+        panelNorte.setBounds(0,0,800,100);
+
+        JLabel lbltitulo=new JLabel(titulo);
+        lbltitulo.setFont(new Font("Lirio", Font.ITALIC, 30));
+        lbltitulo.setForeground(Color.BLACK);
+        lbltitulo.setHorizontalTextPosition( SwingConstants.CENTER );
+        lbltitulo.setVerticalTextPosition( SwingConstants.BOTTOM );
+        lbltitulo.setBounds(350,20,200,70);
+        panelNorte.add(lbltitulo);
+
+        ventana.add(panelNorte);
+
+        panel.setBounds(0,101,800, 600);
+        ventana.add(panel);
+
+        ventana.pack();
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+    }
+
+    public static void crearPanelGrande (String titulo)
+    {
+        JFrame ventana = new JFrame(titulo);
+
+        ventana.setPreferredSize(screenSize);
+        panelNorte =new JPnlFondo();
+        panelNorte.setBounds(0,0,screenSize.width,100);
+
+        JLabel lbltitulo=new JLabel("RESTAURANTES");
+        lbltitulo.setFont(new Font("Lirio", Font.ITALIC, 30));
+        lbltitulo.setForeground(Color.BLACK);
+        lbltitulo.setHorizontalTextPosition( SwingConstants.CENTER );
+        lbltitulo.setVerticalTextPosition( SwingConstants.BOTTOM );
+        lbltitulo.setBounds(screenSize.width/2 -100,20,300,70);
+        panelNorte.add(lbltitulo);
+
+        ventana.add(panelNorte);
+
+        JPanel jPnlRestaurante = new PnlRestaurantes(); //el picado a mano
+        jPnlRestaurante.setBounds(0,101,screenSize.width, screenSize.height-100);
+        ventana.add(jPnlRestaurante);
+
+        ventana.setResizable(false);
+
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        ventana.pack();
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
     }
 
 

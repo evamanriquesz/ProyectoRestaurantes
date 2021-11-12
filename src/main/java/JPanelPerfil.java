@@ -6,54 +6,40 @@ import java.io.File;
 
 public class JPanelPerfil extends JPanel {
 
-    JLabel perfil, nombre, apellidos, edad, correo,imagen;
+    JLabel lbltitulo, nombre, apellidos, edad, correo,imagen;
     JButton verReservasActuales, verReservasAnteriores;
 
     public JPanelPerfil(){
 
-        this.setBounds(0, 0, 600, 400);
-        this.setBackground(new Color(141, 182, 206));
+        this.setLayout(null);
+        //this.setBounds(0, 0, 600, 400);
+        this.setBackground(new Color(221, 234, 245, 202));
 
-        imagen = new JLabel();
-
-        ImageIcon dcby = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "dcbyoscuro.png");
-        ImageIcon imagendcby = new ImageIcon(dcby.getImage().getScaledInstance(80,-1,Image.SCALE_DEFAULT));
-        //imagen del logo
-        imagen.setIcon(imagendcby);
-    //.setBackground(new Color(249, 226, 219));
-        imagen.setBounds(20,20,80,80);
-        this.add(imagen);
-
-        perfil= new JLabel("MI PERFIL");
-        perfil.setFont(new Font("Georgia", Font.BOLD, 50));
-        perfil.setForeground(Color.BLACK);
-        perfil.setBounds(150,20,100,80);
-        this.add(perfil);
 
         nombre = new JLabel("NOMBRE: ");
-        nombre.setFont(new Font("Georgia", Font.BOLD, 10));
+        nombre.setFont(new Font("Lirio", Font.BOLD, 20));
         nombre.setForeground(Color.BLACK);
-        nombre.setBounds(80,150,100,20);
+        nombre.setBounds(80,150,150,30);
         nombre.setHorizontalTextPosition( SwingConstants.LEFT);
         nombre.setVerticalTextPosition( SwingConstants.BOTTOM );
         this.add(nombre);
 
         apellidos = new JLabel("APELLIDOS: ");
-        apellidos.setFont(new Font("Georgia", Font.BOLD, 10));
+        apellidos.setFont(new Font("Lirio", Font.BOLD, 20));
         apellidos.setForeground(Color.BLACK);
-        apellidos.setBounds(80,180,100,20);
+        apellidos.setBounds(80,190,150,30);
         this.add(apellidos);
 
         edad = new JLabel("EDAD: ");
-        edad.setFont(new Font("Georgia", Font.BOLD, 10));
+        edad.setFont(new Font("Lirio", Font.BOLD, 20));
         edad.setForeground(Color.BLACK);
-        edad.setBounds(80,210,100,20);
+        edad.setBounds(80,230,150,30);
         this.add(edad);
 
         correo = new JLabel("CORREO: ");
-        correo.setFont(new Font("Georgia", Font.BOLD, 10));
+        correo.setFont(new Font("Lirio", Font.BOLD, 20));
         correo.setForeground(Color.BLACK);
-        correo.setBounds(80,240,100,20);
+        correo.setBounds(80,270,150,30);
         this.add(correo);
 
     }
