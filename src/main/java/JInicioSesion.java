@@ -2,6 +2,8 @@ package main.java;
 
 import icai.dtc.isw.client.Client;
 import icai.dtc.isw.dao.CustomerDAO;
+import main.java.InicioSesionException;
+import main.java.PnlRestaurantes;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -240,7 +242,7 @@ public class JInicioSesion extends JFrame
         }); */
     }
 
-    public void iniciarSesion(String user, char[] password) throws InicioSesionException{
+    public void iniciarSesion(String user, char[] password) throws InicioSesionException {
         StringBuilder pw = new StringBuilder();
 
         for (char c: password)
