@@ -32,7 +32,7 @@ public class JInicioSesion extends JFrame
     JPanel jPnlPassword;
     JLabel titulo;
 
-    public static Dimension screenSize =Toolkit. getDefaultToolkit(). getScreenSize();
+    public static Dimension screenSize =Toolkit. getDefaultToolkit(). getScreenSize().getSize();
 
     public static JPanel panelperfil,panelregistrarse, panelNorte;
 
@@ -288,7 +288,7 @@ public class JInicioSesion extends JFrame
     {
         JFrame ventana = new JFrame(titulo);
 
-        ventana.setPreferredSize(screenSize);
+        ventana.setPreferredSize(screenSize.getSize());
         panelNorte =new JPnlFondo();
         panelNorte.setBounds(0,0,screenSize.width,100);
 

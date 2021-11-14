@@ -52,7 +52,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         this.setBackground(new Color(221, 234, 245, 202));
 
         dim = super.getToolkit().getScreenSize();
-        this.setSize(dim);
+        this.setSize(JInicioSesion.screenSize.width, JInicioSesion.screenSize.height-100);
 
 
 
