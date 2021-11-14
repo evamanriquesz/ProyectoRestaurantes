@@ -151,14 +151,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         jlistrestaurantes.setForeground(Color.BLACK);
 
 
-        barraDesplazamiento.setBounds(1150,240,350,420);
-        this.add(barraDesplazamiento);
-
-
-
-
-
-
         /*
         public static void rellenarScrollPane()
         {
@@ -222,7 +214,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         */
 
 
-
         //recorremos el treeset de restaurantes para guardarlo en el vector de Strings que semete en el jlist
           /*  for (Restaurante r : restaurantes)
             {
@@ -267,7 +258,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         jlistrestaurantes.setForeground(Color.BLACK);
 */
 
-        barraDesplazamiento.setBounds(1115,240,350,420);
+        barraDesplazamiento.setBounds(1065,210,350,420);
         this.add(barraDesplazamiento);
 
 
@@ -279,11 +270,11 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         reservar.setHorizontalTextPosition( SwingConstants.CENTER );
         reservar.setVerticalTextPosition( SwingConstants.BOTTOM );
         reservar.setBackground(new Color(133, 177, 204, 182));
-        reservar.setBounds(1115,670,350,60);
+        reservar.setBounds(1065,640,350,60);
         this.add(reservar);
 
         jtxtBuscar = new JTextField(30);
-        jtxtBuscar.setBounds(1145,190,200,40);
+        jtxtBuscar.setBounds(1095,160,200,40);
         this.add(jtxtBuscar);
 
         btnBuscar = new JButton("BUSCAR");
@@ -293,7 +284,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         btnBuscar.setHorizontalTextPosition( SwingConstants.CENTER );
         btnBuscar.setVerticalTextPosition( SwingConstants.BOTTOM );
         btnBuscar.setBackground(new Color(133, 177, 204, 182));//(90, 130, 156));
-        btnBuscar.setBounds(1365,190,100,40);
+        btnBuscar.setBounds(1315,160,100,40);
         this.add(btnBuscar);
 
 
@@ -344,20 +335,20 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         lblfiltros=new JLabel("Filtros: ");
         lblfiltros.setFont(new Font("Lirio", Font.ITALIC, 30));
         lblfiltros.setForeground(Color.BLACK);
-        lblfiltros.setBounds(100,190,100,40);
+        lblfiltros.setBounds(100,160,100,40);
         this.add(lblfiltros);
 
         tipo=new JCheckBox("Tipo de comida");
         tipo.setFont(new Font("Georgia", Font.BOLD, 15));
         tipo.setForeground(Color.BLACK);
-        tipo.setBounds(80,260,180,30);
+        tipo.setBounds(80,230,180,30);
         tipo.setBackground(new Color(133, 177, 204, 182));
         this.add(tipo);
 
             restaurante =new JCheckBox("Restaurante");
             restaurante.setFont(new Font("Georgia", Font.BOLD, 15));
             restaurante.setForeground(Color.BLACK);
-            restaurante.setBounds(100,300,160,30);
+            restaurante.setBounds(100,270,160,30);
             restaurante.setBackground(new Color(133, 177, 204, 182));
             restaurante.setEnabled(false);
             this.add(restaurante);
@@ -365,7 +356,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             bar =new JCheckBox("Bar");
             bar.setFont(new Font("Georgia", Font.BOLD, 15));
             bar.setForeground(Color.BLACK);
-            bar.setBounds(100,340,160,30);
+            bar.setBounds(100,310,160,30);
             bar.setBackground(new Color(133, 177, 204, 182));
             bar.setEnabled(false);
             this.add(bar);
@@ -373,7 +364,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             taberna =new JCheckBox("Taberna");
             taberna.setFont(new Font("Georgia", Font.BOLD, 15));
             taberna.setForeground(Color.BLACK);
-            taberna.setBounds(100,380,160,30);
+            taberna.setBounds(100,350,160,30);
             taberna.setBackground(new Color(133, 177, 204, 182));
             taberna.setEnabled(false);
             this.add(taberna);
@@ -381,7 +372,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             comidarapida=new JCheckBox("Comida Rápida");
             comidarapida.setFont(new Font("Georgia", Font.BOLD, 15));
             comidarapida.setForeground(Color.BLACK);
-            comidarapida.setBounds(100,420,160,30);
+            comidarapida.setBounds(100,390,160,30);
             comidarapida.setBackground(new Color(133, 177, 204, 182));
             comidarapida.setEnabled(false);
             this.add(comidarapida);
@@ -389,12 +380,12 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         barrio =new JCheckBox("Barrio");
         barrio.setFont(new Font("Georgia", Font.BOLD, 15));
         barrio.setForeground(Color.BLACK);
-        barrio.setBounds(80,480,180,30);
+        barrio.setBounds(80,450,180,30);
         barrio.setBackground(new Color(133, 177, 204, 182));
         this.add(barrio);
 
             jtxtbarrio=new JTextField(20);
-            jtxtbarrio .setBounds(100,520,160,30);
+            jtxtbarrio .setBounds(100,490,160,30);
             jtxtbarrio.setEnabled(false);
             this.add(jtxtbarrio);
 
@@ -408,7 +399,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         borrarfiltros.setHorizontalTextPosition( SwingConstants.CENTER );
         borrarfiltros.setVerticalTextPosition( SwingConstants.BOTTOM );
         borrarfiltros.setBackground(new Color(133, 177, 204, 182));
-        borrarfiltros.setBounds(80,610,200,20);
+        borrarfiltros.setBounds(80,580,200,20);
         borrarfiltros.addActionListener(this);
         this.add(borrarfiltros);
 
@@ -418,7 +409,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         aceptar.setHorizontalTextPosition( SwingConstants.CENTER );
         aceptar.setVerticalTextPosition( SwingConstants.BOTTOM );
         aceptar.setBackground(new Color(133, 177, 204, 182));
-        aceptar.setBounds(80,580,200,20);
+        aceptar.setBounds(80,550,200,20);
         //aceptar.addActionListener(this);
         this.add(aceptar);
 
@@ -430,7 +421,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         btnGeneradorAleatorio.setHorizontalTextPosition( SwingConstants.CENTER );
         btnGeneradorAleatorio.setVerticalTextPosition( SwingConstants.BOTTOM );
         btnGeneradorAleatorio.setBackground(new Color(133, 177, 204, 182));
-        btnGeneradorAleatorio.setBounds(80,650,200,80);
+        btnGeneradorAleatorio.setBounds(80,620,200,80);
         this.add(btnGeneradorAleatorio);
 
 

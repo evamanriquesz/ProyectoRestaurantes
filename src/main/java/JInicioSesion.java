@@ -38,8 +38,8 @@ public class JInicioSesion extends JFrame
 
     public JRegistrarUsuario panelregistro;
 
-    public static int ancho = 1500;
-    public static int alto =830;
+    public static int ancho = 1450;
+    public static int alto =780;
 
     public static void main(String[] args)
     {
