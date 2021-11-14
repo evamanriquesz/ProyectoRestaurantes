@@ -1,7 +1,7 @@
 package main.java;
 
 
-import de.fhpotsdam.unfolding.UnfoldingMap;
+//import de.fhpotsdam.unfolding.UnfoldingMap;
 import icai.dtc.isw.client.Client;
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ import java.io.*;
 
 public class PnlRestaurantes extends JPanel implements ActionListener, ChangeListener, Serializable{
 
-    private UnfoldingMap mapa;
+    //private UnfoldingMap mapa;
     public ArrayList<Restaurante> restaurantes;
     public static JList<String> jlistrestaurantes;
 
@@ -238,7 +238,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
            */
 
 
-
         /*
         jlistrestaurantes = new JList<>(listarestaurantes);
         JScrollPane barraDesplazamiento = new JScrollPane(jlistrestaurantes);
@@ -265,14 +264,14 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         jlistrestaurantes.setBackground(new Color(133, 177, 204, 182));
         jlistrestaurantes.setFont(new Font("Lirio", Font.ITALIC, 25));
         jlistrestaurantes.setForeground(Color.BLACK);
-
+*/
 
         barraDesplazamiento.setBounds(1150,240,350,420);
         this.add(barraDesplazamiento);
 
 
 
-         */
+
         reservar= new JButton("RESERVAR");
         reservar.setFont(new Font("Lirio", Font.BOLD, 20));
         reservar.setForeground(Color.BLACK);

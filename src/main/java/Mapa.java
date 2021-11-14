@@ -91,8 +91,8 @@ public class Mapa extends PApplet {
     }
 }*/
 
-import com.teamdev.jxmaps.*;
-import com.teamdev.jxmaps.swing.MapView;
+//import com.teamdev.jxmaps.*;
+//import com.teamdev.jxmaps.swing.MapView;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
