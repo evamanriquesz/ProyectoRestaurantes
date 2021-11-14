@@ -215,7 +215,7 @@ public class JInicioSesion extends JFrame
         });
 
         btnRegistrarse.addActionListener(e->{
-            crearPanelPeque("REGISTRO",new JRegistrarUsuario(new EventoCerrar()));
+            crearPanelPeque("REGISTRO",new JRegistrarUsuario());
 
         });
     }
@@ -320,12 +320,5 @@ public class JInicioSesion extends JFrame
     {
 
     }*/
-    class EventoCerrar implements ActionListener{
 
-        @Override
-        public void actionPerformed(ActionEvent arg0) {
-            //dispose();
-            setVisible(false);
-        }
-    }
 }

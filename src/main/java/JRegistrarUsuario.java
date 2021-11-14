@@ -23,8 +23,9 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
 
      JButton btnAceptar;
      JButton btnCancelar;
+    private SwingUtilities Swingutilities;
 
-    public JRegistrarUsuario(ActionListener a) {
+    public JRegistrarUsuario() {
         //super("Registrar usuario");
 
         this.setLayout(null);
@@ -108,7 +109,7 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
         btnCancelar.setForeground(Color.BLACK);
         btnCancelar.setBackground(new Color(133, 177, 204, 182));
         btnCancelar.setBounds(350, 500, 150, 50);
-        btnCancelar.addActionListener(a);
+        btnCancelar.addActionListener(this);
         this.add(btnCancelar);
 
 
@@ -146,7 +147,11 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource()==btnCancelar)
+        {
+            JFrame  topFrame = (JFrame) Swingutilities.getWindowAncestor(this);
+            topFrame.dispose();
+        }
 
     }
 }

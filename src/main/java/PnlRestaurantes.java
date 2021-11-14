@@ -296,18 +296,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         this.add(btnBuscar);
 
 
-        btnBuscar.addActionListener(e -> {
-
-                String restauranteBuscado = jtxtBuscar.getText();
-            try {
-                comprobarRestaurante(restauranteBuscado);
-            }
-            catch (BuscarRestauranteException bre) {
-                JOptionPane.showMessageDialog(PnlRestaurantes.this, bre.getMessage());
-                jtxtBuscar.setText("");
-                jtxtBuscar.requestFocus();
-            }
-        });
 
         //cuando se apriete "enter" tras introducir en el buscador que se vaya al boton de buscar
         jtxtBuscar.addKeyListener (new KeyAdapter()
