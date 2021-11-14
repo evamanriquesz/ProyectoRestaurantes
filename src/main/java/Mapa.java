@@ -102,6 +102,8 @@ import java.net.URL;
 
 import javax.swing.*;
 
+/**clase para crear un mapa que necesita librerias externas asi que lo añadiremos mas adelante al proyecto**/
+
 public class Mapa{//} extends JPanel{//} extends MapView {
 
 

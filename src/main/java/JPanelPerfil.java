@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+/**panel del perfil que se abre al dar al boton de perfil. Cuando lo conectemos a la base de datos mostrara la
+ * informacion del usuario que tenga la cuenta iniciada
+ */
+
 public class JPanelPerfil extends JPanel {
 
     JLabel lbltitulo, nombre, apellidos, telefono, correo,imagen;

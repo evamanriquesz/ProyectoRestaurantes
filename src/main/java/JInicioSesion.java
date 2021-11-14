@@ -15,6 +15,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.HashMap;
 
+/**clase principal en el que se inicia la aplicacion y se crea la ventana de inicio de sesion**/
 
 public class JInicioSesion extends JFrame
 {
@@ -48,6 +49,7 @@ public class JInicioSesion extends JFrame
 
     }
 
+    /**constructor de la ventana que muestra el inicio de sesion**/
     public JInicioSesion()
     {
         super("Don't Choose By Yourself");
@@ -79,17 +81,19 @@ public class JInicioSesion extends JFrame
 
     }
 
+    /**metodo para crear el panel de inicio de sesion**/
     public void crearPanelInicioSesion()
     {
 
         JLabel imagen = new JLabel();
 
+        //informacion del panel
         jPnlPassword = new JPanel();
         jPnlPassword.setBounds(171, 120, 600, 600);
         jPnlPassword.setBackground(new Color(141, 182, 206));
         jPnlPassword.setLayout(null);
 
-
+        //label del titulo del panel
         titulo = new JLabel("DCBY");
         titulo.setFont(new Font("Abadi",Font.ITALIC, 80));
         titulo.setForeground(Color.BLACK);
@@ -224,6 +228,8 @@ public class JInicioSesion extends JFrame
         });
     }
 
+    /**metodo para iniciar sesion que conecta la ventana con la base de datos**/
+
     public void iniciarSesion(String user, char[] password) throws InicioSesionException {
         StringBuilder pw = new StringBuilder();
 
@@ -262,6 +268,7 @@ public class JInicioSesion extends JFrame
 
     }
 
+    /**metodo que llamamos para crear un panel pequeño (como para el perfil o el registro)**/
     public static void crearPanelPeque (String titulo, JPanel panel)
     {
         JFrame ventana = new JFrame(titulo);
@@ -287,6 +294,8 @@ public class JInicioSesion extends JFrame
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }
+
+    /**metodo para crear un panel grande en el que mostraremos la pantalla principal de la app**/
 
     public static void crearPanelGrande (String titulo)
     {
@@ -323,11 +332,5 @@ public class JInicioSesion extends JFrame
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }
-
-
-    /*public void registrarUsuario(String usuario, String contra, int telefono, String email)
-    {
-
-    }*/
 
 }

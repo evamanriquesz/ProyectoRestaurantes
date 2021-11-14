@@ -19,7 +19,7 @@ import java.util.TreeSet;
 
 import java.io.*;
 
-//panel de restaurantes hecho a mano
+/**panel princpal en el que se muestra la lista de restaurantes, los filtros y mas adelante el mapa**/
 
 public class PnlRestaurantes extends JPanel implements ActionListener, ChangeListener, Serializable{
 
@@ -43,6 +43,8 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
     JCheckBox tipo, restaurante, bar, taberna, comidarapida, barrio; //podriamos poner tambien valoraciones, valoraciones, una, dos, tres,cuatro,cinco;
 
     private Dimension dim;
+
+    /**constructor del panel en el que inicializamos todos los elementos**/
 
     public PnlRestaurantes()
     {
@@ -500,6 +502,8 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     }
 
+    /**metodo que conecta el panel con la base de datos de restaurantes**/
+
     public void comprobarRestaurante(String restaurante) throws BuscarRestauranteException {
         //Atilano
         Client client=new Client();
@@ -628,9 +632,5 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
      */
 
-
-
-
-//tengo que poner que si seleccionan el checkbox tipo de comida o el de precio se ponga setEnable(true) los correspondientes
 }
 

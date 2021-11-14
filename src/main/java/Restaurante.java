@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.TreeSet;
 import java.util.*;
 
+/**clase del objeto restauranteque usaremos para almacenar la informacion de cada uno de la base de datos**/
+
 public class Restaurante implements Comparable, Serializable {
 
     private String nombreRestaurante, nombreDistrito, calle, direccion, tipoRest;

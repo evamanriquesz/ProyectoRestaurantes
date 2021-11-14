@@ -5,7 +5,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 
 /**
- * Clase padre de la clase de los paneles de la que todos heredan el fondo y el titulo
+ * Clase padre de la clase de los paneles de la que todos heredan el fondo y el titulo y la imagen del logo
+ * (es solo la franja superior de todos los paneles)
  */
 
 public class JPnlFondo extends JPanel

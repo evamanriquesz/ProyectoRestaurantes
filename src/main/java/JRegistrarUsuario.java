@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**panel que se crea cuando se le da al boton de registrarse en la pantalla de inicio de sesion y
+ * que se usa para guardar los datos si se quiere crear ua cuenta nueva. hay que conectarlo con la base de datos**/
+
 public class JRegistrarUsuario extends JPanel implements ActionListener
 {
 
