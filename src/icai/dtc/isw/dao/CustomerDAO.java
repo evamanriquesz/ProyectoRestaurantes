@@ -82,7 +82,7 @@ public class CustomerDAO implements Serializable {
 		int encontrado = 0;
 		int respuesta = 0;
 		Connection con = ConnectionDAO.getInstance().getConnection();
-		try(PreparedStatement pst = con.prepareStatement("SELECT * FROM restaurantes");
+		try(PreparedStatement pst = con.prepareStatement("SELECT * FROM restaurantes1");
 			ResultSet rs = pst.executeQuery()) {
 			while (rs.next()){
 				if(restaurante.equals(rs.getString(13)) ) // el 13 es la posicion de rotulo pero lo tengo que cambiar
