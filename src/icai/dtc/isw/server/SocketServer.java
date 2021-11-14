@@ -1,10 +1,6 @@
 package icai.dtc.isw.server;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -13,8 +9,9 @@ import java.util.HashMap;
 import icai.dtc.isw.controler.CustomerControler;
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.message.Message;
+import main.java.Restaurante;
 
-public class SocketServer extends Thread {
+public class SocketServer extends Thread implements Serializable {
 	public static final int PORT_NUMBER = 8081;
 
 	protected Socket socket;
@@ -28,29 +25,41 @@ public class SocketServer extends Thread {
 	public void run() {
 		InputStream in = null;
 		OutputStream out = null;
+
 		try {
 			in = socket.getInputStream();
 			out = socket.getOutputStream();
-			
+
 			//first read the object that has been sent
 			ObjectInputStream objectInputStream = new ObjectInputStream(in);
 		    Message mensajeIn= (Message)objectInputStream.readObject();
 		    //Object to return informations 
 		    ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);
 		    Message mensajeOut=new Message();
+
+			HashMap<String,Object> session=new HashMap<String, Object>();
+			CustomerControler customerControler=new CustomerControler();
+
 		    switch (mensajeIn.getContext()) {
 		    	case ("/hacerLogin"):
-		    		CustomerControler customerControler=new CustomerControler();
-
+		    		//CustomerControler customerControler=new CustomerControler();
 		    		//ArrayList<Customer> lista=new ArrayList<Customer>(); // no se si esta bien
 		    		int i=customerControler.hacerLogin((String)mensajeIn.getSession().get("user"),(String)mensajeIn.getSession().get("pass"));
 		    		mensajeOut.setContext("/hacerLoginResponse");
-		    		HashMap<String,Object> session=new HashMap<String, Object>();
+		    		//HashMap<String,Object> session=new HashMap<String, Object>();
 		    		session.put("RespuestaLogin",i);
 		    		mensajeOut.setSession(session);
-		    		objectOutputStream.writeObject(mensajeOut);		    		
-		    	break;
-		    	
+		    		objectOutputStream.writeObject(mensajeOut);
+
+				case ("obtenerListaRestaurantes"):
+					//CustomerControler customerControler1 = new CustomerControler();
+					ArrayList<Restaurante> rest= customerControler.obtenerListaRestaurantes();
+					mensajeOut.setContext("/obtenerListaRestaurantesResponse");
+					//HashMap<String,Object> session1=new HashMap<String, Object>();
+					session.put("RespuestaObtenerListaRestaurantes",rest);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
 		    	
 		    	default:
 		    		System.out.println("\nParámetro no encontrado");

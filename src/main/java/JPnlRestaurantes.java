@@ -10,6 +10,8 @@ import java.util.TreeSet;
 
 //clase que estamos intentado crear para el panel de restaurantes con la ayuda del gui
 
+
+
 public class JPnlRestaurantes extends JPanel{
     public JList jlistrestaurantes;
 
@@ -25,19 +27,19 @@ public class JPnlRestaurantes extends JPanel{
     public JPnlRestaurantes(){
 
 
-        restaurantes = new TreeSet<>();
+       // restaurantes = new TreeSet<>();
 
-        restaurantes.add(new Restaurante("Ginos", "Calle Julian Romea, 4 "));
-        restaurantes.add(new Restaurante("La Máquina", "Calle Ponzano, 39"));
-        restaurantes.add(new Restaurante("Lateral", "Pº Castellana, 42"));
-        restaurantes.add(new Restaurante("Five Guys", "Calle Gran Via, 44"));
+       // restaurantes.add(new Restaurante("Ginos", "Calle Julian Romea, 4 "));
+       // restaurantes.add(new Restaurante("La Máquina", "Calle Ponzano, 39"));
+       // restaurantes.add(new Restaurante("Lateral", "Pº Castellana, 42"));
+       // restaurantes.add(new Restaurante("Five Guys", "Calle Gran Via, 44"));
 
         lblRestaurantes.setFont(new Font("Freestyle Script", Font.BOLD, 40));
 
         jlistrestaurantes = new JList<>(listarestaurantes);
        // barraDesplazamiento = new JScrollPane(jlistrestaurantes);
 
-        for (Restaurante r : restaurantes)
+       /* for (Restaurante r : restaurantes)
         {
             for (int i = 0; i < listarestaurantes.length; i++){
 
@@ -48,10 +50,16 @@ public class JPnlRestaurantes extends JPanel{
             }
         }
 
+        */
+
         //this.add(lblRestaurantes);
         this.add(panelRest);
 
     }
 
 
+
+
 }
+
+
