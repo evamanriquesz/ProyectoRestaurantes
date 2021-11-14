@@ -32,14 +32,14 @@ public class JInicioSesion extends JFrame
     JPanel jPnlPassword;
     JLabel titulo;
 
-    public static Dimension screenSize =Toolkit. getDefaultToolkit(). getScreenSize().getSize();
+    public static Dimension screenSize =Toolkit. getDefaultToolkit(). getScreenSize();
 
     public static JPanel panelperfil,panelregistrarse, panelNorte;
 
     public JRegistrarUsuario panelregistro;
 
-    public static int ancho = 1450;
-    public static int alto =780;
+    public static int ancho = screenSize.width-85;//1450;
+    public static int alto =screenSize.height-85;//780;
 
     public static void main(String[] args)
     {
