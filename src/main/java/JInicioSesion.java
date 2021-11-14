@@ -38,8 +38,8 @@ public class JInicioSesion extends JFrame
 
     public JRegistrarUsuario panelregistro;
 
-    public static int ancho = screenSize.width-85;//1450;
-    public static int alto =screenSize.height-85;//780;
+    public static int ancho = screenSize.width-35;//1450;
+    public static int alto =screenSize.height-50;//780;
 
     public static void main(String[] args)
     {
