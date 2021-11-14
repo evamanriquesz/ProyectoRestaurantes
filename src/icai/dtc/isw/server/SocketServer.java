@@ -51,7 +51,16 @@ public class SocketServer extends Thread implements Serializable {
 		    		mensajeOut.setSession(session);
 		    		objectOutputStream.writeObject(mensajeOut);
 
-				case ("obtenerListaRestaurantes"):
+				case("/buscarRestaurante"):
+					int j=customerControler.buscarRestaurante((String)mensajeIn.getSession().get("restaurante"));
+					mensajeOut.setContext("/buscarRestauranteResponse");
+					//HashMap<String,Object> session=new HashMap<String, Object>();
+					session.put("RespuestaBuscarRestaurante",j);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+
+				case ("/obtenerListaRestaurantes"):
 					//CustomerControler customerControler1 = new CustomerControler();
 					ArrayList<Restaurante> rest= customerControler.obtenerListaRestaurantes();
 					mensajeOut.setContext("/obtenerListaRestaurantesResponse");

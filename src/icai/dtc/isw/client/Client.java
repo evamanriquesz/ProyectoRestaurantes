@@ -48,10 +48,14 @@ public class Client implements Serializable {
 				session.put("RespuestaLogin",res);
 				break;
 
+			case"/buscarRestauranteResponse":
+				int res2 =(Integer) mensajeVuelta.getSession().get("RespuestaBuscarRestaurante");
+				session.put("RespuestaBuscarRestaurante", res2);
+				break;
+
 			case "/obtenerListaRestaurantesResponse":
 				ArrayList<Restaurante> res1 = (ArrayList<Restaurante>) mensajeVuelta.getSession().get("RespuestaObtenerListaRestaurantes");
 				session.put("RespuestaObtenerListaRestaurantes", res1);
-
 				break;
 
 
