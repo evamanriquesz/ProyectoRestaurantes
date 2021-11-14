@@ -67,7 +67,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
         panelInfoRestaurante = new JPanelInfoRestaurante();
 
-        /*
+        /* este es la lista que picamos a mano para tenerla de ejemplo
         restaurantes.add(new Restaurante("Ginos", "Calle Julian Romea, 4 "));
         restaurantes.add(new Restaurante("La Máquina", "Calle Ponzano, 39"));
         restaurantes.add(new Restaurante("Lateral", "Pº Castellana, 42"));
@@ -80,6 +80,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         ////////////////////////////
 
 
+        /**codigo para conectar con las bases de datos**/
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
         session.put("user",11);
@@ -266,11 +267,11 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         jlistrestaurantes.setForeground(Color.BLACK);
 */
 
-        barraDesplazamiento.setBounds(1150,240,350,420);
+        barraDesplazamiento.setBounds(1115,240,350,420);
         this.add(barraDesplazamiento);
 
 
-
+        //info del boton reservar
 
         reservar= new JButton("RESERVAR");
         reservar.setFont(new Font("Lirio", Font.BOLD, 20));
@@ -278,11 +279,11 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         reservar.setHorizontalTextPosition( SwingConstants.CENTER );
         reservar.setVerticalTextPosition( SwingConstants.BOTTOM );
         reservar.setBackground(new Color(133, 177, 204, 182));
-        reservar.setBounds(1150,670,350,60);
+        reservar.setBounds(1115,670,350,60);
         this.add(reservar);
 
         jtxtBuscar = new JTextField(30);
-        jtxtBuscar.setBounds(1180,190,200,40);
+        jtxtBuscar.setBounds(1145,190,200,40);
         this.add(jtxtBuscar);
 
         btnBuscar = new JButton("BUSCAR");
@@ -292,7 +293,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         btnBuscar.setHorizontalTextPosition( SwingConstants.CENTER );
         btnBuscar.setVerticalTextPosition( SwingConstants.BOTTOM );
         btnBuscar.setBackground(new Color(133, 177, 204, 182));//(90, 130, 156));
-        btnBuscar.setBounds(1400,190,100,40);
+        btnBuscar.setBounds(1365,190,100,40);
         this.add(btnBuscar);
 
 
@@ -439,7 +440,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         //imagen del logo
         btnperfil.setIcon(imagenperfil);
         //btnperfil.setBackground(new Color(90, 130, 156));
-        btnperfil.setBounds(JInicioSesion.screenSize.width-120,10,80,80);
+        btnperfil.setBounds(JInicioSesion.ancho-120,10,80,80);
         btnperfil.addActionListener(this);
         JInicioSesion.panelNorte.add(btnperfil);
 

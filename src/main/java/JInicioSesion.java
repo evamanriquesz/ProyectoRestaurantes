@@ -38,10 +38,14 @@ public class JInicioSesion extends JFrame
 
     public JRegistrarUsuario panelregistro;
 
+    public static int ancho = 1500;
+    public static int alto =830;
 
     public static void main(String[] args)
     {
         new JInicioSesion(); /*falta*/
+        System.out.println("Tamaño: "+ screenSize.width + " x " + screenSize.height);
+
     }
 
     public JInicioSesion()
@@ -288,22 +292,27 @@ public class JInicioSesion extends JFrame
     {
         JFrame ventana = new JFrame(titulo);
 
-        ventana.setPreferredSize(screenSize.getSize());
+        ventana.setPreferredSize(new Dimension(ancho, alto));
         panelNorte =new JPnlFondo();
-        panelNorte.setBounds(0,0,screenSize.width,100);
+       // panelNorte.setBounds(0,0,screenSize.width,100);
+
+        panelNorte.setBounds(0,0,ancho,100);
 
         JLabel lbltitulo=new JLabel("RESTAURANTES");
         lbltitulo.setFont(new Font("Lirio", Font.ITALIC, 30));
         lbltitulo.setForeground(Color.BLACK);
         lbltitulo.setHorizontalTextPosition( SwingConstants.CENTER );
         lbltitulo.setVerticalTextPosition( SwingConstants.BOTTOM );
-        lbltitulo.setBounds(screenSize.width/2 -100,20,300,70);
+        //lbltitulo.setBounds(screenSize.width/2 -100,20,300,70);
+        lbltitulo.setBounds(ancho/2 -100,20,300,70);
         panelNorte.add(lbltitulo);
 
         ventana.add(panelNorte);
 
         JPanel jPnlRestaurante = new PnlRestaurantes(); //el picado a mano
-        jPnlRestaurante.setBounds(0,101,screenSize.width, screenSize.height-100);
+        //jPnlRestaurante.setBounds(0,101,screenSize.width, screenSize.height-100);
+
+        jPnlRestaurante.setBounds(0,101,ancho, alto-100);
         ventana.add(jPnlRestaurante);
 
         ventana.setResizable(false);
