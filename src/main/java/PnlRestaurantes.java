@@ -258,7 +258,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         jlistrestaurantes.setForeground(Color.BLACK);
 */
 
-        barraDesplazamiento.setBounds(1065,210,350,420);
+        barraDesplazamiento.setBounds(JInicioSesion.ancho-350-35,210,350,420);
         this.add(barraDesplazamiento);
 
 
@@ -270,11 +270,11 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         reservar.setHorizontalTextPosition( SwingConstants.CENTER );
         reservar.setVerticalTextPosition( SwingConstants.BOTTOM );
         reservar.setBackground(new Color(133, 177, 204, 182));
-        reservar.setBounds(1065,640,350,60);
+        reservar.setBounds(JInicioSesion.ancho-350-35,640,350,60);
         this.add(reservar);
 
         jtxtBuscar = new JTextField(30);
-        jtxtBuscar.setBounds(1095,160,200,40);
+        jtxtBuscar.setBounds(JInicioSesion.ancho-350-35,160,200,40);
         this.add(jtxtBuscar);
 
         btnBuscar = new JButton("BUSCAR");
@@ -284,7 +284,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         btnBuscar.setHorizontalTextPosition( SwingConstants.CENTER );
         btnBuscar.setVerticalTextPosition( SwingConstants.BOTTOM );
         btnBuscar.setBackground(new Color(133, 177, 204, 182));//(90, 130, 156));
-        btnBuscar.setBounds(1315,160,100,40);
+        btnBuscar.setBounds(JInicioSesion.ancho-130-35,160,130,40);
         this.add(btnBuscar);
 
 
