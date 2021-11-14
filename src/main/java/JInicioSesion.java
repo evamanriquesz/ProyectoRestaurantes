@@ -33,6 +33,8 @@ public class JInicioSesion extends JFrame
 
     public static JPanel panelperfil,panelregistrarse, panelNorte;
 
+    public JRegistrarUsuario panelregistro;
+
 
     public static void main(String[] args)
     {
@@ -209,34 +211,10 @@ public class JInicioSesion extends JFrame
             }
         });
 
-        //funcionalidad delboton de Registrar
-        //hay que conectarlo con la base de datos para que vaya añadiendo filas
-        /*
         btnRegistrarse.addActionListener(e->{
-            crearPanel("
+            crearPanelPeque("REGISTRO",new JRegistrarUsuario(new EventoCerrar()));
 
-            jRegistrarUsuario.btnAceptar.addActionListener(new ActionListener()
-            {
-                @Override
-                public void actionPerformed(ActionEvent e)
-                {
-                    /*try
-                    {
-                        String usuario = jRegistrarUsuario.getUsuario();
-                        String contra = jRegistrarUsuario.getContra();
-                        String repetirContra = jRegistrarUsuario.getRepetirContra();
-                        int telefono = Integer.parseInt(jRegistrarUsuario.txtTelefono.getText());
-                        String email = jRegistrarUsuario.getEmail();
-
-                        //aqui tengo que poner algo para que me redirija a CustomerDAO, y ahí crear un método que sea registrar parecido a autenticar
-                    }
-
-
-                }
-            });
-
-
-        }); */
+        });
     }
 
     public void iniciarSesion(String user, char[] password) throws InicioSesionException{
@@ -339,9 +317,12 @@ public class JInicioSesion extends JFrame
     {
 
     }*/
+    class EventoCerrar implements ActionListener{
 
-
-
-
-
+        @Override
+        public void actionPerformed(ActionEvent arg0) {
+            //dispose();
+            setVisible(false);
+        }
+    }
 }

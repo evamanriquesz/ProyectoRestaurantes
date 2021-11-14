@@ -24,7 +24,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     String[] listarestaurantes = new String[25];
 
-    JButton btnBuscar,btnGeneradorAleatorio,btnperfil, borrarfiltros, reservar;
+    JButton btnBuscar,btnGeneradorAleatorio,btnperfil, borrarfiltros, reservar, aceptar;
 
     JTextField jtxtBuscar,jtxtbarrio;
     JLabel lblfiltros, lbltitulo;
@@ -165,14 +165,24 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
 
         borrarfiltros=new JButton("Borrar filtros");
-        borrarfiltros.setFont(new Font("Lirio", Font.BOLD, 20));
+        borrarfiltros.setFont(new Font("Lirio", Font.BOLD, 15));
         borrarfiltros.setForeground(Color.BLACK);
         borrarfiltros.setHorizontalTextPosition( SwingConstants.CENTER );
         borrarfiltros.setVerticalTextPosition( SwingConstants.BOTTOM );
         borrarfiltros.setBackground(new Color(133, 177, 204, 182));
-        borrarfiltros.setBounds(80,580,200,30);
+        borrarfiltros.setBounds(80,610,200,20);
         borrarfiltros.addActionListener(this);
         this.add(borrarfiltros);
+
+        aceptar=new JButton("Aceptar");
+        aceptar.setFont(new Font("Lirio", Font.BOLD, 15));
+        aceptar.setForeground(Color.BLACK);
+        aceptar.setHorizontalTextPosition( SwingConstants.CENTER );
+        aceptar.setVerticalTextPosition( SwingConstants.BOTTOM );
+        aceptar.setBackground(new Color(133, 177, 204, 182));
+        aceptar.setBounds(80,580,200,20);
+        //aceptar.addActionListener(this);
+        this.add(aceptar);
 
 
 

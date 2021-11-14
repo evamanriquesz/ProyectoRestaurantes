@@ -6,7 +6,7 @@ import java.io.File;
 
 public class JPanelPerfil extends JPanel {
 
-    JLabel lbltitulo, nombre, apellidos, edad, correo,imagen;
+    JLabel lbltitulo, nombre, apellidos, telefono, correo,imagen;
     JButton verReservasActuales, verReservasAnteriores;
 
     public JPanelPerfil(){
@@ -30,11 +30,11 @@ public class JPanelPerfil extends JPanel {
         apellidos.setBounds(80,190,150,30);
         this.add(apellidos);
 
-        edad = new JLabel("EDAD: ");
-        edad.setFont(new Font("Lirio", Font.BOLD, 20));
-        edad.setForeground(Color.BLACK);
-        edad.setBounds(80,230,150,30);
-        this.add(edad);
+        telefono = new JLabel("TELÉFONO: ");
+        telefono.setFont(new Font("Lirio", Font.BOLD, 20));
+        telefono.setForeground(Color.BLACK);
+        telefono.setBounds(80,230,150,30);
+        this.add(telefono);
 
         correo = new JLabel("CORREO: ");
         correo.setFont(new Font("Lirio", Font.BOLD, 20));
