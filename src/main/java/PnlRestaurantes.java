@@ -15,7 +15,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeSet;
 
 import java.io.*;
 
@@ -69,18 +68,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
         panelInfoRestaurante = new JPanelInfoRestaurante();
 
-        /* este es la lista que picamos a mano para tenerla de ejemplo
-        restaurantes.add(new Restaurante("Ginos", "Calle Julian Romea, 4 "));
-        restaurantes.add(new Restaurante("La Máquina", "Calle Ponzano, 39"));
-        restaurantes.add(new Restaurante("Lateral", "Pº Castellana, 42"));
-        restaurantes.add(new Restaurante("Five Guys", "Calle Gran Via, 44"));
-        //System.out.println(restaurantes);
-        */
-
-        //rellenarScrollPane();
-
-        ////////////////////////////
-
 
         /**codigo para conectar con las bases de datos**/
         Client client=new Client();
@@ -90,30 +77,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         client.envio("/obtenerListaRestaurantes",session);
 
         // CustomerDAO customerDAO = new CustomerDAO();
-        ArrayList<Restaurante> respuesta = (ArrayList<Restaurante>) session.get("RespuestaObtenerListaRestaurantes");  //esto puede estar mal
-        //ArrayList<Restaurante> respuesta = session.get("RespuestaObtenerListaRestaurantes");  //esto puede estar mal
-
-
-
-
-        //customerDAO.autenticar(user, pw.toString());
-        //if(respuesta == 1)
-        //{
-        //    jPnlPassword.setVisible(false);
-        //    this.setVisible(false);
-        //    crearPanelGrande("Don´t Choose By Yourself");
-        //jPnlRestaurante.setVisible(true);
-
-        //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
-        //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
-        //this.setExtendedState(MAXIMIZED_BOTH);
-
-        //}
-
-        //else if (respuesta ==0)
-        //{
-        //    throw new InicioSesionException();
-        //}
+        ArrayList<Restaurante> respuesta = (ArrayList<Restaurante>) session.get("RespuestaObtenerListaRestaurantes");
 
         jlistrestaurantes = new JList<>();
         JScrollPane barraDesplazamiento = new JScrollPane(jlistrestaurantes);
@@ -128,17 +92,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             modelo.addElement(nombre);
         }
 
-        /*
-        //esto es una prueba
-        for (Restaurante r: respuesta)
-        {
-            if(r.getNumeroId() == 2456)
-            {
-                System.out.println(r.getNombreRestaurante());
-            }
-        }
-        */
-
 
         jlistrestaurantes.setModel(modelo);
 
@@ -152,113 +105,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         jlistrestaurantes.setFont(new Font("Lirio", Font.ITALIC, 15));
         jlistrestaurantes.setForeground(Color.BLACK);
 
-
-        /*
-        public static void rellenarScrollPane()
-        {
-            Client client=new Client();
-            HashMap<String,Object> session=new HashMap<String, Object>();
-            //session.put("user",user);
-            //session.put("pass",pw.toString());
-            client.envio("/obtenerListaRestaurantes",session);
-            // CustomerDAO customerDAO = new CustomerDAO();
-            ArrayList<Restaurante> respuesta = (Integer) session.get("obtenerListaRestaurantesRespuesta");  //esto puede estar mal
-
-
-            //customerDAO.autenticar(user, pw.toString());
-            //if(respuesta == 1)
-            //{
-            //    jPnlPassword.setVisible(false);
-            //    this.setVisible(false);
-            //    crearPanelGrande("Don´t Choose By Yourself");
-                //jPnlRestaurante.setVisible(true);
-
-                //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
-                //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
-                //this.setExtendedState(MAXIMIZED_BOTH);
-
-            //}
-
-            //else if (respuesta ==0)
-            //{
-            //    throw new InicioSesionException();
-            //}
-
-            jlistrestaurantes = new JList<>();
-            JScrollPane barraDesplazamiento = new JScrollPane(jlistrestaurantes);
-
-            private DefaultListModel modelo = new DefaultListModel();
-
-            for(Restaurante r: respuesta)
-            {
-                String nombre = r.getNombreRestaurante();
-                modelo.addElement(nombre);
-            }
-
-            jlistrestaurantes.setModel(modelo);
-
-            barraDesplazamiento.setViewportView(jlistrestaurantes);
-            jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
-            jlistrestaurantes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-            jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
-
-            jlistrestaurantes.setBackground(new Color(133, 177, 204, 182));
-            jlistrestaurantes.setFont(new Font("Lirio", Font.ITALIC, 25));
-            jlistrestaurantes.setForeground(Color.BLACK);
-
-
-            barraDesplazamiento.setBounds(1150,240,350,420);
-            this.add(barraDesplazamiento);
-
-
-        }
-        */
-
-
-        //recorremos el treeset de restaurantes para guardarlo en el vector de Strings que semete en el jlist
-          /*  for (Restaurante r : restaurantes)
-            {
-                for (int i = 0; i < listarestaurantes.length; i++){
-
-                    if(listarestaurantes[i]==null) {
-                        listarestaurantes[i] = r.getNombre() + "," + r.getDireccion();
-                        i = listarestaurantes.length;
-                    }
-                }
-            }
-
-
-           */
-
-
-        /*
-        jlistrestaurantes = new JList<>(listarestaurantes);
-        JScrollPane barraDesplazamiento = new JScrollPane(jlistrestaurantes);
-
-
-
-        barraDesplazamiento.setViewportView(jlistrestaurantes);
-        jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
-        jlistrestaurantes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
-
-        //recorremos el treeset de restaurantes para guardarlo en el vector de Strings que semete en el jlist
-        for (Restaurante r : restaurantes)
-        {
-            for (int i = 0; i < listarestaurantes.length; i++){
-
-                if(listarestaurantes[i]==null) {
-                    listarestaurantes[i] = r.getNombre() + "," + r.getDireccion();
-                    i = listarestaurantes.length;
-                }
-            }
-        }
-        jlistrestaurantes.setBackground(new Color(133, 177, 204, 182));
-        jlistrestaurantes.setFont(new Font("Lirio", Font.ITALIC, 25));
-        jlistrestaurantes.setForeground(Color.BLACK);
-*/
 
         barraDesplazamiento.setBounds(JInicioSesion.ancho-350-35,210,350,420);
         this.add(barraDesplazamiento);
@@ -279,6 +125,9 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         jtxtBuscar.setBounds(JInicioSesion.ancho-350-35,160,200,40);
         this.add(jtxtBuscar);
 
+
+        //info del boton buscar
+
         btnBuscar = new JButton("BUSCAR");
         //btnBuscar.addActionListener(this);
         btnBuscar.setFont(new Font("Georgia", Font.BOLD, 12));
@@ -291,7 +140,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
 
 
-        //cuando se apriete "enter" tras introducir en el buscador que se vaya al boton de buscar
+        //cuando se pulse "enter" tras introducir en el buscador que se vaya al boton de buscar
         jtxtBuscar.addKeyListener (new KeyAdapter()
         {
             @Override
@@ -309,6 +158,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
                     try{
                         String restauranteBuscado =jtxtBuscar.getText(); //aqui tenemos que poner algo del tipo, si existe este nombre en la base de datod
                         comprobarRestaurante(restauranteBuscado);
+                        jtxtBuscar.setText("");
                     }
                     catch (BuscarRestauranteException bre) {
                         JOptionPane.showMessageDialog(PnlRestaurantes.this, bre.getMessage());
@@ -324,6 +174,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             try{
                 String restauranteBuscado =jtxtBuscar.getText(); //aqui tenemos que poner algo del tipo, si existe este nombre en la base de datod
                 comprobarRestaurante(restauranteBuscado);
+                jtxtBuscar.setText("");
             }
             catch (BuscarRestauranteException bre) {
                 JOptionPane.showMessageDialog(PnlRestaurantes.this, bre.getMessage());
@@ -333,6 +184,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         });
 
 
+        //filtros
 
         lblfiltros=new JLabel("Filtros: ");
         lblfiltros.setFont(new Font("Lirio", Font.ITALIC, 30));
@@ -504,7 +356,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     /**metodo que conecta el panel con la base de datos de restaurantes**/
 
-    public void comprobarRestaurante(String restaurante) throws BuscarRestauranteException {
+    public int comprobarRestaurante(String restaurante) throws BuscarRestauranteException {
         //Atilano
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
@@ -518,17 +370,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         {
             JInicioSesion.crearPanelPeque("RESTAURANTE ENCONTRADO", this.panelInfoRestaurante);
 
-            //crearPanelMostrarInfoRestaurante();
-
-            //jPnlPassword.setVisible(false);
-            //this.setVisible(false);
-            //crearPanelGrande("Don´t Choose By Yourself");
-            //jPnlRestaurante.setVisible(true);
-
-            //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
-            //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
-            //this.setExtendedState(MAXIMIZED_BOTH);
-
         }
 
         else if (respuesta ==0)
@@ -536,101 +377,8 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             throw new BuscarRestauranteException();
         }
 
+        return respuesta;
     }
-    // terminarlo!!!!!!!
-    /*
-    public void crearPanelMostrarInfoRestaurante()
-    {
-        JFrame ventana = new JFrame();
-
-        ventana.setPreferredSize(new Dimension(800,700));
-        panelNorte =new JPnlFondo();//titulo);
-        panelNorte.setBounds(0,0,800,100);
-
-        JLabel lbltitulo=new JLabel("Restaurante buscado. ");
-
-        lbltitulo.setFont(new Font("Lirio", Font.ITALIC, 30));
-        lbltitulo.setForeground(Color.BLACK);
-        lbltitulo.setHorizontalTextPosition( SwingConstants.CENTER );
-        lbltitulo.setVerticalTextPosition( SwingConstants.BOTTOM );
-        lbltitulo.setBounds(350,20,200,70);
-        panelNorte.add(lbltitulo);
-
-        ventana.add(panelNorte);
-
-        panel.setBounds(0,101,800, 600);
-        ventana.add(panel);
-
-        ventana.pack();
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
-    }
-
-     */
-
-    /*
-    public static void cogerInfoParaScrollPane()
-    {
-        Client client=new Client();
-        HashMap<String,Object> session=new HashMap<String, Object>();
-        //session.put("user",user);
-        //session.put("pass",pw.toString());
-        client.envio("/obtenerListaRestaurantes",session);
-        // CustomerDAO customerDAO = new CustomerDAO();
-        ArrayList<Restaurante> respuesta = (ArrayList<Restaurante>) session.get("RespuestaObtenerListaRestaurantes");  //esto puede estar mal
-        //ArrayList<Restaurante> respuesta = session.get("RespuestaObtenerListaRestaurantes");  //esto puede estar mal
-
-
-        //customerDAO.autenticar(user, pw.toString());
-        //if(respuesta == 1)
-        //{
-        //    jPnlPassword.setVisible(false);
-        //    this.setVisible(false);
-        //    crearPanelGrande("Don´t Choose By Yourself");
-        //jPnlRestaurante.setVisible(true);
-
-        //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
-        //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
-        //this.setExtendedState(MAXIMIZED_BOTH);
-
-        //}
-
-        //else if (respuesta ==0)
-        //{
-        //    throw new InicioSesionException();
-        //}
-
-        jlistrestaurantes = new JList<>();
-        JScrollPane barraDesplazamiento = new JScrollPane(jlistrestaurantes);
-
-        DefaultListModel modelo = new DefaultListModel();
-
-        for (Restaurante r: respuesta)
-        {
-            String nombre = r.getNombreRestaurante();
-            modelo.addElement(nombre);
-        }
-
-        jlistrestaurantes.setModel(modelo);
-
-        barraDesplazamiento.setViewportView(jlistrestaurantes);
-        jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
-        jlistrestaurantes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        jlistrestaurantes.setLayoutOrientation(JList.VERTICAL);
-
-        jlistrestaurantes.setBackground(new Color(133, 177, 204, 182));
-        jlistrestaurantes.setFont(new Font("Lirio", Font.ITALIC, 25));
-        jlistrestaurantes.setForeground(Color.BLACK);
-
-
-        barraDesplazamiento.setBounds(1150,240,350,420);
-        PnlRestaurantes.add(barraDesplazamiento);
-
-
-    }
-
-     */
 
 }
 

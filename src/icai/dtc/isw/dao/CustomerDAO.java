@@ -143,7 +143,6 @@ public class CustomerDAO implements Serializable {
 				//infoRestaurante.clear();
 			}
 		}
-
 		catch(SQLException ex)
 		{
 			System.out.println(ex.getMessage());
@@ -151,6 +150,55 @@ public class CustomerDAO implements Serializable {
 
 		return restaurantes;
 	}
+
+
+
+	//SOLO FALTA HACER BIEN ESTE MÉTODO
+
+		public static int registrar(String usuario, String contra, String repetirContra, int telefono, String email)
+		{
+			//no llega a entrar a este metodo creo
+			int respuesta = 0;
+			Connection con = ConnectionDAO.getInstance().getConnection();
+
+			System.out.println("llega aqui");
+			try(PreparedStatement pst = con.prepareStatement("INSERT INTO clientes VALUES ('"+ usuario + ", '" + contra + "', "+ telefono + ",'" + email + "');");
+
+			//	ResultSet rs = pst.executeQuery())
+			){
+					System.out.println("INSERT INTO clientes VALUES ('"+ usuario + ", '" + contra + "', "+ telefono + ",'" + email + "');"); //esto no se imprime
+					respuesta = 1;
+				/*
+
+				while (rs.next()){
+					if(usuario.equals(rs.getString(1)) && (contra.equals(rs.getString(2))))
+					{
+						System.out.println("El usuario está registrado en la bbdd");
+						encontrado = 1;
+						respuesta = 1;
+					}
+					else
+					{
+						encontrado= 0;
+					}
+				}
+				if(encontrado == 0)
+				{
+					System.out.println("El usuario no está en la base de datos");
+				}
+
+
+				 */
+			}
+			catch(SQLException ex)
+			{
+				System.out.println(ex.getMessage());
+			}
+
+			return respuesta;
+		}
+
+
 
 
 

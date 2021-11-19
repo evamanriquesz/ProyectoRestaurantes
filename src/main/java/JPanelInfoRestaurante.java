@@ -6,11 +6,12 @@ import java.awt.*;
 public class JPanelInfoRestaurante extends JPanel
 {
     JLabel lblTitulo, lblNombreRestaurante, lblNombreCalle, lblNumeroCalle;
-    //JButton reservar; esto noseeee
+    //JButton reservar;
 
     public JPanelInfoRestaurante(){
         this.setLayout(null);
         this.setBackground(new Color(221, 234, 245, 202));
+
 
         lblNombreRestaurante = new JLabel("NOMBRE: ");
         lblNombreRestaurante.setFont(new Font("Lirio", Font.BOLD, 20));
@@ -20,20 +21,18 @@ public class JPanelInfoRestaurante extends JPanel
         lblNombreRestaurante.setVerticalTextPosition( SwingConstants.BOTTOM );
         this.add(lblNombreRestaurante);
 
+
         lblNombreCalle = new JLabel("CALLE: ");
         lblNombreCalle.setFont(new Font("Lirio", Font.BOLD, 20));
         lblNombreCalle.setForeground(Color.BLACK);
         lblNombreCalle.setBounds(80,190,150,30);
-      //  lblNombreCalle.setHorizontalTextPosition( SwingConstants.LEFT);
-      //  lblNombreCalle.setVerticalTextPosition( SwingConstants.BOTTOM );
         this.add(lblNombreCalle);
+
 
         lblNumeroCalle = new JLabel("NÚMERO: ");
         lblNumeroCalle.setFont(new Font("Lirio", Font.BOLD, 20));
         lblNumeroCalle.setForeground(Color.BLACK);
         lblNumeroCalle.setBounds(80,230,150,30);
-       // lblNumeroCalle.setHorizontalTextPosition( SwingConstants.LEFT);
-       // lblNumeroCalle.setVerticalTextPosition( SwingConstants.BOTTOM );
         this.add(lblNumeroCalle);
 
 

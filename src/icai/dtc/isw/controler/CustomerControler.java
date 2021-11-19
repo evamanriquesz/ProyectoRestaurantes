@@ -24,12 +24,7 @@ public class CustomerControler implements  Serializable{
 	}
 
 	public ArrayList<Restaurante> obtenerListaRestaurantes() {return CustomerDAO.iterarLista();}
-	/*
-	public HashMap<String, String> mostrarLista()
-	{
-		return CustomerDAO.iterarLista();
-	}
 
-	 */
+	public int hacerRegistro(String usuario, String contra, String repetirContra, int telefono, String email) {return CustomerDAO.registrar(usuario, contra, repetirContra, telefono, email);};
 
 }
