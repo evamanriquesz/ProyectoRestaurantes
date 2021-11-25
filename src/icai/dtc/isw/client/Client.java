@@ -7,6 +7,7 @@ import java.security.cert.CertificateParsingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import main.java.Cliente;
 import org.apache.log4j.Logger;
 
 import icai.dtc.isw.configuration.PropertiesISW;
@@ -30,7 +31,7 @@ public class Client implements Serializable {
 		int port = Integer.parseInt(PropertiesISW.getInstance().getProperty("port"));
 		Logger.getRootLogger().info("Host: "+host+" port"+port);
 		//Create a cliente class
-		Client cliente=new Client(host, port);
+		Client client=new Client(host, port);
 		
 	//	HashMap<String,Object> session=new HashMap<String, Object>();
 		//session.put("/getCustomer","");
@@ -39,7 +40,7 @@ public class Client implements Serializable {
 		Message mensajeVuelta=new Message();
 		mensajeEnvio.setContext(contexto);
 		mensajeEnvio.setSession(session);
-		cliente.sent(mensajeEnvio,mensajeVuelta);
+		client.sent(mensajeEnvio,mensajeVuelta);
 
 
 		switch (mensajeVuelta.getContext()) {
@@ -58,6 +59,20 @@ public class Client implements Serializable {
 				session.put("RespuestaObtenerListaRestaurantes", res1);
 				break;
 
+			case "/obtenerInfoClienteResponse":
+				Cliente  cliente = (Cliente) mensajeVuelta.getSession().get("RespuestaObtenerInfoCliente");
+				session.put("RespuestaObtenerInfoCliente", cliente);
+				break;
+
+			case "/filtrarResponse":
+				ArrayList<Restaurante> listafiltrada = (ArrayList<Restaurante>) mensajeVuelta.getSession().get("RespuestaFiltrar");
+				session.put("RespuestaFiltrar", listafiltrada);
+				break;
+
+			case "/obtenerIgualesResponse":
+				ArrayList<Restaurante> listaIguales = (ArrayList<Restaurante>) mensajeVuelta.getSession().get("RespuestaObtenerIguales");
+				session.put("RespuestaObtenerIguales", listaIguales);
+				break;
 
 			default:
 				Logger.getRootLogger().info("Option not found");

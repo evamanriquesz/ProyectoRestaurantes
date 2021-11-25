@@ -9,6 +9,7 @@ import java.util.HashMap;
 import icai.dtc.isw.controler.CustomerControler;
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.message.Message;
+import main.java.Cliente;
 import main.java.Restaurante;
 
 public class SocketServer extends Thread implements Serializable {
@@ -66,6 +67,34 @@ public class SocketServer extends Thread implements Serializable {
 					mensajeOut.setContext("/obtenerListaRestaurantesResponse");
 					//HashMap<String,Object> session1=new HashMap<String, Object>();
 					session.put("RespuestaObtenerListaRestaurantes",rest);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+
+				case ("/obtenerInfoCliente"):
+					//CustomerControler customerControler1 = new CustomerControler();
+					Cliente  cliente= customerControler.obtenerInfoCliente((String)mensajeIn.getSession().get("usuario"));
+					mensajeOut.setContext("/obtenerInfoClienteResponse");
+					//HashMap<String,Object> session1=new HashMap<String, Object>();
+					session.put("RespuestaObtenerInfoCliente",cliente);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+				case ("/filtrar"):
+					//CustomerControler customerControler1 = new CustomerControler();
+					ArrayList<Restaurante> listafiltrada= customerControler.filtrarListaRestaurantes((String)mensajeIn.getSession().get("filtro"));
+					mensajeOut.setContext("/filtrarResponse");
+					//HashMap<String,Object> session1=new HashMap<String, Object>();
+					session.put("RespuestaFiltrar",listafiltrada);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+				case ("/obtenerIguales"):
+					//CustomerControler customerControler1 = new CustomerControler();
+					ArrayList<Restaurante> listaIguales= customerControler.obtenerIguales((String)mensajeIn.getSession().get("restaurante"));
+					mensajeOut.setContext("/obtenerIgualesResponse");
+					//HashMap<String,Object> session1=new HashMap<String, Object>();
+					session.put("RespuestaObtenerIguales",listaIguales);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
 

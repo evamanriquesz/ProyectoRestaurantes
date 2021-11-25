@@ -22,6 +22,8 @@ public class JInicioSesion extends JFrame
     final static String USER = "postgres";
     final static String PASSWORD = "postgres";
 
+    static String usuario;
+    static Cliente cliente;
 
     JButton btnIniciar;
     JTextField txtUser;
@@ -33,10 +35,12 @@ public class JInicioSesion extends JFrame
     JPanel jPnlPassword;
     JLabel titulo;
 
+    static StringBuilder pw;
+
     public static Dimension screenSize =Toolkit. getDefaultToolkit(). getScreenSize();
 
-    public static JPanel panelperfil,panelregistrarse, panelNorte;
-
+    public static JPanel panelregistrarse, panelNorte;
+public static JPanelPerfil panelperfil;
     public JRegistrarUsuario panelregistro;
 
     public static int ancho = screenSize.width-35;//1450;
@@ -137,6 +141,8 @@ public class JInicioSesion extends JFrame
         txtPassword.setBounds(400,300,200,40);
         jPnlPassword.add(txtPassword);
 
+
+
         //boton de Iniciar sesion
         btnIniciar = new JButton("Iniciar Sesión");
         btnIniciar.setFont(new Font("Arial", Font.BOLD, 30));
@@ -224,14 +230,13 @@ public class JInicioSesion extends JFrame
 
         btnRegistrarse.addActionListener(e->{
             crearPanelPeque("REGISTRO",new JRegistrarUsuario());
-
         });
     }
 
     /**metodo para iniciar sesion que conecta la ventana con la base de datos**/
 
     public void iniciarSesion(String user, char[] password) throws InicioSesionException {
-        StringBuilder pw = new StringBuilder();
+        pw = new StringBuilder();
 
         for (char c: password)
         {
@@ -249,9 +254,12 @@ public class JInicioSesion extends JFrame
                 //customerDAO.autenticar(user, pw.toString());
         if(respuesta == 1)
         {
+            usuario= user;
             jPnlPassword.setVisible(false);
             this.setVisible(false);
             crearPanelGrande("Don´t Choose By Yourself");
+            informacionCliente(usuario);
+
             //jPnlRestaurante.setVisible(true);
 
             //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
@@ -282,7 +290,7 @@ public class JInicioSesion extends JFrame
         lbltitulo.setForeground(Color.BLACK);
         lbltitulo.setHorizontalTextPosition( SwingConstants.CENTER );
         lbltitulo.setVerticalTextPosition( SwingConstants.BOTTOM );
-        lbltitulo.setBounds(350,20,200,70);
+        lbltitulo.setBounds(350,20,400,70);
         panelNorte.add(lbltitulo);
 
         ventana.add(panelNorte);
@@ -333,4 +341,22 @@ public class JInicioSesion extends JFrame
         ventana.setVisible(true);
     }
 
+    public static void informacionCliente(String user) {
+        Client client = new Client();
+        HashMap<String, Object> session = new HashMap<>();
+        session.put("user",usuario);
+        session.put("pass",pw.toString());
+        session.put("usuario", user);
+
+        client.envio("/obtenerInfoCliente", session);
+
+        cliente = (Cliente) session.get("RespuestaObtenerInfoCliente");
+        if (cliente.getId()==null)
+        {
+            System.out.println("No ha devuelto bien el cliente");
+        }else if (cliente.getId().equals(user)) {
+            System.out.println("Si ha devuelto bien el cliente\n");
+            System.out.println(cliente);
+        }
+    }
 }

@@ -8,11 +8,11 @@ import java.util.*;
 
 public class Restaurante implements Comparable, Serializable {
 
-    private String nombreRestaurante, nombreDistrito, calle, direccion, tipoRest;
+    private String nombreRestaurante, barrio, nombreDistrito, calle, direccion, tipoRest;
     private double coordX, coordY;
     private int idDistrito, numeroDirecc, numeroId;
 
-    public Restaurante (String nombreRestaurante, int idDistrito, String nombreDistrito, double coordX, double coordY, String calle, String direccion, int numeroDirecc, String tipoRest, int numeroId)
+    public Restaurante (String nombreRestaurante, int idDistrito, String nombreDistrito, double coordX, double coordY, String calle, String direccion, int numeroDirecc, String tipoRest, int numeroId, String barrio)
     {
         this.nombreRestaurante=nombreRestaurante;
         this.idDistrito = idDistrito;
@@ -24,6 +24,7 @@ public class Restaurante implements Comparable, Serializable {
         this.numeroDirecc = numeroDirecc;
         this.tipoRest = tipoRest;
         this.numeroId = numeroId;
+        this.barrio=barrio;
 
     }
 
@@ -43,6 +44,7 @@ public class Restaurante implements Comparable, Serializable {
     public int getNumeroDirecc() {return this.numeroDirecc;}
     public String getTipoRest(){return this.tipoRest;}
     public int getNumeroId(){return this.numeroId;}
+    public String getBarrio(){return this.barrio;}
 
     @Override
     public int compareTo(Object o) {

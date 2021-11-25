@@ -6,12 +6,15 @@ package main.java;
 public class Usuario //esta clase la conectaremos con el inicio desesion para poder mostrar los datos del usuario en su perfil
 {
 
-    private String nombre;
-    private char[] id;
+    private String id;
+    private char[] pass;
     private String[] restaurantesfav;
 
-    public Usuario (String nombre, char[] id){
+    public Usuario (String id, char[] pass){
         this.id=id;
-        this.nombre=nombre;
+        this.pass=pass;
+    }
+
+    public Usuario() {
     }
 }

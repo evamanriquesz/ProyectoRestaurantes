@@ -155,6 +155,5 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
             JFrame  topFrame = (JFrame) Swingutilities.getWindowAncestor(this);
             topFrame.dispose();
         }
-
     }
 }
