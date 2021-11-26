@@ -202,6 +202,10 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
                 System.out.println("HECHOOO");
 
                 System.out.println("INSERT INTO clientes VALUES ('"+ usuario + ", '" + contra + "', "+ telefono + ",'" + email + "');"); // este es el que se imprime
+                //this.setVisible(false);
+
+
+
             }
             catch (RegistroException re)
             {
