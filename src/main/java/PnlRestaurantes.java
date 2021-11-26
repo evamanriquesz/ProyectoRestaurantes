@@ -166,7 +166,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
                 if(keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
                     try{
                         String restauranteBuscado =jtxtBuscar.getText(); //aqui tenemos que poner algo del tipo, si existe este nombre en la base de datod
-                        comprobarRestaurante(restauranteBuscado);
+                        comprobarRestaurante(restauranteBuscado.toUpperCase(Locale.ROOT));
                     }
                     catch (BuscarRestauranteException bre) {
                         JOptionPane.showMessageDialog(PnlRestaurantes.this, bre.getMessage());
