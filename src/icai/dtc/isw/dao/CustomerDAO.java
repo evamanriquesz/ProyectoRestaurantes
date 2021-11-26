@@ -1,9 +1,6 @@
 package icai.dtc.isw.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 import main.java.Cliente;
@@ -210,7 +207,6 @@ public class CustomerDAO implements Serializable {
 
 			}
 		}
-
 		catch(SQLException ex)
 		{
 			System.out.println(ex.getMessage());
@@ -220,6 +216,27 @@ public class CustomerDAO implements Serializable {
 	}
 
 
+
+	//SOLO FALTA HACER BIEN ESTE MÉTODO
+
+		public static int registrar(String usuario, String contra, String repetirContra, int telefono, String email)  {
+			//no llega a entrar a este metodo creo
+			int respuesta = 0;
+			Connection con = ConnectionDAO.getInstance().getConnection();
+
+			System.out.println("llega aqui");
+
+			try {
+				Statement statement=con.createStatement();
+				statement.executeQuery("INSERT INTO clientes VALUES ('"+ usuario + "', '" + contra + "', "+ telefono + ",'" + email + "');");
+			}catch(SQLException ex)
+			{
+				System.out.println(ex.getMessage());
+			}
+
+
+			return 1;
+		}
 
 
 }
