@@ -42,6 +42,15 @@ public class Client implements Serializable {
 		mensajeEnvio.setSession(session);
 		client.sent(mensajeEnvio,mensajeVuelta);
 
+		System.out.println("LLego aqui");
+		System.out.println("ME C : " + mensajeEnvio.getContext());
+		System.out.println("ME S : " + mensajeEnvio.getSession());
+		System.out.println("MV C : " + mensajeVuelta.getContext());
+		System.out.println("MV S : " + mensajeEnvio.getSession());
+
+
+
+
 
 		switch (mensajeVuelta.getContext()) {
 			case "/hacerLoginResponse": //"/hacerLoginResponse"
@@ -60,7 +69,7 @@ public class Client implements Serializable {
 				break;
 
 			case "/obtenerInfoClienteResponse":
-				Cliente  cliente = (Cliente) mensajeVuelta.getSession().get("RespuestaObtenerInfoCliente");
+				Cliente cliente = (Cliente) mensajeVuelta.getSession().get("RespuestaObtenerInfoCliente");
 				session.put("RespuestaObtenerInfoCliente", cliente);
 				break;
 
@@ -72,6 +81,15 @@ public class Client implements Serializable {
 			case "/obtenerIgualesResponse":
 				ArrayList<Restaurante> listaIguales = (ArrayList<Restaurante>) mensajeVuelta.getSession().get("RespuestaObtenerIguales");
 				session.put("RespuestaObtenerIguales", listaIguales);
+				break;
+			case "/hacerRegistroResponse":
+				System.out.println("MV get Session : "+ mensajeVuelta.getSession());
+				int res3 = (Integer) mensajeVuelta.getSession().get("RespuestaRegistro");
+				//System.out.println("res3" +  res3);
+				session.put("RespuestaRegistro", res3);
+
+				//System.out.println("LLego aqui");
+				System.out.println(session);
 				break;
 
 			default:

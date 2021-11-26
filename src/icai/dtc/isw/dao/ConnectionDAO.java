@@ -16,6 +16,7 @@ public class ConnectionDAO {
         String password = PropertiesISW.getInstance().getProperty("ddbb.password");
 	    try {
 	    	con = DriverManager.getConnection(url, user, password);
+	    	con.setAutoCommit(true);
 	    }catch (SQLException ex) {
 
             System.out.println(ex.getMessage());

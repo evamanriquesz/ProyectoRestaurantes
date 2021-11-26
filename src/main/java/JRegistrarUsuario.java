@@ -1,9 +1,12 @@
 package main.java;
 
+import icai.dtc.isw.client.Client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 /**panel que se crea cuando se le da al boton de registrarse en la pantalla de inicio de sesion y
  * que se usa para guardar los datos si se quiere crear ua cuenta nueva. hay que conectarlo con la base de datos**/
@@ -27,6 +30,12 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
      JButton btnAceptar;
      JButton btnCancelar;
     private SwingUtilities Swingutilities;
+
+    private String usuario;
+    private String contra;
+    private String repetirContra;
+    private String email;
+    private int telefono;
 
     public JRegistrarUsuario() {
         //super("Registrar usuario");
@@ -106,6 +115,38 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
         btnAceptar.addActionListener(this);
         this.add(btnAceptar);
 
+        /*
+        btnAceptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try
+                {
+                    registrarUsuario(txtUsuario.getText(), txtContra.getText(), txtRepetirContra.getText(), Integer.parseInt(txtTelefono.getText()), txtEmail.getText());
+                    System.out.println("HECHOOO");
+
+                    System.out.println("INSERT INTO clientes VALUES ('"+ usuario + ", '" + contra + "', "+ telefono + ",'" + email + "');"); // este es el que se imprime
+                }
+                catch (RegistroException re)
+                {
+                    re.printStackTrace();
+                }
+
+                catch (NumberFormatException nfe)
+                {
+                    JOptionPane.showMessageDialog(JRegistrarUsuario.this, "error, el telefono debe ser numerico.");
+                    txtTelefono.requestFocus();
+                }
+
+
+            }
+        });
+
+         */
+
+        //añadir que una vez pulses aceptar ACTION LISTENER
+        // registrarUsuario(txtUsuario, txtContra, txtRepetirContra, txtTelefono, txtEmail);
+
+
 
         btnCancelar = new JButton("Cancelar");
         btnCancelar.setFont(new Font("Lirio", Font.BOLD, 25));
@@ -114,8 +155,6 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
         btnCancelar.setBounds(350, 500, 150, 50);
         btnCancelar.addActionListener(this);
         this.add(btnCancelar);
-
-
 
 
 
@@ -155,5 +194,97 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
             JFrame  topFrame = (JFrame) Swingutilities.getWindowAncestor(this);
             topFrame.dispose();
         }
+        else if (e.getSource() ==btnAceptar)
+        {
+            try
+            {
+                registrarUsuario(txtUsuario.getText(), txtContra.getText(), txtRepetirContra.getText(), Integer.parseInt(txtTelefono.getText()), txtEmail.getText());
+                System.out.println("HECHOOO");
+
+                System.out.println("INSERT INTO clientes VALUES ('"+ usuario + ", '" + contra + "', "+ telefono + ",'" + email + "');"); // este es el que se imprime
+                //this.setVisible(false);
+
+
+
+            }
+            catch (RegistroException re)
+            {
+                re.printStackTrace();
+            }
+
+            catch (NumberFormatException nfe)
+            {
+                JOptionPane.showMessageDialog(JRegistrarUsuario.this, "error, el telefono debe ser numerico.");
+                txtTelefono.requestFocus();
+            }
+        }
+    }
+    /*
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==btnAceptar)
+        {
+            try
+            {
+                registrarUsuario(txtUsuario.getText(), txtContra.getText(), txtRepetirContra.getText(), Integer.parseInt(txtTelefono.getText()), txtEmail.getText());
+                System.out.println("HECHOOO");
+
+                System.out.println("INSERT INTO clientes VALUES ('"+ usuario + ", '" + contra + "', "+ telefono + ",'" + email + "');"); // este es el que se imprime
+            }
+            catch (RegistroException re)
+            {
+                re.printStackTrace();
+            }
+
+            catch (NumberFormatException nfe)
+            {
+                JOptionPane.showMessageDialog(JRegistrarUsuario.this, "error, el telefono debe ser numerico.");
+                txtTelefono.requestFocus();
+            }
+
+        }
+    }
+
+     */
+
+    public void registrarUsuario (String usuario, String contra, String repetirContra, int telefono, String email) throws RegistroException
+    {
+        Client client = new Client();
+        HashMap<String, Object> session = new HashMap<String, Object>();
+        session.put("usuario", usuario);
+        session.put("contra", contra);
+        session.put("repetirContra", repetirContra);
+        session.put("telefono", telefono);
+        session.put("email", email);
+
+
+
+        client.envio("/hacerRegistro", session);
+        // CustomerDAO customerDAO = new CustomerDAO();
+
+
+       // System.out.println(session);
+        int respuesta = (Integer) session.get("RespuestaRegistro");  //esto puede estar mal
+
+       // System.out.println("Llego hasta aqui");
+        //System.out.println(respuesta);
+        //customerDAO.autenticar(user, pw.toString());
+            /*
+            if (respuesta == 1) {
+                jPnlPassword.setVisible(false);
+                this.setVisible(false);
+                crearPanelGrande("Don´t Choose By Yourself");
+                //jPnlRestaurante.setVisible(true);
+
+                //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
+                //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
+                //this.setExtendedState(MAXIMIZED_BOTH);
+
+
+            } else if (respuesta == 0) {
+                throw new RegistroException();
+            }
+
+        */
     }
 }

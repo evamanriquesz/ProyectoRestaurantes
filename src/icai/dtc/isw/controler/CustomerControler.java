@@ -24,7 +24,7 @@ public class CustomerControler implements  Serializable{
 		return CustomerDAO.buscarEnLista(restaurante);
 	}
 
-	public  Cliente  obtenerInfoCliente (String user){ return CustomerDAO.infoCliente(user);}
+	public Cliente obtenerInfoCliente (String user){ return CustomerDAO.infoCliente(user);}
 
 	public ArrayList<Restaurante> obtenerListaRestaurantes() {return CustomerDAO.iterarLista();}
 
@@ -37,6 +37,6 @@ public class CustomerControler implements  Serializable{
 		return CustomerDAO.iterarLista();
 	}
 
-	 */
+	public int hacerRegistro(String usuario, String contra, String repetirContra, int telefono, String email) {return CustomerDAO.registrar(usuario, contra, repetirContra, telefono, email);};
 
 }

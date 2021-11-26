@@ -43,8 +43,8 @@ public class JInicioSesion extends JFrame
 public static JPanelPerfil panelperfil;
     public JRegistrarUsuario panelregistro;
 
-    public static int ancho = screenSize.width-35;//1450;
-    public static int alto =screenSize.height-50;//780;
+    public static int ancho = screenSize.width-35;;   // screenSize.width-35;//1450;
+    public static int alto =screenSize.height-50; //screenSize.height-50;//780;
 
     public static void main(String[] args)
     {
@@ -243,7 +243,7 @@ public static JPanelPerfil panelperfil;
             pw.append(c);
         }
 
-        //Atilano
+        //
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
         session.put("user",user);
