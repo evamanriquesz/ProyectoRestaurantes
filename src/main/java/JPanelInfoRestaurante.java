@@ -7,7 +7,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+
+
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilCalendarModel;
 
 public class JPanelInfoRestaurante extends JPanel implements ActionListener {
     JLabel  lblNombreRestaurante, lblNombreCalle, lblNumeroCalle, lbltitulo;
@@ -18,6 +24,13 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
     private SwingUtilities Swingutilities;
     public static int id;
     JButton btnAceptar,btnCancelar;
+
+    Calendar c;
+
+    JDatePickerImpl datePickerFecha;
+
+    JDatePanelImpl datePanelFecha;
+
 
 
     public JPanelInfoRestaurante(String nombre){
@@ -168,6 +181,27 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         textnpersonas.setBounds(300,270,30,20);
         this.add(textnpersonas);
 
+        /*
+
+        UtilCalendarModel modelFecha = new UtilCalendarModel();
+
+        c = Calendar.getInstance();
+        int currentYear = c.get(Calendar.YEAR);
+        int currentMonth = c.get(Calendar.MONTH);
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+        modelFecha.setDate(currentYear, currentMonth, currentDay);
+
+        JDatePanelImpl datePanelFecha = new JDatePanelImpl(modelFecha);
+
+        datePickerFecha = new JDatePickerImpl(datePanelFecha);
+
+        pnlCentro.add(datePickerEntrada);
+        pnlCentro.add(datePickerSalida);
+
+        */
+
+
         fecha = new JLabel("Fecha ");
         fecha.setFont(new Font("Lirio", Font.BOLD, 19));
         fecha.setForeground(Color.BLACK);
@@ -177,6 +211,22 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         fecha.setBounds(60,300,200,50);
         this.add(fecha);
 
+        UtilCalendarModel modelFecha = new UtilCalendarModel();
+
+        c = Calendar.getInstance();
+        int currentYear = c.get(Calendar.YEAR);
+        int currentMonth = c.get(Calendar.MONTH);
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+        modelFecha.setDate(currentYear, currentMonth, currentDay);
+
+        JDatePanelImpl datePanelFecha = new JDatePanelImpl(modelFecha);
+
+        datePickerFecha = new JDatePickerImpl(datePanelFecha);
+
+        this.add(datePickerFecha);
+
+        /*
         textdia = new JTextField(2);
         textdia.setBounds(300,320,30,20);
         this.add(textdia);
@@ -194,6 +244,8 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         textmes.setBounds(350,320,80,20);
         this.add(textmes);
 
+        */
+
         /*guion1=new JLabel("/");
         guion1.setFont(new Font("Lirio", Font.BOLD, 19));
         guion1.setForeground(Color.BLACK);
@@ -202,6 +254,7 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         guion1.setBackground(new Color(133, 177, 204, 182));
         guion1.setBounds(60,250,10,50);
         this.add(guion1);*/
+
 
         hora =new JLabel("Hora");
         hora.setFont(new Font("Lirio", Font.BOLD, 19));
