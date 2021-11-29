@@ -68,7 +68,7 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         for (Restaurante r: respuesta)
         {
             rest.add(r);
-            String n = r.getNombreRestaurante() + "," + r.getCalle().substring(0,r.getCalle().indexOf(" "))+ " " +r.getDireccion().substring(0,r.getDireccion().indexOf(" ")) + " "+ r.getNumeroDirecc() + "-" + r.getBarrio();
+            String n = r.toString();
             modelo.addElement(n);
         }
 

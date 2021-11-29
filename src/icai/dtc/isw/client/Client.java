@@ -92,6 +92,10 @@ public class Client implements Serializable {
 				System.out.println(session);
 				break;
 
+			case "/obtenerRestauranteAleatorioResponse":
+				Restaurante restauranteAleatorio = (Restaurante) mensajeVuelta.getSession().get("RespuestaObtenerRestauranteAleatorio");
+				session.put("RespuestaObtenerRestauranteAleatorio", restauranteAleatorio);
+				break;
 			default:
 				Logger.getRootLogger().info("Option not found");
 				System.out.println("\nError a la vuelta");

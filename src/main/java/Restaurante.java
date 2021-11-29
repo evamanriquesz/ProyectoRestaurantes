@@ -28,6 +28,10 @@ public class Restaurante implements Comparable, Serializable {
 
     }
 
+    public Restaurante() {
+
+    }
+
     public String getNombreRestaurante()
     {
         return this.nombreRestaurante;
@@ -45,6 +49,11 @@ public class Restaurante implements Comparable, Serializable {
     public String getTipoRest(){return this.tipoRest;}
     public int getNumeroId(){return this.numeroId;}
     public String getBarrio(){return this.barrio;}
+
+
+    public String toString(){
+        return this.getNombreRestaurante()+","+this.getCalle().substring(0,this.getCalle().indexOf(" "))+ " " +this.getDireccion().substring(0,this.getDireccion().indexOf(" "))+ " "+ this.getNumeroDirecc() + "-" + this.getBarrio();
+    }
 
     @Override
     public int compareTo(Object o) {

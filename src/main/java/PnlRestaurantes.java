@@ -284,6 +284,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         btnGeneradorAleatorio.setVerticalTextPosition( SwingConstants.BOTTOM );
         btnGeneradorAleatorio.setBackground(new Color(133, 177, 204, 182));
         btnGeneradorAleatorio.setBounds(80,620,200,80);
+        btnGeneradorAleatorio.addActionListener(this);
         this.add(btnGeneradorAleatorio);
 
 
@@ -408,6 +409,36 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             }
 
         }
+
+        if(e.getSource()==btnGeneradorAleatorio)
+        {
+            generarRestauranteAleatorio();
+        }
+    }
+
+    private void generarRestauranteAleatorio()
+    {
+        /**codigo para conectar con las bases de datos**/
+        Client client=new Client();
+        HashMap<String,Object> session=new HashMap<String, Object>();
+        session.put("user",11);
+        session.put("pass",11);
+        int min =1;
+        int max=7244;
+        int n=(int) (Math.random()*(max-min)) + min;
+        session.put("numeroAleatorio",n);
+        client.envio("/obtenerRestauranteAleatorio",session);
+
+        Restaurante restaurante = (Restaurante) session.get("RespuestaObtenerRestauranteAleatorio");
+        if (restaurante==null)
+        {
+            System.out.println("no se ha generado bien el restaurante aleatorio ");
+        }else{
+            JPanelInfoRestaurante pnlRestauranteAleatorio = new JPanelInfoRestaurante(restaurante.toString(),1);
+            JInicioSesion.crearPanelPeque("Restaurante Aleatorio", pnlRestauranteAleatorio);
+        }
+
+
     }
 
     @Override

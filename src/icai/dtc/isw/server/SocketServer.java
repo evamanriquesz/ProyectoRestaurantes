@@ -106,6 +106,15 @@ public class SocketServer extends Thread implements Serializable {
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
 
+				case ("/obtenerRestauranteAleatorio"):
+					//CustomerControler customerControler1 = new CustomerControler();
+					Restaurante restauranteAleatorio= customerControler.obtenerRestauranteAleatorio((Integer)mensajeIn.getSession().get("numeroAleatorio"));
+					mensajeOut.setContext("/obtenerRestauranteAleatorioResponse");
+					//HashMap<String,Object> session1=new HashMap<String, Object>();
+					session.put("RespuestaObtenerRestauranteAleatorio",restauranteAleatorio);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
 
 		    	default:
 		    		System.out.println("\nParámetro no encontrado");

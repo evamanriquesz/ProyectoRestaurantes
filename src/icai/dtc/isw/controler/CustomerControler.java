@@ -31,6 +31,10 @@ public class CustomerControler implements  Serializable{
 	public ArrayList<Restaurante> filtrarListaRestaurantes(String filtros) {return CustomerDAO.filtrarLista(filtros);}
 
 	public ArrayList<Restaurante> obtenerIguales (String nombre){return CustomerDAO.obtenerIguales(nombre);}
+
+	public int hacerRegistro(String usuario, String contra, String repetirContra, Integer telefono, String email) {return CustomerDAO.registrar(usuario,contra,repetirContra,telefono,email);}
+
+	public Restaurante obtenerRestauranteAleatorio(int n) {	return CustomerDAO.obtenerRestauranteAleatorio(n);	}
 	/*
 	public HashMap<String, String> mostrarLista()
 	{
@@ -38,5 +42,5 @@ public class CustomerControler implements  Serializable{
 	}
 
 	public int hacerRegistro(String usuario, String contra, String repetirContra, int telefono, String email) {return CustomerDAO.registrar(usuario, contra, repetirContra, telefono, email);};
-
+*/
 }
