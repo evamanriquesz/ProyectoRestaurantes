@@ -221,9 +221,9 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         modelFecha.setDate(currentYear, currentMonth, currentDay);
 
         JDatePanelImpl datePanelFecha = new JDatePanelImpl(modelFecha);
-
+        datePanelFecha.setBackground(new Color(221, 234, 245, 202));
         datePickerFecha = new JDatePickerImpl(datePanelFecha);
-
+        datePickerFecha.setBounds(300,310,200,25);
         this.add(datePickerFecha);
 
         /*
