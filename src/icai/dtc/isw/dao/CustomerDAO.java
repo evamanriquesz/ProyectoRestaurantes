@@ -149,7 +149,6 @@ public class CustomerDAO implements Serializable {
 				barrio=barrio+" ";
 				i++;
 			}
-
 			try (PreparedStatement pst = con.prepareStatement("SELECT * FROM restaurantes1 WHERE desc_barrio_local='"+barrio+"'");
 				 ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
@@ -192,7 +191,6 @@ public class CustomerDAO implements Serializable {
 
 	public static ArrayList<Restaurante> iterarLista()
 	{
-
 		ArrayList<Restaurante> restaurantes = new ArrayList<Restaurante>();
 
 		//HashMap<String, ArrayList> restaurantes = new HashMap <String, ArrayList> ();  ///cambiar lo de string string
@@ -216,11 +214,9 @@ public class CustomerDAO implements Serializable {
 		return restaurantes;
 	}
 
-
-
 	//SOLO FALTA HACER BIEN ESTE MÉTODO
 
-		public static int registrar(String usuario, String contra, String repetirContra, int telefono, String email)  {
+	public static int registrar(String usuario, String contra, String repetirContra, int telefono, String email)  {
 			//no llega a entrar a este metodo creo
 			int respuesta = 0;
 			Connection con = ConnectionDAO.getInstance().getConnection();

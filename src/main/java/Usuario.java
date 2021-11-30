@@ -8,7 +8,6 @@ public class Usuario //esta clase la conectaremos con el inicio desesion para po
 
     private String id;
     private char[] pass;
-    private String[] restaurantesfav;
 
     public Usuario (String id, char[] pass){
         this.id=id;
