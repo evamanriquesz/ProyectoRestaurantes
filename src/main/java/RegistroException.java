@@ -9,6 +9,7 @@ public class RegistroException extends Exception
     {
         //JOptionPane.showMessageDialog(JRegistrarUsuario.this, "Error, el telefono debe ser numerico.");
        // JRegistrarUsuario.txtTelefono.requestFocus();
+        super("usuario ya registrado");
     }
 
 

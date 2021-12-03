@@ -41,7 +41,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     JScrollPane barraDesplazamiento;
 
-    JButton btnBuscar,btnGeneradorAleatorio,btnperfil, borrarfiltros, reservar, aceptar;
+    JButton btnBuscar,btnGeneradorAleatorio,btnperfil, borrarfiltros, reservar, aceptar, infoRestaurante;
 
     JTextField jtxtBuscar,jtxtbarrio;
     JLabel lblfiltros, lbltitulo;
@@ -124,14 +124,24 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         //info del boton reservar
 
         reservar= new JButton("RESERVAR");
-        reservar.setFont(new Font("Lirio", Font.BOLD, 20));
+        reservar.setFont(new Font("Lirio", Font.BOLD, 15));
         reservar.setForeground(Color.BLACK);
         reservar.setHorizontalTextPosition( SwingConstants.CENTER );
         reservar.setVerticalTextPosition( SwingConstants.BOTTOM );
         reservar.setBackground(new Color(133, 177, 204, 182));
-        reservar.setBounds(JInicioSesion.ancho-350-35,640,350,60);
+        reservar.setBounds(JInicioSesion.ancho-350-35,640,350,30);
         reservar.addActionListener(this);
         this.add(reservar);
+
+        infoRestaurante= new JButton("Ver info del Restaurante");
+        infoRestaurante.setFont(new Font("Lirio", Font.BOLD, 15));
+        infoRestaurante.setForeground(Color.BLACK);
+        infoRestaurante.setHorizontalTextPosition( SwingConstants.CENTER );
+        infoRestaurante.setVerticalTextPosition( SwingConstants.BOTTOM );
+        infoRestaurante.setBackground(new Color(133, 177, 204, 182));
+        infoRestaurante.setBounds(JInicioSesion.ancho-350-35,680,350,30);
+        //infoRestaurante.addActionListener(this);
+        this.add(infoRestaurante);
 
         jtxtBuscar = new JTextField(30);
         jtxtBuscar.setBounds(JInicioSesion.ancho-350-35,160,200,40);
@@ -511,12 +521,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         session.put("filtro", filtro);
         client.envio("/filtrar",session);
         respuesta = (ArrayList<Restaurante>) session.get("RespuestaFiltrar");
-        /*for (String s :filtros)
-        {
-            session.put("filtro"+ i,s);
-            client.envio("/filtrar",session);
-            respuesta = (ArrayList<Restaurante>) session.get("RespuestaFiltrar");
-        }*/
+
 
 
         DefaultListModel modelo = new DefaultListModel();

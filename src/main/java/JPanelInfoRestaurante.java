@@ -28,8 +28,10 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
     Calendar c;
 
     JDatePickerImpl datePickerFecha;
-
+    JCheckBox pedido;
     JDatePanelImpl datePanelFecha;
+
+
 
 
 
@@ -302,6 +304,15 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         npersona.setBounds(300,400,250,50);
         this.add(npersona);
 
+        pedido=new JCheckBox("Hacer pedido por adelantado");
+        pedido.setFont(new Font("Lirio", Font.BOLD, 18));
+        pedido.setForeground(Color.BLACK);
+        //pedido.setHorizontalTextPosition( SwingConstants.CENTER );
+        //pedido.setVerticalTextPosition( SwingConstants.BOTTOM );
+        pedido.setBackground(new Color(221, 234, 245, 202));
+        pedido.setBounds(60,460,400,30);
+        this.add(pedido);
+
 
         btnAceptar = new JButton("Aceptar");
         btnAceptar.setFont(new Font("Lirio", Font.BOLD, 25));
@@ -348,7 +359,13 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
             JFrame  topFrame = (JFrame) Swingutilities.getWindowAncestor(this);
             topFrame.dispose();
         }
-
+        if(e.getSource()==btnAceptar)
+        {
+            PnlHacerPedido pnlPedido = new PnlHacerPedido();
+            if (pedido.isSelected()){
+                JInicioSesion.crearPanelPeque("Hacer Pedido",pnlPedido);
+            }
+        }
 
     }
     

@@ -99,7 +99,7 @@ public class SocketServer extends Thread implements Serializable {
 					objectOutputStream.writeObject(mensajeOut);
 
 				case("/hacerRegistro"):
-					int k=customerControler.hacerRegistro((String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("contra"), (String)mensajeIn.getSession().get("repetirContra"), (Integer)mensajeIn.getSession().get("telefono"), (String)mensajeIn.getSession().get("email"));
+					int k=customerControler.hacerRegistro((String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("contra"),(Integer)mensajeIn.getSession().get("telefono"), (String)mensajeIn.getSession().get("email"),(String)mensajeIn.getSession().get("nombre"),(String)mensajeIn.getSession().get("apellidos"));
 					mensajeOut.setContext("/hacerRegistroResponse");
 					//HashMap<String,Object> session=new HashMap<String, Object>();
 					session.put("RespuestaRegistro",k);

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import icai.dtc.isw.dao.CustomerDAO;
 import icai.dtc.isw.domain.Customer;
 import main.java.Cliente;
+import main.java.RegistroException;
 import main.java.Restaurante;
 
 import java.io.*;
@@ -32,7 +33,7 @@ public class CustomerControler implements  Serializable{
 
 	public ArrayList<Restaurante> obtenerIguales (String nombre){return CustomerDAO.obtenerIguales(nombre);}
 
-	public int hacerRegistro(String usuario, String contra, String repetirContra, Integer telefono, String email) {return CustomerDAO.registrar(usuario,contra,repetirContra,telefono,email);}
+	public int hacerRegistro(String usuario, String contra, Integer telefono, String email, String nombre, String apellidos) {return CustomerDAO.registrar(usuario,contra,telefono,email, nombre, apellidos);}
 
 	public Restaurante obtenerRestauranteAleatorio(int n) {	return CustomerDAO.obtenerRestauranteAleatorio(n);	}
 	/*

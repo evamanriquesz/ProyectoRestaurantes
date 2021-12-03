@@ -4,15 +4,17 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import main.java.Cliente;
+import main.java.InicioSesionException;
+import main.java.RegistroException;
 import main.java.Restaurante;
 
 import icai.dtc.isw.domain.Customer;
 
 import java.io.*;
 import java.util.Locale;
-import java.util.Random;
 
 public class CustomerDAO implements Serializable {
+
 
 	public static void getClientes(ArrayList<Customer> lista) {
 		Connection con=ConnectionDAO.getInstance().getConnection();
@@ -216,23 +218,41 @@ public class CustomerDAO implements Serializable {
 
 	//SOLO FALTA HACER BIEN ESTE MÉTODO
 
-	public static int registrar(String usuario, String contra, String repetirContra, int telefono, String email)  {
+	public static int registrar(String usuario, String contra, int telefono, String email, String nombre, String apellidos){
 			//no llega a entrar a este metodo creo
-			int respuesta = 0;
+			Cliente c ;
+			int respuesta=0; //1= bien, 0 = mal
+			int introducir=1; //1 = si, 0 = no
 			Connection con = ConnectionDAO.getInstance().getConnection();
-
+			Statement statement;
 			System.out.println("llega aqui");
 
-			try {
-				Statement statement=con.createStatement();
-				statement.executeQuery("INSERT INTO clientes VALUES ('"+ usuario + "', '" + contra + "', "+ telefono + ",'" + email + "');");
+			try(PreparedStatement pst = con.prepareStatement("SELECT * FROM clientes");// WHERE usuario ='" + user +"'");
+				ResultSet rs = pst.executeQuery()) {
+				while (rs.next()) {
+					if(usuario.equals(rs.getString("usuario"))) {
+						introducir=0;
+					}
+				}
+
+				if (introducir==1){
+					try {
+						respuesta = 1;
+						statement = con.createStatement();
+						statement.executeQuery("INSERT INTO clientes (usuario,contra,telefono,email,nombre,apellidos) VALUES ('" + usuario + "', '" + contra + "', " + telefono + ",'" + email + "','" + nombre + "','" + apellidos + "');");
+					}catch (SQLException ex)
+					{
+						System.out.println(ex.getMessage());
+					}
+				}else{
+					respuesta=0;
+				}
 			}catch(SQLException ex)
 			{
 				System.out.println(ex.getMessage());
 			}
 
-
-			return 1;
+			return respuesta;
 		}
 
 
@@ -240,10 +260,6 @@ public class CustomerDAO implements Serializable {
 	{
 
 		Restaurante rAleatorio = new Restaurante();
-
-		// random = new Random();
-
-		//int n = random.nextInt(max + min) + min;
 
 		Connection con = ConnectionDAO.getInstance().getConnection();
 		try(PreparedStatement pst = con.prepareStatement("SELECT * FROM restaurantes1 WHERE identificador="+n);

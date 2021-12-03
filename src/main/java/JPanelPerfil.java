@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class JPanelPerfil extends JPanel {
 
     JLabel lbltitulo, nombre, apellidos, telefono, correo,imagen;
-    JButton verReservasActuales, verReservasAnteriores;
+    JButton verFavoritos, verReservasAnteriores;
     ArrayList<Cliente> clientes;
 
     static String nombrec, apellidosc, telefc,correoc;
@@ -58,6 +58,20 @@ public class JPanelPerfil extends JPanel {
         correo.setBounds(80,270,150,30);
         this.add(correo);
 
+
+        verFavoritos= new JButton("Ver Favoritos");
+        verFavoritos.setFont(new Font("Lirio", Font.BOLD, 20));
+        verFavoritos.setForeground(Color.BLACK);
+        verFavoritos.setBackground(new Color(133, 177, 204, 182));
+        verFavoritos.setBounds(100,330,250,50);
+        this.add(verFavoritos);
+
+        verReservasAnteriores= new JButton("Ver Reservas Anteriores");
+        verReservasAnteriores.setFont(new Font("Lirio", Font.BOLD, 20));
+        verReservasAnteriores.setBackground(new Color(133, 177, 204, 182));
+        verReservasAnteriores.setForeground(Color.BLACK);
+        verReservasAnteriores.setBounds(400,330,300,50);
+        this.add(verReservasAnteriores);
 
     }
 
