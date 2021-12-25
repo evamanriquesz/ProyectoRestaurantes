@@ -115,6 +115,14 @@ public class SocketServer extends Thread implements Serializable {
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
 
+				case ("/editarPerfil"):
+					int n=customerControler.editarPerfil((String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("contra"),(Integer)mensajeIn.getSession().get("telefono"), (String)mensajeIn.getSession().get("email"),(String)mensajeIn.getSession().get("nombre"),(String)mensajeIn.getSession().get("apellidos"));
+					mensajeOut.setContext("/editarPerfilResponse");
+					//HashMap<String,Object> session=new HashMap<String, Object>();
+					session.put("RespuestaEditarPerfil",n);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
 
 		    	default:
 		    		System.out.println("\nParámetro no encontrado");

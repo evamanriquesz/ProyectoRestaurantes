@@ -278,4 +278,5 @@ public class CustomerDAO implements Serializable {
 
 		return rAleatorio;
 	}
+
 }

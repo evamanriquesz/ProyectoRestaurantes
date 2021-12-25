@@ -21,11 +21,11 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
     private JLabel lblTelefono;
     private JLabel lblEmail;
 
-    private JTextField txtUsuario, txtNombre, txtApellidos;
-    private JTextField txtContra;
-    private JTextField txtRepetirContra;
+     JTextField txtUsuario, txtNombre, txtApellidos;
+     JTextField txtContra;
+     JTextField txtRepetirContra;
      JTextField txtTelefono;
-    private JTextField txtEmail;
+     JTextField txtEmail;
 
      JButton btnAceptar;
      JButton btnCancelar;
@@ -42,26 +42,26 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
         lblIntro = new JLabel("Introduzca los datos. ");
         lblIntro.setFont(new Font("Lirio", Font.ITALIC, 30));
         lblIntro.setForeground(Color.BLACK);
-        lblIntro.setBounds(100,190,300,40);
+        lblIntro.setBounds(100,150,300,40);
         this.add(lblIntro);
 
         lblNombre = new JLabel("Nombre: ");
         lblNombre.setFont(new Font("Lirio", Font.BOLD, 15));
         lblNombre.setForeground(Color.BLACK);
-        lblNombre.setBounds(80,260,300,40);
+        lblNombre.setBounds(80,220,300,40);
         this.add(lblNombre);
 
         lblApellidos = new JLabel("Apellidos: ");
         lblApellidos.setFont(new Font("Lirio", Font.BOLD, 15));
         lblApellidos.setForeground(Color.BLACK);
-        lblApellidos.setBounds(80,300,300,40);
+        lblApellidos.setBounds(80,260,300,40);
         this.add(lblApellidos);
 
 
         lblUsuario = new JLabel("Usuario: ");
         lblUsuario.setFont(new Font("Lirio", Font.BOLD, 15));
         lblUsuario.setForeground(Color.BLACK);
-        lblUsuario.setBounds(80,340,180,30);
+        lblUsuario.setBounds(80,300,180,30);
         lblUsuario.setBackground(new Color(133, 177, 204, 182));
         this.add(lblUsuario);
 
@@ -69,57 +69,57 @@ public class JRegistrarUsuario extends JPanel implements ActionListener
         lblContra = new JLabel("Contraseña: ");
         lblContra.setFont(new Font("Lirio", Font.BOLD, 15));
         lblContra.setForeground(Color.BLACK);
-        lblContra.setBounds(80,380,180,30);
+        lblContra.setBounds(80,340,180,30);
         lblContra.setBackground(new Color(133, 177, 204, 182));
         this.add(lblContra);
 
         lblRepetirContra = new JLabel("Repetir contraseña: ");
         lblRepetirContra.setFont(new Font("Lirio", Font.BOLD, 15));
         lblRepetirContra.setForeground(Color.BLACK);
-        lblRepetirContra.setBounds(80,420,180,30);
+        lblRepetirContra.setBounds(80,380,180,30);
         lblRepetirContra.setBackground(new Color(133, 177, 204, 182));
         this.add(lblRepetirContra);
 
         lblTelefono = new JLabel("Teléfono: ");
         lblTelefono.setFont(new Font("Lirio", Font.BOLD, 15));
         lblTelefono.setForeground(Color.BLACK);
-        lblTelefono.setBounds(80,460,180,30);
+        lblTelefono.setBounds(80,420,180,30);
         lblTelefono.setBackground(new Color(133, 177, 204, 182));
         this.add(lblTelefono);
 
         lblEmail = new JLabel("Email: ");
         lblEmail.setFont(new Font("Lirio", Font.BOLD, 15));
         lblEmail.setForeground(Color.BLACK);
-        lblEmail.setBounds(80,500,180,30);
+        lblEmail.setBounds(80,460,180,30);
         lblEmail.setBackground(new Color(133, 177, 204, 182));
         this.add(lblEmail);
 
         txtNombre = new JTextField(50);
-        txtNombre.setBounds(290, 260, 200,30);
+        txtNombre.setBounds(290, 220, 200,30);
         this.add(txtNombre);
 
         txtApellidos = new JTextField(50);
-        txtApellidos.setBounds(290, 300, 200,30);
+        txtApellidos.setBounds(290, 260, 200,30);
         this.add(txtApellidos);
 
         txtUsuario = new JTextField(50);
-        txtUsuario.setBounds(290, 340, 200,30);
+        txtUsuario.setBounds(290, 300, 200,30);
         this.add(txtUsuario);
 
         txtContra = new JTextField(50);
-        txtContra.setBounds(290, 380, 200,30);
+        txtContra.setBounds(290, 340, 200,30);
         this.add(txtContra);
 
         txtRepetirContra = new JTextField(50);
-        txtRepetirContra.setBounds(290, 420, 200,30);
+        txtRepetirContra.setBounds(290, 380, 200,30);
         this.add(txtRepetirContra);
 
         txtTelefono = new JTextField(50);
-        txtTelefono.setBounds(290, 460, 200,30);
+        txtTelefono.setBounds(290, 420, 200,30);
         this.add(txtTelefono);
 
         txtEmail = new JTextField(50);
-        txtEmail.setBounds(290, 500, 200,30);
+        txtEmail.setBounds(290, 460, 200,30);
         this.add(txtEmail);
 
         btnAceptar = new JButton("Aceptar");

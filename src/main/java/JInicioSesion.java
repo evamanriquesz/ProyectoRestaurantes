@@ -40,7 +40,7 @@ public class JInicioSesion extends JFrame
     public static Dimension screenSize =Toolkit. getDefaultToolkit(). getScreenSize();
 
     public static JPanel panelregistrarse, panelNorte;
-public static JPanelPerfil panelperfil;
+    public static JPanelPerfil panelperfil;
     public JRegistrarUsuario panelregistro;
 
     public static int ancho = screenSize.width-35;;   // screenSize.width-35;//1450;
