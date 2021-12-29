@@ -37,14 +37,16 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     public JPanel panelReserva;
 
-    Mapa map;
+    //Mapa2 map;
 
     JScrollPane barraDesplazamiento;
 
     JButton btnBuscar,btnGeneradorAleatorio,btnperfil, borrarfiltros, reservar, aceptar, infoRestaurante;
 
     JTextField jtxtBuscar,jtxtbarrio;
-    JLabel lblfiltros, lbltitulo;
+    JLabel lblfiltros;
+
+    Mapa mapa;
 
     JCheckBox tipo, restaurante, bar, taberna, comidarapida, barrio; //podriamos poner tambien valoraciones, valoraciones, una, dos, tres,cuatro,cinco;
 
@@ -52,8 +54,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     /**constructor del panel en el que inicializamos todos los elementos**/
 
-    public PnlRestaurantes()
-    {
+    public PnlRestaurantes(){
         this.setLayout(null);
         //this.setBounds(0, 0, getMaximumSize().width, 1000);
         this.setBackground(new Color(221, 234, 245, 202));
@@ -140,7 +141,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         infoRestaurante.setVerticalTextPosition( SwingConstants.BOTTOM );
         infoRestaurante.setBackground(new Color(133, 177, 204, 182));
         infoRestaurante.setBounds(JInicioSesion.ancho-350-35,680,350,30);
-        //infoRestaurante.addActionListener(this);
+        infoRestaurante.addActionListener(this);
         this.add(infoRestaurante);
 
         jtxtBuscar = new JTextField(30);
@@ -201,6 +202,17 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             }
         });
 
+        JLabel lblmapa = new JLabel("Los más populares");
+        lblmapa.setBounds(550,160,500,40);
+        lblmapa.setFont(new Font("Lirio", Font.ITALIC, 30));
+        lblmapa.setForeground(Color.BLACK);
+        this.add(lblmapa);
+
+
+        mapa=new Mapa();
+        mapa.setBounds(450,215,500,500);
+        //mapa.setBackground(new Color(133, 177, 204, 182));//(90, 130, 156));
+        this.add(mapa);
 
 
         lblfiltros=new JLabel("Filtros: ");
@@ -400,7 +412,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             if(jlistrestaurantes.isVisible()){
                 if (jlistrestaurantes.getSelectedValue()!=null) {
                     String name=jlistrestaurantes.getSelectedValue();
-                    reservarRestaurante(name);
+                    reservarRestaurante(name, "reservar");
                 }else{
                     throw new ReservaException();
                 }
@@ -408,7 +420,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             {
                 if (restaurantesfiltrados.getSelectedValue()!=null) {
                     String name=restaurantesfiltrados.getSelectedValue();
-                    reservarRestaurante(name);
+                    reservarRestaurante(name, "reservar");
                 }else{
                     throw new ReservaException();
                 }
@@ -423,6 +435,22 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         if(e.getSource()==btnGeneradorAleatorio)
         {
             generarRestauranteAleatorio();
+        }
+
+        if(e.getSource()==infoRestaurante)
+        {
+            try {
+                if (jlistrestaurantes.isVisible()) {
+                    if (jlistrestaurantes.getSelectedValue() != null) {
+                        String name = jlistrestaurantes.getSelectedValue();
+                        reservarRestaurante(name, "ver info");
+                    } else {
+                        throw new ReservaException();
+                    }
+                }
+            }catch (ReservaException re){
+                JOptionPane.showMessageDialog(PnlRestaurantes.this, re.getMessage());
+            }
         }
     }
 
@@ -444,7 +472,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         {
             System.out.println("no se ha generado bien el restaurante aleatorio ");
         }else{
-            JPanelInfoRestaurante pnlRestauranteAleatorio = new JPanelInfoRestaurante(restaurante.toString(),1);
+            JPanelRellenarReserva pnlRestauranteAleatorio = new JPanelRellenarReserva(restaurante.toString(),1);
             JInicioSesion.crearPanelPeque("Restaurante Aleatorio", pnlRestauranteAleatorio);
         }
 
@@ -566,10 +594,10 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     }
 
-    public void reservarRestaurante (String nombre){
-        panelReserva = new JPanelInfoRestaurante(nombre);
-        JInicioSesion.crearPanelPeque("RESERVA", panelReserva);
+    public void reservarRestaurante (String nombre, String accion){
 
+            panelReserva = new JPanelRellenarReserva(nombre,accion);
+            JInicioSesion.crearPanelPeque("RESERVA", panelReserva);
     }
 
 

@@ -52,7 +52,7 @@ public class Restaurante implements Comparable, Serializable {
 
 
     public String toString(){
-        return this.getNombreRestaurante()+","+this.getCalle().substring(0,this.getCalle().indexOf(" "))+ " " +this.getDireccion().substring(0,this.getDireccion().indexOf(" "))+ " "+ this.getNumeroDirecc() + "-" + this.getBarrio();
+        return this.getNombreRestaurante()+"."+this.getCalle().trim()+ " " +this.getDireccion().trim()+ ","+ this.getNumeroDirecc() + "-" + this.getBarrio().trim();
     }
 
     @Override

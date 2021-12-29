@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import main.java.Cliente;
+import main.java.TarjetaCredito;
 import org.apache.log4j.Logger;
 
 import icai.dtc.isw.configuration.PropertiesISW;
@@ -73,6 +74,7 @@ public class Client implements Serializable {
 				session.put("RespuestaObtenerInfoCliente", cliente);
 				break;
 
+
 			case "/filtrarResponse":
 				ArrayList<Restaurante> listafiltrada = (ArrayList<Restaurante>) mensajeVuelta.getSession().get("RespuestaFiltrar");
 				session.put("RespuestaFiltrar", listafiltrada);
@@ -82,14 +84,25 @@ public class Client implements Serializable {
 				ArrayList<Restaurante> listaIguales = (ArrayList<Restaurante>) mensajeVuelta.getSession().get("RespuestaObtenerIguales");
 				session.put("RespuestaObtenerIguales", listaIguales);
 				break;
+
+
 			case "/hacerRegistroResponse":
-				System.out.println("MV get Session : "+ mensajeVuelta.getSession());
+				//System.out.println("MV get Session : "+ mensajeVuelta.getSession());
 				int res3 = (Integer) mensajeVuelta.getSession().get("RespuestaRegistro");
 				//System.out.println("res3" +  res3);
 				session.put("RespuestaRegistro", res3);
 
 				//System.out.println("LLego aqui");
-				System.out.println(session);
+				//System.out.println(session);
+				break;
+
+			case "/incluirTarjetaResponse":
+				int res4 = (Integer) mensajeVuelta.getSession().get("RespuestaIncluirTarjeta");
+				//System.out.println("res3" +  res3);
+				session.put("RespuestaIncluirTarjeta", res4);
+
+				//System.out.println("LLego aqui");
+				//System.out.println(session);
 				break;
 
 			case "/obtenerRestauranteAleatorioResponse":
@@ -97,14 +110,6 @@ public class Client implements Serializable {
 				session.put("RespuestaObtenerRestauranteAleatorio", restauranteAleatorio);
 				break;
 
-			case "/editarPerfilResponse":
-				int res4 = (Integer) mensajeVuelta.getSession().get("RespuestaEditarPerfil");
-				//System.out.println("res3" +  res3);
-				session.put("RespuestaEditarPerfil", res4);
-
-				//System.out.println("LLego aqui");
-				System.out.println(session);
-				break;
 
 			default:
 				Logger.getRootLogger().info("Option not found");

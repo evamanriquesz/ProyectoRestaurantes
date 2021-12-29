@@ -22,18 +22,14 @@ public class JInicioSesion extends JFrame
     final static String USER = "postgres";
     final static String PASSWORD = "postgres";
 
+    static JFrame ventana;
     static String usuario;
     static Cliente cliente;
-
-    JButton btnIniciar;
-    JTextField txtUser;
-    JPasswordField txtPassword;
-
-    JButton btnRegistrarse;
+    static TarjetaCredito tarjetaCredito;
 
 
-    JPanel jPnlPassword;
-    JLabel titulo;
+    static JPanel jPnlPassword;
+    static JLabel titulo;
 
     static StringBuilder pw;
 
@@ -46,11 +42,14 @@ public class JInicioSesion extends JFrame
     public static int ancho = screenSize.width-35;;   // screenSize.width-35;//1450;
     public static int alto =screenSize.height-50; //screenSize.height-50;//780;
 
+    static String[] args;
+
     public static void main(String[] args)
     {
+        JInicioSesion.args=args;
         new JInicioSesion(); /*falta*/
         System.out.println("Tamaño: "+ screenSize.width + " x " + screenSize.height);
-
+        System.out.println(args);
     }
 
     /**constructor de la ventana que muestra el inicio de sesion**/
@@ -86,8 +85,14 @@ public class JInicioSesion extends JFrame
     }
 
     /**metodo para crear el panel de inicio de sesion**/
-    public void crearPanelInicioSesion()
+    public static void crearPanelInicioSesion()
     {
+
+        JButton btnIniciar;
+        JTextField txtUser;
+        JPasswordField txtPassword;
+
+        JButton btnRegistrarse;
 
         JLabel imagen = new JLabel();
 
@@ -204,7 +209,7 @@ public class JInicioSesion extends JFrame
                     }
                     catch(InicioSesionException ise)
                     {
-                        JOptionPane.showMessageDialog(JInicioSesion.this, ise.getMessage());
+                        JOptionPane.showMessageDialog(JInicioSesion.jPnlPassword, ise.getMessage());
                         txtUser.setText("");
                         txtPassword.setText("");
                         txtUser.requestFocus();
@@ -221,7 +226,7 @@ public class JInicioSesion extends JFrame
             }
             catch (InicioSesionException ise)
             {
-                JOptionPane.showMessageDialog(JInicioSesion.this, ise.getMessage());
+                JOptionPane.showMessageDialog(JInicioSesion.jPnlPassword, ise.getMessage());
                 txtUser.setText("");
                 txtPassword.setText("");
                 txtUser.requestFocus();
@@ -235,7 +240,7 @@ public class JInicioSesion extends JFrame
 
     /**metodo para iniciar sesion que conecta la ventana con la base de datos**/
 
-    public void iniciarSesion(String user, char[] password) throws InicioSesionException {
+    public static void iniciarSesion(String user, char[] password) throws InicioSesionException {
         pw = new StringBuilder();
 
         for (char c: password)
@@ -243,7 +248,6 @@ public class JInicioSesion extends JFrame
             pw.append(c);
         }
 
-        //
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
         session.put("user",user);
@@ -256,7 +260,8 @@ public class JInicioSesion extends JFrame
         {
             usuario= user;
             jPnlPassword.setVisible(false);
-            this.setVisible(false);
+            JFrame framepw=(JFrame) SwingUtilities.getWindowAncestor(jPnlPassword);
+            framepw.setVisible(false);
             crearPanelGrande("Don´t Choose By Yourself");
             informacionCliente(usuario);
 
@@ -265,15 +270,12 @@ public class JInicioSesion extends JFrame
             //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
             //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
             //this.setExtendedState(MAXIMIZED_BOTH);
-
-
         }
 
         else if (respuesta ==0)
         {
             throw new InicioSesionException();
         }
-
     }
 
     /**metodo que llamamos para crear un panel pequeño (como para el perfil o el registro)**/
@@ -307,7 +309,7 @@ public class JInicioSesion extends JFrame
 
     public static void crearPanelGrande (String titulo)
     {
-        JFrame ventana = new JFrame(titulo);
+        ventana = new JFrame(titulo);
 
         ventana.setPreferredSize(new Dimension(ancho, alto));
         panelNorte =new JPnlFondo();
@@ -344,19 +346,23 @@ public class JInicioSesion extends JFrame
     public static void informacionCliente(String user) {
         Client client = new Client();
         HashMap<String, Object> session = new HashMap<>();
-        session.put("user",usuario);
-        session.put("pass",pw.toString());
+        session.put("user", usuario);
+        session.put("pass", pw.toString());
         session.put("usuario", user);
 
         client.envio("/obtenerInfoCliente", session);
 
         cliente = (Cliente) session.get("RespuestaObtenerInfoCliente");
-        if (cliente.getId()==null)
-        {
+        if (cliente.getId() == null) {
             System.out.println("No ha devuelto bien el cliente");
-        }else if (cliente.getId().equals(user)) {
+        } else if (cliente.getId().equals(user)) {
             System.out.println("Si ha devuelto bien el cliente\n");
             System.out.println(cliente);
+
+            tarjetaCredito=cliente.getTarjeta();
+
         }
     }
+
+
 }

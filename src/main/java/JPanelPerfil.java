@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 /**panel del perfil que se abre al dar al boton de perfil. Cuando lo conectemos a la base de datos mostrara la
@@ -14,15 +16,14 @@ import java.util.ArrayList;
 
 public class JPanelPerfil extends JPanel implements ActionListener {
 
-    private JButton editarPerfil;
-    JLabel lbltitulo, nombre, apellidos, telefono, correo,imagen;
-    JButton verFavoritos, verReservasAnteriores;
-    ArrayList<Cliente> clientes;
+    JLabel nombre, apellidos, telefono, correo;
+    JButton verFavoritos, verReservasAnteriores,editarPerfil,cerrarSesion;
 
     static String nombrec, apellidosc, telefc,correoc;
 
-
     JLabel lblnombre, lblapellidos, lbltelefono,lblcorreo;
+
+    static JRegistrarUsuario paneleditar;
     private SwingUtilities Swingutilities;
 
     public JPanelPerfil(){
@@ -40,23 +41,17 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         nombre.setVerticalTextPosition( SwingConstants.BOTTOM );
         this.add(nombre);
 
-
-
         apellidos = new JLabel("APELLIDOS: ");
         apellidos.setFont(new Font("Lirio", Font.BOLD, 20));
         apellidos.setForeground(Color.BLACK);
         apellidos.setBounds(100,240,150,30);
         this.add(apellidos);
 
-
-
         telefono = new JLabel("TELÉFONO: ");
         telefono.setFont(new Font("Lirio", Font.BOLD, 20));
         telefono.setForeground(Color.BLACK);
         telefono.setBounds(100,300,150,30);
         this.add(telefono);
-
-
 
         correo = new JLabel("CORREO: ");
         correo.setFont(new Font("Lirio", Font.BOLD, 20));
@@ -87,6 +82,14 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         editarPerfil.addActionListener(this);
         this.add(editarPerfil);
 
+        cerrarSesion = new JButton("Cerrar Sesión");
+        cerrarSesion.setFont(new Font("Lirio", Font.BOLD, 20));
+        cerrarSesion.setBackground(new Color(133, 177, 204, 182));
+        cerrarSesion.setForeground(Color.BLACK);
+        cerrarSesion.setBounds(100,570,630,30);
+        cerrarSesion.addActionListener(this);
+        this.add(cerrarSesion);
+
     }
 
     public static void rellenarInfo()
@@ -100,7 +103,6 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         correoc = JInicioSesion.cliente.getCorreo();
 
         JInicioSesion.panelperfil.incluirInfo();
-
     }
 
     public void incluirInfo()
@@ -146,7 +148,7 @@ public class JPanelPerfil extends JPanel implements ActionListener {
             JFrame  topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.dispose();
 
-            JRegistrarUsuario paneleditar = new JRegistrarUsuario();
+            paneleditar = new JRegistrarUsuario();
 
             paneleditar.txtNombre.setText(nombrec);
             paneleditar.txtApellidos.setText(apellidosc);
@@ -156,29 +158,24 @@ public class JPanelPerfil extends JPanel implements ActionListener {
             paneleditar.txtContra.setText(JInicioSesion.pw.toString());
             paneleditar.txtRepetirContra.setText(JInicioSesion.pw.toString());
 
-            JCheckBox infoTarjeta = new JCheckBox("Añadir información tarjeta de crédito");
-            infoTarjeta.setFont(new Font("Lirio", Font.BOLD, 15));
-            infoTarjeta.setForeground(Color.BLACK);
-            infoTarjeta.setBackground(new Color(221, 234, 245, 202));
-            infoTarjeta.setBounds(80,500,400,30);
-            //paneleditar.add(infoTarjeta);
+            if(JInicioSesion.tarjetaCredito!=null)
+            {
+                paneleditar.infoTarjeta.setSelected(true);
+            }
 
-            /*paneleditar.btnAceptar.addActionListener(e1 -> {
-                 if (infoTarjeta.isSelected())
-                 {
-                     try {
-                         JInicioSesion.crearPanelPeque("INFORMACION TARJETA DE CRÉDITO");
-                     }catch {
+           paneleditar.accion="editar";
 
-                     }
-                 }
-
-                 }
-            });*/
             JInicioSesion.crearPanelPeque("EDITAR PERFIL",paneleditar);
+        }
 
+        if(e.getSource()==cerrarSesion)
+        {
+            JFrame  topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.dispose();
 
+            JInicioSesion.ventana.dispose();
 
+            new JInicioSesion();
         }
     }
 }

@@ -9,6 +9,7 @@ import icai.dtc.isw.domain.Customer;
 import main.java.Cliente;
 import main.java.RegistroException;
 import main.java.Restaurante;
+import main.java.TarjetaCredito;
 
 import java.io.*;
 
@@ -33,12 +34,13 @@ public class CustomerControler implements  Serializable{
 
 	public ArrayList<Restaurante> obtenerIguales (String nombre){return CustomerDAO.obtenerIguales(nombre);}
 
-	public int hacerRegistro(String usuario, String contra, Integer telefono, String email, String nombre, String apellidos) {return CustomerDAO.registrar(usuario,contra,telefono,email, nombre, apellidos);}
+	public int hacerRegistro(String accion, String usuario, String contra, Integer telefono, String email, String nombre, String apellidos) {return CustomerDAO.registrar(accion,usuario,contra,telefono,email, nombre, apellidos);}
 
 	public Restaurante obtenerRestauranteAleatorio(int n) {	return CustomerDAO.obtenerRestauranteAleatorio(n);	}
 
-	/**la funcionalidad que necesitamos para editar el perfil es la misma que en el registro asi que reciclamos la funcion*/
-	public int editarPerfil(String usuario, String contra, Integer telefono, String email, String nombre, String apellidos) {return CustomerDAO.registrar(usuario,contra,telefono,email, nombre, apellidos);}
+    public int incluirTarjeta( String usuario, String nombre, String numeroTarjeta, Integer cvv, String fechaCad) { return CustomerDAO.incluirTarjeta(usuario,nombre,numeroTarjeta,cvv,fechaCad);}
+
+
 	/*
 	public HashMap<String, String> mostrarLista()
 	{

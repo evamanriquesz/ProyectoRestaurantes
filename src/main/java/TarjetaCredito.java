@@ -1,38 +1,61 @@
 package main.java;
 
-import javax.swing.*;
+import java.io.Serializable;
+import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Date;
 
-public class TarjetaCredito
+public class TarjetaCredito implements Serializable
 {
     String nombrePropietario;
-    int ntarjeta;
+    String ntarjeta;
     int cvv;
     LocalDate fechaCaducidad;
 
-    public TarjetaCredito (String nombrePropietario, int ntarjeta, int cvv, LocalDate fechaCaducidad)
-    {
+
+    public TarjetaCredito (String nombrePropietario, String ntarjeta, int cvv, String fechaCaducidad) throws ExceptionFecha {
         this.nombrePropietario=nombrePropietario;
         this.ntarjeta=ntarjeta;
         this.cvv=cvv;
         this.setFechaCaducidad(fechaCaducidad);
     }
 
-    public void setFechaCaducidad(LocalDate fechaCaducidad) {
+    public TarjetaCredito(String nombre, String ntarjeta, int cvv)
+    {
+        this.nombrePropietario=nombre;
+        this.ntarjeta=ntarjeta;
+        this.cvv=cvv;
+    }
+    public TarjetaCredito(){}
+
+    public void setFechaCaducidad(String fechaCaducidad) throws ExceptionFecha {
        LocalDate hoy = LocalDate.now();
 
-        if(fechaCaducidad.isBefore(hoy)){
+        String[] parts = fechaCaducidad.split("-");
+        int anio = Integer.parseInt(parts[0]);
+        int mes=  Integer.parseInt(parts[1]);
 
+        LocalDate fechaCad= LocalDate.of(anio,mes, 1);
+        if(fechaCad.isBefore(hoy)){
+            throw  new ExceptionFecha();
+        }else {
+            this.fechaCaducidad = fechaCad;
         }
-        this.fechaCaducidad = fechaCaducidad;
+    }
+
+    public void setFechaCaducidad(LocalDate fechaCad)throws ExceptionFecha{
+        LocalDate hoy = LocalDate.now();
+        if(fechaCad.isBefore(hoy)){
+            throw  new ExceptionFecha();
+        }else {
+            this.fechaCaducidad = fechaCad;
+        }
     }
 
     public String getNombrePropietario() {
         return nombrePropietario;
     }
 
-    public int getNtarjeta() {
+    public String getNtarjeta() {
         return ntarjeta;
     }
 
@@ -44,17 +67,9 @@ public class TarjetaCredito
         return fechaCaducidad;
     }
 
-    /*public static JPanel panelEditar()
+    public String toString ()
     {
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-
-        JLabel nombre = new JLabel("NOMBRE DEL PROPIETARIO");
-        JLabel numero = new JLabel("NUMERO DE LA TARJETA");
-        JLabel cvv = new JLabel("CÓDIGO CVV");
-        JLabel fechacad = new JLabel("FECHA DE CADUCIDAD");
-
-        return panel;
-    }*/
+        return "TARJETA DE CREDITO DEL CLIENTE : nombre propietario: " + getNombrePropietario() + " ,numero de tarjeta: "+ getNtarjeta() + " ,cvv: " +getCvv() + " ,fecha de caducidad : " + getFechaCaducidad().toString();
+    }
 }
 

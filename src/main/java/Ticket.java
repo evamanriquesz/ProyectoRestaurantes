@@ -28,11 +28,14 @@ public class Ticket
 
         sb.append("                 TICKET\n")
                 .append("==========================================\n")
-                .append("Nombre usuario: AgustinICAI\n")
-                .append("Numero del pedido: ")
+                .append("Nombre usuario:")
+                .append(JInicioSesion.cliente.getNombre())
+                .append(" ")
+                .append(JInicioSesion.cliente.getApellidos())
+                .append("Numero de reserva: ")
                 .append(id)
                 .append("\n")
-                .append("\nLista de pedidos: ")
+                .append("\nRestaurante: ")
                 .append(pedido)
                 .append("\n==========================================\n");
                // .append("\t\t\tPrecio total a pagar: ")

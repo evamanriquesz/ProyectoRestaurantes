@@ -15,9 +15,9 @@ import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilCalendarModel;
 
-public class JPanelInfoRestaurante extends JPanel implements ActionListener {
+public class JPanelRellenarReserva extends JPanel implements ActionListener {
     JLabel  lblNombreRestaurante, lblNombreCalle, lblNumeroCalle, lbltitulo;
-    JButton reservar;
+    JButton reservar, ok;
 
     JScrollPane barra;
     JList<String> restaurantes;
@@ -31,37 +31,17 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
     JCheckBox pedido;
     JDatePanelImpl datePanelFecha;
 
+    String accion;
 
 
 
 
-    public JPanelInfoRestaurante(String nombre){
+
+    public JPanelRellenarReserva(String nombre,String accion){
         this.setLayout(null);
         this.setBackground(new Color(221, 234, 245, 202));
 
-        lblNombreRestaurante = new JLabel("NOMBRE: ");
-        lblNombreRestaurante.setFont(new Font("Lirio", Font.BOLD, 20));
-        lblNombreRestaurante.setForeground(Color.BLACK);
-        lblNombreRestaurante.setBounds(80,150,150,30);
-        lblNombreRestaurante.setHorizontalTextPosition( SwingConstants.LEFT);
-        lblNombreRestaurante.setVerticalTextPosition( SwingConstants.BOTTOM );
-        //this.add(lblNombreRestaurante);
-
-        lblNombreCalle = new JLabel("CALLE: ");
-        lblNombreCalle.setFont(new Font("Lirio", Font.BOLD, 20));
-        lblNombreCalle.setForeground(Color.BLACK);
-        lblNombreCalle.setBounds(80,190,150,30);
-      //  lblNombreCalle.setHorizontalTextPosition( SwingConstants.LEFT);
-      //  lblNombreCalle.setVerticalTextPosition( SwingConstants.BOTTOM );
-       // this.add(lblNombreCalle);
-
-        lblNumeroCalle = new JLabel("NÚMERO: ");
-        lblNumeroCalle.setFont(new Font("Lirio", Font.BOLD, 20));
-        lblNumeroCalle.setForeground(Color.BLACK);
-        lblNumeroCalle.setBounds(80,230,150,30);
-       // lblNumeroCalle.setHorizontalTextPosition( SwingConstants.LEFT);
-       // lblNumeroCalle.setVerticalTextPosition( SwingConstants.BOTTOM );
-        //this.add(lblNumeroCalle);
+        this.accion =accion;
 
         /**codigo para conectar con las bases de datos**/
         Client client=new Client();
@@ -78,7 +58,7 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         respuesta = (ArrayList<Restaurante>) session.get("RespuestaObtenerIguales");
         rest=new ArrayList<>();
 
-        DefaultListModel modelo = new DefaultListModel();
+        DefaultListModel<String> modelo = new DefaultListModel<>();
 
         for (Restaurante r: respuesta)
         {
@@ -102,7 +82,7 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         barra.setBounds(225,250,350,250);
         this.add(barra);
 
-        reservar= new JButton("RESERVAR AQUI");
+        reservar= new JButton("SELECCIONAR");
         reservar.setFont(new Font("Lirio", Font.BOLD, 20));
         reservar.setForeground(Color.BLACK);
         reservar.setHorizontalTextPosition( SwingConstants.CENTER );
@@ -123,15 +103,15 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         this.add(lbltitulo);
     }
 
-    public JPanelInfoRestaurante(String restauranteAReservar, int aux){
+    public JPanelRellenarReserva(String restauranteAReservar, int aux){
 
         this.setLayout(null);
         this.setBackground(new Color(221, 234, 245, 202));
 
 
-        JLabel nombre, direccion, npersonas, hora, fecha, dia, mes, year, nombrepersona, npersona;
-        JLabel nombreres, dirres, dospuntos, guion1,guion2;
-        JTextField textnpersonas, textdighora, textdigmins, textdia, textmes, textyear;
+        JLabel nombre, direccion, npersonas, hora, fecha, nombrepersona, npersona;
+        JLabel nombreres, dirres, dospuntos;
+        JTextField textnpersonas, textdighora, textdigmins;
 
 
         nombre = new JLabel("Restaurante");
@@ -143,7 +123,7 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         nombre.setBounds(60,150,150,50);
         this.add(nombre);
 
-        nombreres = new JLabel(restauranteAReservar.substring(0,restauranteAReservar.indexOf(",")));
+        nombreres = new JLabel(restauranteAReservar.substring(0,restauranteAReservar.indexOf(".")));
         nombreres.setFont(new Font("Lirio", Font.BOLD, 18));
         nombreres.setForeground(Color.BLACK);
         nombreres.setHorizontalTextPosition( SwingConstants.LEFT );
@@ -161,7 +141,7 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
         direccion.setBounds(60,200,100,50);
         this.add(direccion);
 
-        dirres = new JLabel(restauranteAReservar.substring(restauranteAReservar.indexOf(",")+1,restauranteAReservar.indexOf("-")));
+        dirres = new JLabel(restauranteAReservar.substring(restauranteAReservar.indexOf(".")+1,restauranteAReservar.indexOf("-")));
         dirres.setFont(new Font("Lirio", Font.BOLD, 18));
         dirres.setForeground(Color.BLACK);
         dirres.setHorizontalTextPosition( SwingConstants.LEFT );
@@ -334,29 +314,133 @@ public class JPanelInfoRestaurante extends JPanel implements ActionListener {
 
     }
 
+    public JPanelRellenarReserva(String restaurante)
+    {
+        this.setLayout(null);
+        this.setBackground(new Color(221, 234, 245, 202));
+
+
+        JLabel nombre, direccion, barrio, num;
+        JLabel nombreres, dirres, barriores, numres;
+
+
+        nombre = new JLabel("Restaurante");
+        nombre.setFont(new Font("Lirio", Font.BOLD, 20));
+        nombre.setForeground(Color.BLACK);
+        nombre.setHorizontalTextPosition( SwingConstants.CENTER );
+        nombre.setVerticalTextPosition( SwingConstants.BOTTOM );
+        nombre.setBackground(new Color(133, 177, 204, 182));
+        nombre.setBounds(90,200,150,50);
+        this.add(nombre);
+
+        nombreres = new JLabel(restaurante.substring(0,restaurante.indexOf(".")));
+        nombreres.setFont(new Font("Lirio", Font.BOLD, 18));
+        nombreres.setForeground(Color.BLACK);
+        nombreres.setHorizontalTextPosition( SwingConstants.LEFT );
+        nombreres.setVerticalTextPosition( SwingConstants.BOTTOM );
+        nombreres.setBackground(new Color(133, 177, 204, 182));
+        nombreres.setBounds(330,200,350,50);
+        this.add(nombreres);
+
+        direccion = new JLabel("Dirección");
+        direccion.setFont(new Font("Lirio", Font.BOLD, 20));
+        direccion.setForeground(Color.BLACK);
+        direccion.setHorizontalTextPosition( SwingConstants.CENTER );
+        direccion.setVerticalTextPosition( SwingConstants.BOTTOM );
+        direccion.setBackground(new Color(133, 177, 204, 182));
+        direccion.setBounds(90,250,100,50);
+        this.add(direccion);
+
+        dirres = new JLabel(restaurante.substring(restaurante.indexOf(".")+1,restaurante.indexOf(",")));
+        dirres.setFont(new Font("Lirio", Font.BOLD, 18));
+        dirres.setForeground(Color.BLACK);
+        dirres.setHorizontalTextPosition( SwingConstants.LEFT );
+        dirres.setVerticalTextPosition( SwingConstants.BOTTOM );
+        dirres.setBackground(new Color(133, 177, 204, 182));
+        dirres.setBounds(330,250,350,50);
+        this.add(dirres);
+
+        num = new JLabel("Número");
+        num.setFont(new Font("Lirio", Font.BOLD, 20));
+        num.setForeground(Color.BLACK);
+        num.setHorizontalTextPosition( SwingConstants.CENTER );
+        num.setVerticalTextPosition( SwingConstants.BOTTOM );
+        num.setBackground(new Color(133, 177, 204, 182));
+        num.setBounds(90,300,100,50);
+        this.add(num);
+
+        numres = new JLabel(restaurante.substring(restaurante.indexOf(",")+1, restaurante.indexOf("-")));
+        numres.setFont(new Font("Lirio", Font.BOLD, 18));
+        numres.setForeground(Color.BLACK);
+        numres.setHorizontalTextPosition( SwingConstants.LEFT );
+        numres.setVerticalTextPosition( SwingConstants.BOTTOM );
+        numres.setBackground(new Color(133, 177, 204, 182));
+        numres.setBounds(330,300,350,50);
+        this.add(numres);
+
+        barrio = new JLabel("Barrio");
+        barrio.setFont(new Font("Lirio", Font.BOLD, 20));
+        barrio.setForeground(Color.BLACK);
+        barrio.setHorizontalTextPosition( SwingConstants.CENTER );
+        barrio.setVerticalTextPosition( SwingConstants.BOTTOM );
+        barrio.setBackground(new Color(133, 177, 204, 182));
+        barrio.setBounds(90,350,100,50);
+        this.add(barrio);
+
+        barriores = new JLabel(restaurante.substring(restaurante.indexOf("-")+1));
+        barriores.setFont(new Font("Lirio", Font.BOLD, 18));
+        barriores.setForeground(Color.BLACK);
+        barriores.setHorizontalTextPosition( SwingConstants.LEFT );
+        barriores.setVerticalTextPosition( SwingConstants.BOTTOM );
+        barriores.setBackground(new Color(133, 177, 204, 182));
+        barriores.setBounds(330,350,350,50);
+        this.add(barriores);
+
+        ok=new JButton("OK");
+        ok.setFont(new Font("Lirio", Font.BOLD, 25));
+        ok.setForeground(Color.BLACK);
+        ok.setBackground(new Color(133, 177, 204, 182));
+        ok.setBounds(150, 500, 500, 30);
+        ok.addActionListener(this);
+        this.add(ok);
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==ok)
+        {
+            JFrame  topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.dispose();
+        }
         if(e.getSource()==reservar) {
             try {
                 if (restaurantes.getSelectedValue() != null) {
 
                     String restauranteAReservar = restaurantes.getSelectedValue();
-                    JPanel panel2 = new JPanelInfoRestaurante(restauranteAReservar,1);
-                    
-                    JInicioSesion.crearPanelPeque("Introducir Datos", panel2);
 
-                    JFrame  topFrame = (JFrame) Swingutilities.getWindowAncestor(this);
+                    JPanel panel2 = new JPanelRellenarReserva(restauranteAReservar,1);
+                    JPanel panel3 = new JPanelRellenarReserva(restauranteAReservar);
+
+                    if (this.accion.equals("reservar")) {
+                        JInicioSesion.crearPanelPeque("Introducir Datos", panel2);
+                    }else{
+                        JInicioSesion.crearPanelPeque("Informacion del restaurante", panel3);
+                    }
+
+                    JFrame  topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                     topFrame.dispose();
                 } else {
                     throw new ReservaException();
                 }
             } catch (ReservaException re) {
-                JOptionPane.showMessageDialog(JPanelInfoRestaurante.this, re.getMessage());
+                JOptionPane.showMessageDialog(JPanelRellenarReserva.this, re.getMessage());
             }
         }
         if (e.getSource()==btnCancelar)
         {
-            JFrame  topFrame = (JFrame) Swingutilities.getWindowAncestor(this);
+            JFrame  topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.dispose();
         }
         if(e.getSource()==btnAceptar)
