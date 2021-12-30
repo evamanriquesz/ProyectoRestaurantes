@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import main.java.Cliente;
-import main.java.TarjetaCredito;
+import main.java.Reserva;
 import org.apache.log4j.Logger;
 
 import icai.dtc.isw.configuration.PropertiesISW;
@@ -28,8 +28,10 @@ public class Client implements Serializable {
 		//quitamos el main y ponemos que esto sea un método.
 
 		//Configure connections
-		String host = PropertiesISW.getInstance().getProperty("host");
-		int port = Integer.parseInt(PropertiesISW.getInstance().getProperty("port"));
+		//String host = PropertiesISW.getInstance().getProperty("host");
+		String host = "127.0.0.1";
+		//int port = Integer.parseInt(PropertiesISW.getInstance().getProperty("port"));
+		int port =8081;
 		Logger.getRootLogger().info("Host: "+host+" port"+port);
 		//Create a cliente class
 		Client client=new Client(host, port);
@@ -74,7 +76,6 @@ public class Client implements Serializable {
 				session.put("RespuestaObtenerInfoCliente", cliente);
 				break;
 
-
 			case "/filtrarResponse":
 				ArrayList<Restaurante> listafiltrada = (ArrayList<Restaurante>) mensajeVuelta.getSession().get("RespuestaFiltrar");
 				session.put("RespuestaFiltrar", listafiltrada);
@@ -84,25 +85,14 @@ public class Client implements Serializable {
 				ArrayList<Restaurante> listaIguales = (ArrayList<Restaurante>) mensajeVuelta.getSession().get("RespuestaObtenerIguales");
 				session.put("RespuestaObtenerIguales", listaIguales);
 				break;
-
-
 			case "/hacerRegistroResponse":
-				//System.out.println("MV get Session : "+ mensajeVuelta.getSession());
+				System.out.println("MV get Session : "+ mensajeVuelta.getSession());
 				int res3 = (Integer) mensajeVuelta.getSession().get("RespuestaRegistro");
 				//System.out.println("res3" +  res3);
 				session.put("RespuestaRegistro", res3);
 
 				//System.out.println("LLego aqui");
-				//System.out.println(session);
-				break;
-
-			case "/incluirTarjetaResponse":
-				int res4 = (Integer) mensajeVuelta.getSession().get("RespuestaIncluirTarjeta");
-				//System.out.println("res3" +  res3);
-				session.put("RespuestaIncluirTarjeta", res4);
-
-				//System.out.println("LLego aqui");
-				//System.out.println(session);
+				System.out.println(session);
 				break;
 
 			case "/obtenerRestauranteAleatorioResponse":
@@ -110,6 +100,25 @@ public class Client implements Serializable {
 				session.put("RespuestaObtenerRestauranteAleatorio", restauranteAleatorio);
 				break;
 
+			case "/editarPerfilResponse":
+				int res4 = (Integer) mensajeVuelta.getSession().get("RespuestaEditarPerfil");
+				//System.out.println("res3" +  res3);
+				session.put("RespuestaEditarPerfil", res4);
+
+				//System.out.println("LLego aqui");
+				System.out.println(session);
+				break;
+
+			case "/hacerReservaResponse":
+				//System.out.println()
+				int res5 = (Integer) mensajeVuelta.getSession().get("RespuestaReserva");
+				session.put("RespuestaReserva", res5);
+				break;
+
+			case "/mostrarReservasAnterioresResponse":
+				ArrayList<Reserva> listaReservasAnteriores = (ArrayList<Reserva>) mensajeVuelta.getSession().get("RespuestaMostrarReservasAnteriores");
+				session.put("RespuestaMostrarReservasAnteriores", listaReservasAnteriores);
+				break;
 
 			default:
 				Logger.getRootLogger().info("Option not found");

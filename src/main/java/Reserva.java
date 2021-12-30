@@ -1,31 +1,44 @@
 package main.java;
 
-import java.util.Date;
+
 
 /**Clase que guarda la infomracion de una reserva concreta*/
 public class Reserva
 {
-    Restaurante restaurante;
-    Cliente cliente;
-    int digHora, digMin;
-    Date fecha;
-    int id;
 
-    public Reserva (Restaurante restaurante,Cliente cliente, int digHora, int digMin, Date fecha)
+    int codigo, identificador;
+    String cliente, fecha, numero_personas, hora;
+    boolean pagado;
+
+    public Reserva()
     {
-        this.restaurante=restaurante;
-        this.id = (int) Math.round(Math.random() * 100000);
+
+    }
+
+    public Reserva (int codigo, String cliente, int identificador, String fecha, String numero_personas, String hora, boolean pagado)
+    {
+        this.codigo=codigo;
         this.cliente=cliente;
+        this.identificador=identificador;
+        this.fecha=fecha;
+        this.numero_personas=numero_personas;
+        this.hora=hora;
+        this.pagado=pagado;
 
     }
 
-    public int getId()
+    public int getCodigo()
     {
-        return this.id;
+        return this.codigo;
+    }
+    public String getCliente() {return this.cliente;}
+    public int getIdentificador() {return this.identificador;}
+    public String getFecha() {return this.fecha;}
+    public String getNumeroPersonas() {return this.numero_personas;}
+    public String getHora() {return this.hora;}
+    public boolean getPagado()
+    {
+        return this.pagado;
     }
 
-    public String toString()
-    {
-        return restaurante.toString();
-    }
 }

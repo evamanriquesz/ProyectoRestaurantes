@@ -10,8 +10,8 @@ import icai.dtc.isw.controler.CustomerControler;
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.message.Message;
 import main.java.Cliente;
+import main.java.Reserva;
 import main.java.Restaurante;
-import main.java.TarjetaCredito;
 
 public class SocketServer extends Thread implements Serializable {
 	public static final int PORT_NUMBER = 8081;
@@ -81,9 +81,6 @@ public class SocketServer extends Thread implements Serializable {
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
 
-
-
-
 				case ("/filtrar"):
 					//CustomerControler customerControler1 = new CustomerControler();
 					ArrayList<Restaurante> listafiltrada= customerControler.filtrarListaRestaurantes((String)mensajeIn.getSession().get("filtro"));
@@ -103,17 +100,10 @@ public class SocketServer extends Thread implements Serializable {
 					objectOutputStream.writeObject(mensajeOut);
 
 				case("/hacerRegistro"):
-					int k=customerControler.hacerRegistro((String)mensajeIn.getSession().get("accion"),(String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("contra"),(Integer)mensajeIn.getSession().get("telefono"), (String)mensajeIn.getSession().get("email"),(String)mensajeIn.getSession().get("nombre"),(String)mensajeIn.getSession().get("apellidos"));
+					int k=customerControler.hacerRegistro((String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("contra"),(Integer)mensajeIn.getSession().get("telefono"), (String)mensajeIn.getSession().get("email"),(String)mensajeIn.getSession().get("nombre"),(String)mensajeIn.getSession().get("apellidos"));
 					mensajeOut.setContext("/hacerRegistroResponse");
 					//HashMap<String,Object> session=new HashMap<String, Object>();
 					session.put("RespuestaRegistro",k);
-					mensajeOut.setSession(session);
-					objectOutputStream.writeObject(mensajeOut);
-
-				case("/incluirTarjeta"):
-					int l=customerControler.incluirTarjeta((String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("nombre"),(String)mensajeIn.getSession().get("numeroTarjeta"),(Integer)mensajeIn.getSession().get("cvv"), (String)mensajeIn.getSession().get("fechaCad"));
-					mensajeOut.setContext("/incluirTarjetaResponse");
-					session.put("RespuestaIncluirTarjeta",l);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
 
@@ -125,6 +115,31 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaObtenerRestauranteAleatorio",restauranteAleatorio);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
+
+				case ("/editarPerfil"):
+					int n=customerControler.editarPerfil((String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("contra"),(Integer)mensajeIn.getSession().get("telefono"), (String)mensajeIn.getSession().get("email"),(String)mensajeIn.getSession().get("nombre"),(String)mensajeIn.getSession().get("apellidos"));
+					mensajeOut.setContext("/editarPerfilResponse");
+					//HashMap<String,Object> session=new HashMap<String, Object>();
+					session.put("RespuestaEditarPerfil",n);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+				case("/hacerReserva"):
+					int p =customerControler.hacerReserva((Integer)mensajeIn.getSession().get("codigo"),(String)mensajeIn.getSession().get("cliente"),(Integer)mensajeIn.getSession().get("identificador"), (String)mensajeIn.getSession().get("fecha"),(String)mensajeIn.getSession().get("numero_personas"),(String)mensajeIn.getSession().get("hora"), (boolean)mensajeIn.getSession().get("pagado"));
+					mensajeOut.setContext("/hacerReservaResponse");
+					session.put("RespuestaReserva",p);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+				case("/mostrarReservasAnteriores"):
+					ArrayList<Reserva> reservasAnteriores = customerControler.mostrarReservasAnteriores((String)mensajeIn.getSession().get("usuario"));
+					mensajeOut.setContext("/mostrarReservasAnterioresResponse");
+					session.put("RespuestaMostrarReservasAnteriores", reservasAnteriores);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+
+
 
 		    	default:
 		    		System.out.println("\nParámetro no encontrado");
