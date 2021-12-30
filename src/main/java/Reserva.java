@@ -122,15 +122,9 @@ public class Reserva implements Serializable
         Restaurante restaurante = (Restaurante) session.get("RespuestaObtenerRestauranteAleatorio");
 
         sb.append("Restaurante: ")
-                .append(restaurante.getNombreRestaurante())
-                .append(" Dirección: ")
-                .append(restaurante.getCalle())
-                .append(" ")
-                .append(restaurante.getDireccion())
-                .append(" ")
-                .append(restaurante.getNumeroDirecc())
-                .append(" Fecha: ")
-                .append(this.getFecha());
+            .append(restaurante.toString())
+            .append(";  Fecha: ")
+            .append(this.getFecha().trim());
 
 
 
