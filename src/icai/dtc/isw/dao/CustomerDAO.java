@@ -4,13 +4,9 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import main.java.Cliente;
-
-import main.java.ExceptionFecha;
-import main.java.Restaurante;
+import main.java.*;
 
 import icai.dtc.isw.domain.Customer;
-import main.java.TarjetaCredito;
 
 import java.io.*;
 import java.util.Locale;
@@ -271,6 +267,73 @@ public class CustomerDAO implements Serializable {
 			throwables.printStackTrace();
 		}
 		return respuesta;
+	}
+
+	public static int reservar(int codigo_reserva, String usuario_reserva, int identificador_restaurante_reserva, String fecha_reserva, String numero_personas_reserva, String hora_reserva,boolean pagado_reserva)
+	{
+		//no llega a entrar a este metodo creo
+		Cliente c ;
+		int respuesta=0; //1= bien, 0 = mal
+		int introducir=1; //1 = si, 0 = no
+		Connection con = ConnectionDAO.getInstance().getConnection();
+		Statement statement;
+		System.out.println("llega aqui!!!!!!!!");
+
+		System.out.println("Antes de...");
+
+		try(PreparedStatement pst = con.prepareStatement("SELECT * FROM reservas");// WHERE usuario ='" + user +"'");
+			ResultSet rs = pst.executeQuery()) {
+			while (rs.next()) {
+				// esto......................
+				if((String.valueOf(identificador_restaurante_reserva).equals(rs.getString("identificador"))) && (fecha_reserva.equals(rs.getString("fecha"))) && (hora_reserva.equals(rs.getString("hora")))) //falta poner algo del numero de reservas en total
+				{
+					introducir=0;
+				}
+			}
+
+
+			if (introducir==1){
+				try
+				{
+					System.out.println("Despues de....");
+					respuesta = 1;
+					statement = con.createStatement();
+					statement.executeQuery("INSERT INTO reservas (codigo,usuario,identificador,fecha,numero_personas,hora,pagado) VALUES ('" + codigo_reserva + "', '" + usuario_reserva + "', " + identificador_restaurante_reserva + ",'" + fecha_reserva + "','" + numero_personas_reserva + "','" + hora_reserva + " ','" + pagado_reserva + "');");
+					//System.out.println("INSERT INTO reservas (codigo,cliente,identificador,fecha,numero_personas,hora,pagado) VALUES ('" + codigo_reserva + "', '" + usuario_reserva + "', " + identificador_restaurante_reserva + ",'" + fecha_reserva + "','" + numero_personas_reserva + "','" + hora_reserva + " ','" + pagado_reserva + "');");
+				}catch (SQLException ex)
+				{
+					System.out.println(ex.getMessage());
+				}
+			}else{
+				respuesta=0;
+			}
+		}catch(SQLException ex)
+		{
+			System.out.println(ex.getMessage());
+		}
+		return respuesta;
+	}
+
+	public static ArrayList<Reserva> mostrarReservasAnteriores(String usuario)
+	{
+		ArrayList<Reserva> listaReservasAnteriores = new ArrayList<Reserva>();
+
+		Connection con = ConnectionDAO.getInstance().getConnection();
+		try(PreparedStatement pst = con.prepareStatement("SELECT * FROM reservas WHERE usuario = '" + usuario + "';" );
+			ResultSet rs = pst.executeQuery())
+		{
+			while (rs.next())
+			{
+				Reserva r = new Reserva( Integer.parseInt(rs.getString(1)),rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7));
+				listaReservasAnteriores.add(r);
+			}
+		}
+		catch(SQLException ex)
+		{
+			System.out.println(ex.getMessage());
+		}
+
+		return listaReservasAnteriores;
 	}
 }
 

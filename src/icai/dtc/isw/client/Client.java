@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import main.java.Cliente;
+import main.java.Reserva;
 import main.java.TarjetaCredito;
 import org.apache.log4j.Logger;
 
@@ -109,6 +110,18 @@ public class Client implements Serializable {
 				Restaurante restauranteAleatorio = (Restaurante) mensajeVuelta.getSession().get("RespuestaObtenerRestauranteAleatorio");
 				session.put("RespuestaObtenerRestauranteAleatorio", restauranteAleatorio);
 				break;
+
+			case "/hacerReservaResponse":
+				//System.out.println()
+				int res5 = (Integer) mensajeVuelta.getSession().get("RespuestaReserva");
+				session.put("RespuestaReserva", res5);
+				break;
+
+			case "/mostrarReservasAnterioresResponse":
+				ArrayList<Reserva> listaReservasAnteriores = (ArrayList<Reserva>) mensajeVuelta.getSession().get("RespuestaMostrarReservasAnteriores");
+				session.put("RespuestaMostrarReservasAnteriores", listaReservasAnteriores);
+				break;
+
 
 
 			default:

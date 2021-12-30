@@ -6,10 +6,7 @@ import java.util.HashMap;
 
 import icai.dtc.isw.dao.CustomerDAO;
 import icai.dtc.isw.domain.Customer;
-import main.java.Cliente;
-import main.java.RegistroException;
-import main.java.Restaurante;
-import main.java.TarjetaCredito;
+import main.java.*;
 
 import java.io.*;
 
@@ -39,6 +36,10 @@ public class CustomerControler implements  Serializable{
 	public Restaurante obtenerRestauranteAleatorio(int n) {	return CustomerDAO.obtenerRestauranteAleatorio(n);	}
 
     public int incluirTarjeta( String usuario, String nombre, String numeroTarjeta, Integer cvv, String fechaCad) { return CustomerDAO.incluirTarjeta(usuario,nombre,numeroTarjeta,cvv,fechaCad);}
+
+	public int hacerReserva(int codigo_reserva, String usuario_reserva, int identificador_restaurante_reserva, String fecha_reserva, String numero_personas_reserva, String hora_reserva, boolean pagado_reserva) {return CustomerDAO.reservar( codigo_reserva,  usuario_reserva,  identificador_restaurante_reserva,  fecha_reserva,  numero_personas_reserva,  hora_reserva, pagado_reserva);}
+
+	public ArrayList<Reserva> mostrarReservasAnteriores(String cliente)  {return CustomerDAO.mostrarReservasAnteriores(cliente);}
 
 
 	/*

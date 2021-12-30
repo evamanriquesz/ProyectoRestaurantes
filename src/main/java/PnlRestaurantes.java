@@ -434,6 +434,24 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         session.put("pass",11);
         int min =1;
         int max=7244;
+
+        if (JInicioSesion.cliente.getTelefono()<630000000)
+        {
+            min = 1;
+            max = 2500;
+        }
+        else if((JInicioSesion.cliente.getTelefono() >= 630000001) && (JInicioSesion.cliente.getTelefono() < 660000000))
+        {
+            min = 2501;
+            max = 5000;
+        }
+        else if((JInicioSesion.cliente.getTelefono()>660000001)  && (JInicioSesion.cliente.getTelefono()<=699999999))
+        {
+            min = 5001;
+            max = 7244;
+        }
+
+
         int n=(int) (Math.random()*(max-min)) + min;
         session.put("numeroAleatorio",n);
         client.envio("/obtenerRestauranteAleatorio",session);

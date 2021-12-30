@@ -10,6 +10,7 @@ import icai.dtc.isw.controler.CustomerControler;
 import icai.dtc.isw.domain.Customer;
 import icai.dtc.isw.message.Message;
 import main.java.Cliente;
+import main.java.Reserva;
 import main.java.Restaurante;
 import main.java.TarjetaCredito;
 
@@ -126,7 +127,21 @@ public class SocketServer extends Thread implements Serializable {
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
 
-		    	default:
+				case("/hacerReserva"):
+					int p =customerControler.hacerReserva((Integer)mensajeIn.getSession().get("codigo"),(String)mensajeIn.getSession().get("cliente"),(Integer)mensajeIn.getSession().get("identificador"), (String)mensajeIn.getSession().get("fecha"),(String)mensajeIn.getSession().get("numero_personas"),(String)mensajeIn.getSession().get("hora"), (boolean)mensajeIn.getSession().get("pagado"));
+					mensajeOut.setContext("/hacerReservaResponse");
+					session.put("RespuestaReserva",p);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+				case("/mostrarReservasAnteriores"):
+					ArrayList<Reserva> reservasAnteriores = customerControler.mostrarReservasAnteriores((String)mensajeIn.getSession().get("usuario"));
+					mensajeOut.setContext("/mostrarReservasAnterioresResponse");
+					session.put("RespuestaMostrarReservasAnteriores", reservasAnteriores);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+
+				default:
 		    		System.out.println("\nParámetro no encontrado");
 		    		break;
 		    }
