@@ -21,7 +21,8 @@ public class JPnlFondo extends JPanel
 
         this.setLayout(null);
         this.setPreferredSize(new Dimension(getMaximumSize().width,100));
-        this.setBounds(0, 0, JInicioSesion.screenSize.width, 100);
+        //this.setBounds(0, 0, JInicioSesion.screenSize.width, 100);
+        this.setBounds(0, 0, JInicioSesion.screenSize.width, JInicioSesion.screenSize.height);
         //this.setBackground(new Color(133, 192, 227));
         this.setBackground(new Color(141, 182, 206));
 

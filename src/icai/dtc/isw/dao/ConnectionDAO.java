@@ -11,10 +11,13 @@ public class ConnectionDAO {
 	private Connection con;
 	
 	private ConnectionDAO() {		
-		String url = PropertiesISW.getInstance().getProperty("ddbb.connection");
-        String user = PropertiesISW.getInstance().getProperty("ddbb.user");
-        String password = PropertiesISW.getInstance().getProperty("ddbb.password");
-	    try {
+		//String url = PropertiesISW.getInstance().getProperty("ddbb.connection");
+        String url="jdbc:postgresql://localhost:5432/clientes";
+		//String user = PropertiesISW.getInstance().getProperty("ddbb.user");
+		String user = "postgres";
+        //String password = PropertiesISW.getInstance().getProperty("ddbb.password");
+	    String password = "postgres";
+		try {
 	    	con = DriverManager.getConnection(url, user, password);
 	    	con.setAutoCommit(true);
 	    }catch (SQLException ex) {

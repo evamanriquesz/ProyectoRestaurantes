@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import main.java.*;
 
 import icai.dtc.isw.domain.Customer;
+import main.java.TarjetaCredito;
 
 import java.io.*;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -336,4 +338,6 @@ public class CustomerDAO implements Serializable {
 		return listaReservasAnteriores;
 	}
 }
+
+
 
