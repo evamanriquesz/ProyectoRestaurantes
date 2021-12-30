@@ -1,0 +1,20 @@
+                 TICKET
+==========================================
+Nombre usuario:sofia barquero jimenez
+
+Numero de reserva: 10
+
+Restaurante: BAR ECLIPSE.CALLE BAILEN,33-PALACIO             
+Dia: 17-02-2022
+Hora: 15:00
+Numero de personas: 2
+Pedido de comida por adelantado: SI:
+	Primer plato: Pasta_carbonara
+	Segundo plato: Salmon
+	Postre Helado
+	Bebida Agua
+	Estado del pago: Pagado
+===============================================
+
+===============================================
+

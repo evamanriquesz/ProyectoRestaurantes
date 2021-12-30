@@ -341,18 +341,20 @@ public class CustomerDAO implements Serializable {
 	public static int obtenerCodigoUltimaReserva() {
 
 		Reserva ultReserva = new Reserva();
+		int codigo=0;
 
 		Connection con = ConnectionDAO.getInstance().getConnection();
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM reservas WHERE codigo=(SELECT max(codigo) FROM reservas);" );
+		try (PreparedStatement pst = con.prepareStatement("SELECT codigo FROM reservas WHERE codigo=(SELECT max(codigo) FROM reservas);" );
 			 ResultSet rs = pst.executeQuery()) {
 			while (rs.next())
 			{
+				codigo=rs.getInt(1);
 				ultReserva = new Reserva(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8),rs.getString(9), rs.getString(10), rs.getString(11));
 			}
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
-		return ultReserva.getCodigo();
+		return codigo;
 	}
 }
 

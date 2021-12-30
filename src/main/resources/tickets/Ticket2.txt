@@ -1,0 +1,15 @@
+                 TICKET
+==========================================
+Nombre usuario:sofia barquero jimenez
+
+Numero de reserva: 2
+
+Restaurante: LA ANDALUZA.CALLE ALONSO DEL BARCO,11-PALOS DE MOGUER     
+Dia: 28-01-2022
+Hora: 15:00
+Numero de personas: 3
+Pedido de comida por adelantado: NO.
+===============================================
+
+===============================================
+

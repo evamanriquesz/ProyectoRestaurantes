@@ -28,9 +28,11 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
 //    JLabel dirres;
 
     static Reserva reservaFinal;
+    static int respuestaReserva;
 
     JLabel nombreres, dirres, barriores, numres;
-    JLabel nombreres1, dirres1;
+    static JLabel nombreres1, dirres1;
+    static JPanel panel3;
 
     JScrollPane barra;
     JList<String> restaurantes;
@@ -38,9 +40,9 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
     JButton btnAceptarIntroDatos,btnCancelarIntroDatos,ok;
     Calendar c;
 
-    JDatePickerImpl datePickerFecha;
+    static JDatePickerImpl datePickerFecha;
     JCheckBox pedido;
-    int codigo_reserva;
+    static int codigo_reserva;
 
     static String fechaStr;
     static String horaStr;
@@ -401,18 +403,19 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
             topFrame.dispose();
         }
         if (e.getSource() == reservar) {
+            reservaFinal = new Reserva();
             try {
                 if (restaurantes.getSelectedValue() != null) {
 
                      restauranteAReservar = restaurantes.getSelectedValue();
 
-                    JPanel panel2 = new JPanelRellenarReserva(restauranteAReservar, 1);
-                    JPanel panel3 = new JPanelRellenarReserva(restauranteAReservar);
+                    panel3 = new JPanelRellenarReserva(restauranteAReservar, 1);
+                    JPanel panel2 = new JPanelRellenarReserva(restauranteAReservar);
 
                     if (this.accion.equals("reservar")) {
-                        JInicioSesion.crearPanelPeque("Introducir Datos", panel2);
+                        JInicioSesion.crearPanelPeque("Introducir Datos", panel3);
                     } else {
-                        JInicioSesion.crearPanelPeque("Informacion del restaurante", panel3);
+                        JInicioSesion.crearPanelPeque("Informacion del restaurante", panel2);
                     }
 
                     JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -434,12 +437,21 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
             PnlHacerPedido pnlPedido = new PnlHacerPedido();
             if (pedido.isSelected()) {
                 JInicioSesion.crearPanelPeque("Hacer Pedido", pnlPedido);
-                pagado_reserva = true;
             }
             else
             {
                 try {
-                    rellenarReserva(codigo_reserva, JInicioSesion.usuario, identificador_restaurante_definitivo, fechaStr, numPersonasStr, horaStr, pagado_reserva);
+                    rellenarReserva();
+                    if(respuestaReserva == 1)
+                    {
+                        JOptionPane.showMessageDialog(this, "Reserva realizada correctamente.");
+                        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                        topFrame.dispose();
+                    }
+                    else if (respuestaReserva ==0)
+                    {
+                        throw new RellenarReservaException();
+                    }
                 } catch (RellenarReservaException rre) {
                     rre.printStackTrace();
                 }
@@ -450,7 +462,7 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
 
     /**Funcion que accede a la base de datos para introducir la reserva en la tabla "reservas*/
 
-        public void rellenarReserva (int codigo, String usuario, int identificador, String fecha, String numero_personas, String hora, boolean pagado) throws RellenarReservaException
+        public static void rellenarReserva() throws RellenarReservaException
     {
 
         /*codigo de reserva */
@@ -471,11 +483,11 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
         int identificador_restaurante;
         String direccion_restaurante_elegido;
 
-        String dirEntera = this.dirres1.getText();
+        String dirEntera = dirres1.getText();
         if(dirEntera.substring(0,2).equals("CA")||dirEntera.substring(0,2).equals("PL")) {
-            direccion_restaurante_elegido = this.dirres1.getText().substring(5, this.dirres1.getText().indexOf(","));
+            direccion_restaurante_elegido = dirres1.getText().substring(5, dirres1.getText().indexOf(","));
         }else{
-            direccion_restaurante_elegido = this.dirres1.getText().substring(7,this.dirres1.getText().indexOf(","));
+            direccion_restaurante_elegido = dirres1.getText().substring(7,dirres1.getText().indexOf(","));
         }
 
         Client client=new Client();
@@ -493,6 +505,7 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
 
             if ((direccion_restaurante_elegido.trim()).equals(dir)) {
                 identificador_restaurante_definitivo = identificador_restaurante;
+
             }
         }
 
@@ -515,26 +528,22 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
 
         Client client1=new Client();
         HashMap<String,Object> session1=new HashMap<>();
-        session1.put("codigo",codigo);
-        session1.put("usuario",usuario);
-        session1.put("identificador",identificador);
-        session1.put("fecha",fecha);
-        session1.put("numero_personas",numero_personas);
-        session1.put("hora",hora);
-        session1.put("pagado",pagado);
+        session1.put("codigo",codigo_reserva);
+        session1.put("usuario",JInicioSesion.cliente.getId());
+        session1.put("identificador",identificador_restaurante_definitivo);
+        session1.put("fecha",fechaStr);
+        session1.put("numero_personas",numPersonasStr);
+        session1.put("hora",horaStr);
+        session1.put("pagado",pagado_reserva);
         client1.envio("/hacerReserva",session1);
         // CustomerDAO customerDAO = new CustomerDAO();
         int resp = (Integer) session1.get("RespuestaReserva");
         //customerDAO.autenticar(user, pw.toString());
-        if(resp == 1)
-        {
-            JOptionPane.showMessageDialog(JPanelRellenarReserva.this, "Reserva realizada correctamente.");
-        }
+        respuestaReserva=resp;
 
-        else if (resp ==0)
-        {
-            throw new RellenarReservaException();
-        }
+        JPanelRellenarReserva.reservaFinal.setPedido(PnlHacerPedido.p);
+
+
         IO.crearTicket(reservaFinal);
 
     }

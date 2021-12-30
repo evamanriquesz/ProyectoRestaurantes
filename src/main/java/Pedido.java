@@ -34,5 +34,39 @@ public class Pedido
         this.pago=pago;
     }
 
+    public Boolean getPago()
+    {
+        Boolean respuesta;
+
+        if(this.pago==Pagado.pagado)
+        {
+            respuesta = true;
+        }else
+        {
+            respuesta=false;
+        }
+
+        return respuesta;
+    }
+
+    public PrimerPlato getPrimerPlato()
+    {
+        return this.primerPlato;
+    }
+
+    public SegundoPlato getSegundoPlato()
+    {
+        return this.segundoPlato;
+    }
+
+    public Postre getPostre()
+    {
+        return this.postre;
+    }
+
+    public Bebida getBebida()
+    {
+        return this.bebida;
+    }
 
 }

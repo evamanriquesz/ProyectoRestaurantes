@@ -28,7 +28,7 @@ public class JPnlFondo extends JPanel
 
         JLabel imagen = new JLabel();
 
-        ImageIcon dcby = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "dcbyoscuro.png");
+        ImageIcon dcby = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator +"imagenes"+File.separator + "dcbyoscuro.png");
         ImageIcon imagendcby = new ImageIcon(dcby.getImage().getScaledInstance(80,-1,Image.SCALE_DEFAULT));
         //imagen del logo
         imagen.setIcon(imagendcby);

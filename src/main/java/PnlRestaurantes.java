@@ -292,7 +292,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
         //Info del boton perfil
         btnperfil = new JButton();
-        ImageIcon perfil = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "perfilcoloreado.bmp.png");
+        ImageIcon perfil = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator +"imagenes"+File.separator + "perfilcoloreado.bmp.png");
         ImageIcon imagenperfil = new ImageIcon(perfil.getImage().getScaledInstance(80,-1,Image.SCALE_DEFAULT));
         //imagen del logo
         btnperfil.setIcon(imagenperfil);

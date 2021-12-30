@@ -1,0 +1,15 @@
+                 TICKET
+==========================================
+Nombre usuario:sofia barquero jimenez
+
+Numero de reserva: 6
+
+Restaurante: DONDE SIEMPRE+TETERIA.CALLE CARIDAD,9-PACIFICO            
+Dia: 16-12-2021
+Hora: 15:30
+Numero de personas: 3
+Pedido de comida por adelantado: NO.
+===============================================
+
+===============================================
+

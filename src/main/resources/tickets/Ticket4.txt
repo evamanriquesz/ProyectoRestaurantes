@@ -1,0 +1,15 @@
+                 TICKET
+==========================================
+Nombre usuario:sofia barquero jimenez
+
+Numero de reserva: 4
+
+Restaurante: LA MORDIDA.CALLE LARRA,23-JUSTICIA            
+Dia: 16-02-2022
+Hora: 15:00
+Numero de personas: 3
+Pedido de comida por adelantado: NO.
+===============================================
+
+===============================================
+

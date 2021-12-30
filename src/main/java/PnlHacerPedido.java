@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 
 /**Clase del panel que se genera cuando se desea hacer el pedido de comida por adelantado al realizar la reserva*/
@@ -13,6 +14,8 @@ public class PnlHacerPedido extends JPanel implements ActionListener
     JButton btnAceptar, btnCancelar;
     JComboBox pnlPrincipal, pnlSecundario, pnlPostre, pnlBebida;
     JCheckBox pago;
+
+    static Pedido p;
 
     /**Constructor del panel que muestra las opciones de los platos a pedir*/
     public PnlHacerPedido()
@@ -127,10 +130,10 @@ public class PnlHacerPedido extends JPanel implements ActionListener
     {
         if (e.getSource()==btnAceptar)
         {
-            PrimerPlato pp = PrimerPlato.valueOf(pnlPrincipal.getSelectedItem().toString());
-            SegundoPlato sp = SegundoPlato.valueOf(pnlSecundario.getSelectedItem().toString());
-            Postre pos =Postre.valueOf(pnlPostre.getSelectedItem().toString());
-            Bebida b = Bebida.valueOf(pnlBebida.getSelectedItem().toString());
+            PrimerPlato pp = PrimerPlato.valueOf(Objects.requireNonNull(pnlPrincipal.getSelectedItem()).toString());
+            SegundoPlato sp = SegundoPlato.valueOf(Objects.requireNonNull(pnlSecundario.getSelectedItem()).toString());
+            Postre pos =Postre.valueOf(Objects.requireNonNull(pnlPostre.getSelectedItem()).toString());
+            Bebida b = Bebida.valueOf(Objects.requireNonNull(pnlBebida.getSelectedItem()).toString());
             Pagado pag;
             if (pago.isSelected())
             {
@@ -139,9 +142,37 @@ public class PnlHacerPedido extends JPanel implements ActionListener
                 pag=Pagado.noPagado;
             }
 
-            Pedido p= new Pedido(pp,sp,pos,b,pag);
+             p= new Pedido(pp,sp,pos,b,pag);
 
-            JPanelRellenarReserva.reservaFinal.setPedido(p);
+
+
+            JPanelRellenarReserva.pagado_reserva = p.getPago();
+
+            try {
+                JPanelRellenarReserva.rellenarReserva();
+            } catch (RellenarReservaException rre) {
+                rre.printStackTrace();
+            }
+
+            if(JPanelRellenarReserva.respuestaReserva == 1)
+            {
+                JOptionPane.showMessageDialog(this, "Reserva realizada correctamente.");
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                topFrame.dispose();
+                JFrame topFrame2 = (JFrame) SwingUtilities.getWindowAncestor(JPanelRellenarReserva.panel3);
+                topFrame2.dispose();
+            }
+            else if (JPanelRellenarReserva.respuestaReserva ==0)
+            {
+                try {
+                    throw new RellenarReservaException();
+                } catch (RellenarReservaException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.dispose();
         }
 
         if(e.getSource()==btnCancelar)

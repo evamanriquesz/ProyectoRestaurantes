@@ -1,0 +1,15 @@
+                 TICKET
+==========================================
+Nombre usuario:sofia barquero jimenez
+
+Numero de reserva: 3
+
+Restaurante: MALPIKA.CALLE GOYA,6-RECOLETOS           
+Dia: 14-01-2022
+Hora: 15:00
+Numero de personas: 3
+Pedido de comida por adelantado: NO.
+===============================================
+
+===============================================
+

@@ -1,0 +1,20 @@
+                 TICKET
+==========================================
+Nombre usuario:sofia barquero jimenez
+
+Numero de reserva: 9
+
+Restaurante: BEEF COMPANI.CALLE LIBERTAD,21-JUSTICIA            
+Dia: 16-03-2022
+Hora: 15:00
+Numero de personas: 2
+Pedido de comida por adelantado: SÍ:
+	Primer plato: null
+	Segundo plato: null
+	Postre null
+	Bebida null
+	Estado del pago: Pagado
+===============================================
+
+===============================================
+

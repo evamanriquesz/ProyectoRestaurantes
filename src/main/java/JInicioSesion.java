@@ -109,7 +109,7 @@ public class JInicioSesion extends JFrame
 
 
         //imagen del logo
-        ImageIcon dcby = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "dcbyoscuro.png");
+        ImageIcon dcby = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator +"imagenes"+File.separator + "dcbyoscuro.png");
         ImageIcon imagendcby = new ImageIcon(dcby.getImage().getScaledInstance(200,-1,Image.SCALE_DEFAULT));
         imagen.setIcon(imagendcby);
         imagen.setBounds(500,20,200,200);

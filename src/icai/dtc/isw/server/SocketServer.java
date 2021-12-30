@@ -134,7 +134,7 @@ public class SocketServer extends Thread implements Serializable {
 					break;
 
 				case("/hacerReserva"):
-					int p =customerControler.hacerReserva((Integer)mensajeIn.getSession().get("codigo"),(String)mensajeIn.getSession().get("cliente"),(Integer)mensajeIn.getSession().get("identificador"), (String)mensajeIn.getSession().get("fecha"),(String)mensajeIn.getSession().get("numero_personas"),(String)mensajeIn.getSession().get("hora"), (boolean)mensajeIn.getSession().get("pagado"));
+					int p =customerControler.hacerReserva((Integer)mensajeIn.getSession().get("codigo"),(String)mensajeIn.getSession().get("usuario"),(Integer)mensajeIn.getSession().get("identificador"), (String)mensajeIn.getSession().get("fecha"),(String)mensajeIn.getSession().get("numero_personas"),(String)mensajeIn.getSession().get("hora"), (boolean)mensajeIn.getSession().get("pagado"));
 					mensajeOut.setContext("/hacerReservaResponse");
 					session.put("RespuestaReserva",p);
 					mensajeOut.setSession(session);

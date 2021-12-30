@@ -30,7 +30,7 @@ public class Mapa extends JPanel implements ActionListener {
          casaRicardo = new JButton();
          najera = new JButton();
 
-        ImageIcon geoloc = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "geolocalizacion.png");
+        ImageIcon geoloc = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator +"imagenes"+File.separator + "geolocalizacion.png");
         ImageIcon imagengeoloc = new ImageIcon(geoloc.getImage().getScaledInstance(35,-1, Image.SCALE_DEFAULT));
         //imagen del logo
         elPimientoverde.setIcon(imagengeoloc);
@@ -59,7 +59,7 @@ public class Mapa extends JPanel implements ActionListener {
     public void paintComponent(Graphics g){
 
         Dimension tamanio = getSize();
-        ImageIcon imagenFondo = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "mapa2.png");
+        ImageIcon imagenFondo = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator +"imagenes"+File.separator + "mapa2.png");
         g.drawImage(imagenFondo.getImage(), 0, 0,
                 tamanio.width, tamanio.height, null);
         setOpaque(false);

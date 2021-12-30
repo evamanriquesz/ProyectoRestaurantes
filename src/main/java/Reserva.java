@@ -100,6 +100,7 @@ public class Reserva implements Serializable
         }
         return respuesta;
     }
+
     public String getPrimerPlato() {return this.primer_plato;}
     public String getSegundoPlato() {return this.segundo_plato;}
     public String getPostre() {return this.postre;}

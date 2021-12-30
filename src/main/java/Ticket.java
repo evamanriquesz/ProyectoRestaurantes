@@ -16,6 +16,7 @@ public class Ticket
      */
     int id;
     StringBuilder sb ;
+    Reserva res;
 
 
     /**
@@ -24,7 +25,9 @@ public class Ticket
      */
     public Ticket(Reserva res) throws NullPointerException
     {
-        Pedido pedido= res.getPedido();
+
+        this.res=res;
+        Pedido pedido= JPanelRellenarReserva.reservaFinal.getPedido();
 
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
@@ -35,7 +38,7 @@ public class Ticket
 
 
         sb = new StringBuilder();
-        id = (int) Math.round(Math.random() * 100000);
+        //id = (int) Math.round(Math.random() * 100000);
 
         sb.append("                 TICKET\n")
                 .append("==========================================\n")
@@ -44,29 +47,29 @@ public class Ticket
                 .append(" ")
                 .append(JInicioSesion.cliente.getApellidos())
                 .append("\n\nNumero de reserva: ")
-                .append(id)
+                .append(res.getCodigo())
                 .append("\n")
                 .append("\nRestaurante: ")
                 .append(restaurante)
-                .append("\nDía: ")
+                .append("\nDia: ")
                 .append(res.fecha)
                 .append("\nHora: ")
                 .append(res.getHora())
-                .append("\nNúmero de personas: ")
+                .append("\nNumero de personas: ")
                 .append(res.getNumeroPersonas())
                 .append("\nPedido de comida por adelantado: ");
 
                 if (pedido!=null)
                 {
-                    sb.append("SÍ:")
+                    sb.append("SI:")
                         .append("\n\tPrimer plato: ")
-                        .append(res.getPrimerPlato())
+                        .append(res.getPedido().getPrimerPlato())
                         .append("\n\tSegundo plato: ")
-                        .append(res.getSegundoPlato())
+                        .append(res.getPedido().getSegundoPlato())
                         .append("\n\tPostre ")
-                        .append(res.getPostre())
+                        .append(res.getPedido().getPostre())
                         .append("\n\tBebida ")
-                        .append(res.getBebida())
+                        .append(res.getPedido().getBebida())
                         .append("\n\tEstado del pago: ")
                         .append(res.getPago())
                         .append("\n===============================================\n")
@@ -85,7 +88,7 @@ public class Ticket
      */
     public int getId()
     {
-        return id;
+        return res.getCodigo();
     }
 
     @Override
