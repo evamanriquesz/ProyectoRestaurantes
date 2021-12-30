@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**Clase que genera el panel del mapa para implementarlo en la pantalla principal junto con sus elementos*/
+
 public class Mapa extends JPanel implements ActionListener {
 
     JButton elPimientoverde,vips,casaRicardo,najera;
@@ -51,11 +53,6 @@ public class Mapa extends JPanel implements ActionListener {
         this.add(vips);
         this.add(casaRicardo);
         this.add(najera);
-
-
-
-
-
     }
 
     @Override

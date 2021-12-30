@@ -1,7 +1,5 @@
 package main.java;
 
-
-//import de.fhpotsdam.unfolding.UnfoldingMap;
 import icai.dtc.isw.client.Client;
 
 import javax.swing.*;
@@ -16,28 +14,18 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.TreeSet;
 
 import java.io.*;
 
-/**panel princpal en el que se muestra la lista de restaurantes, los filtros y mas adelante el mapa**/
+/**panel princpal en el que se muestra la lista de restaurantes, los filtros y el mapa**/
 
 public class PnlRestaurantes extends JPanel implements ActionListener, ChangeListener, Serializable{
 
-    //private UnfoldingMap mapa;
     public ArrayList<Restaurante> restaurantes;
     public static JList<String> jlistrestaurantes;
     public static JList<String> restaurantesfiltrados;
 
-    public static JPanel panelNorte;
-
-    public static JPanel panelInfoRestaurante;
-
-    public ArrayList<String> filtros;
-
     public JPanel panelReserva;
-
-    //Mapa2 map;
 
     JScrollPane barraDesplazamiento;
 
@@ -52,42 +40,30 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     private Dimension dim;
 
-    /**constructor del panel en el que inicializamos todos los elementos**/
+    /**constructor del panel principal en el que inicializamos todos los elementos**/
 
     public PnlRestaurantes(){
         this.setLayout(null);
-        //this.setBounds(0, 0, getMaximumSize().width, 1000);
         this.setBackground(new Color(221, 234, 245, 202));
 
         dim = super.getToolkit().getScreenSize();
         this.setSize(JInicioSesion.screenSize.width, JInicioSesion.screenSize.height-100);
 
 
-
-        //super.setSize(dim);
-
-        //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
-        //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
         //lista de restaurantes de prueba que vamos usando para asegurarnos que se muestran en el scrollpane
         restaurantes = new ArrayList<Restaurante>();
 
-
-
-        /**codigo para conectar con las bases de datos**/
+        //Código que conecta con la base de datos para obtener la lista de todos restaurantes para mostrarla en el scrollbar
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
         session.put("user",11);
         session.put("pass",11);
         client.envio("/obtenerListaRestaurantes",session);
 
-        // CustomerDAO customerDAO = new CustomerDAO();
         ArrayList<Restaurante> respuesta = (ArrayList<Restaurante>) session.get("RespuestaObtenerListaRestaurantes");  //esto puede estar mal
-        //ArrayList<Restaurante> respuesta = session.get("RespuestaObtenerListaRestaurantes");  //esto puede estar mal
 
 
-
+        //Inicializacion del panel con barra de desplazamiento que incluye la lista de todos los restauratnes
         jlistrestaurantes = new JList<>();
         restaurantesfiltrados = new JList<>();
         barraDesplazamiento = new JScrollPane();
@@ -116,14 +92,11 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         jlistrestaurantes.setForeground(Color.BLACK);
 
 
-
-
         barraDesplazamiento.setBounds(JInicioSesion.ancho-350-35,210,350,420);
         this.add(barraDesplazamiento);
 
 
         //info del boton reservar
-
         reservar= new JButton("RESERVAR");
         reservar.setFont(new Font("Lirio", Font.BOLD, 15));
         reservar.setForeground(Color.BLACK);
@@ -134,6 +107,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         reservar.addActionListener(this);
         this.add(reservar);
 
+        //Info del boton para ver la informacion del restaurante seleccionado
         infoRestaurante= new JButton("Ver info del Restaurante");
         infoRestaurante.setFont(new Font("Lirio", Font.BOLD, 15));
         infoRestaurante.setForeground(Color.BLACK);
@@ -144,12 +118,13 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         infoRestaurante.addActionListener(this);
         this.add(infoRestaurante);
 
+        //Info del cuadro de texto para buscar
         jtxtBuscar = new JTextField(30);
         jtxtBuscar.setBounds(JInicioSesion.ancho-350-35,160,200,40);
         this.add(jtxtBuscar);
 
+        //Info del boton buscar
         btnBuscar = new JButton("BUSCAR");
-        //btnBuscar.addActionListener(this);
         btnBuscar.setFont(new Font("Georgia", Font.BOLD, 12));
         btnBuscar.setForeground(Color.BLACK);
         btnBuscar.setHorizontalTextPosition( SwingConstants.CENTER );
@@ -184,7 +159,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
                         jtxtBuscar.setText("");
                         jtxtBuscar.requestFocus();
                     }
-
             }
         });
 
@@ -202,25 +176,27 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             }
         });
 
+        //Info del titulo del mapa
         JLabel lblmapa = new JLabel("Los más populares");
         lblmapa.setBounds(550,160,500,40);
         lblmapa.setFont(new Font("Lirio", Font.ITALIC, 30));
         lblmapa.setForeground(Color.BLACK);
         this.add(lblmapa);
 
-
+        //Info del mapa
         mapa=new Mapa();
         mapa.setBounds(450,215,500,500);
         //mapa.setBackground(new Color(133, 177, 204, 182));//(90, 130, 156));
         this.add(mapa);
 
-
+        //info del titulo filtros
         lblfiltros=new JLabel("Filtros: ");
         lblfiltros.setFont(new Font("Lirio", Font.ITALIC, 30));
         lblfiltros.setForeground(Color.BLACK);
         lblfiltros.setBounds(100,160,100,40);
         this.add(lblfiltros);
 
+        //info de los checkbox de los filtros
         tipo=new JCheckBox("Tipo de comida");
         tipo.setFont(new Font("Georgia", Font.BOLD, 15));
         tipo.setForeground(Color.BLACK);
@@ -275,7 +251,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         tipo.addChangeListener(this);
         barrio.addChangeListener(this);
 
-
+        //info borrar filtros
         borrarfiltros=new JButton("Borrar filtros");
         borrarfiltros.setFont(new Font("Lirio", Font.BOLD, 15));
         borrarfiltros.setForeground(Color.BLACK);
@@ -286,6 +262,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         borrarfiltros.addActionListener(this);
         this.add(borrarfiltros);
 
+        //info boton aceptar filtros
         aceptar=new JButton("Aceptar");
         aceptar.setFont(new Font("Lirio", Font.BOLD, 15));
         aceptar.setForeground(Color.BLACK);
@@ -297,9 +274,9 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         aceptar.setEnabled(false);
         this.add(aceptar);
 
-
+        //Info boton para generar un restaurante aleatorio
         btnGeneradorAleatorio= new JButton();
-        btnGeneradorAleatorio.setText("<html><p>RESTAURANTE</p><p>ALEATORIO</p></html>");
+        btnGeneradorAleatorio.setText("<html><p>RESTAURANTE</p><p>ALEATORIO</p></html>");//Se usa html para que el texto este en dos lineas
         btnGeneradorAleatorio.setFont(new Font("Georgia", Font.BOLD, 20));
         btnGeneradorAleatorio.setForeground(Color.BLACK);
         btnGeneradorAleatorio.setHorizontalTextPosition( SwingConstants.CENTER );
@@ -309,7 +286,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         btnGeneradorAleatorio.addActionListener(this);
         this.add(btnGeneradorAleatorio);
 
-
+        //Info del boton perfil
         btnperfil = new JButton();
         ImageIcon perfil = new ImageIcon("src"+ File.separator +"main"+ File.separator + "resources" + File.separator + "perfilcoloreado.bmp.png");
         ImageIcon imagenperfil = new ImageIcon(perfil.getImage().getScaledInstance(80,-1,Image.SCALE_DEFAULT));
@@ -319,14 +296,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         btnperfil.setBounds(JInicioSesion.ancho-120,10,80,80);
         btnperfil.addActionListener(this);
         JInicioSesion.panelNorte.add(btnperfil);
-
-
-        // map = new Mapa(40.429944f, -3.712778f, 480, 310); //coordenadas icai
-
-
-        //map=new Mapa();//(40.429944f, -3.712778f);
-        //map.setBounds(180,150,400,310);
-        //this.add(map);
 
     }
 
@@ -340,7 +309,7 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
            // JInicioSesion.informacionCliente(JInicioSesion.usuario);
             if (JInicioSesion.cliente!=null)
             {
-                JPanelPerfil.rellenarInfo();
+                JInicioSesion.panelperfil.incluirInfo();
             }
 
         }
@@ -454,9 +423,11 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         }
     }
 
+
+    /**Funcion que conecta con la base de datos y manda un numero aleatorio para que nos devuelva un restaurante aleatorio al pulsar el boton correspondiente*/
     private void generarRestauranteAleatorio()
     {
-        /**codigo para conectar con las bases de datos**/
+
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
         session.put("user",11);
@@ -535,14 +506,14 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             throw new BuscarRestauranteException();
         }
     }
+
 /**metodo que conecta con la base de datos para filtrar el listado de restaurantes segun lo seleccionado en los checkboxes*/
     public void aplicarFiltros (String filtro) throws FiltrosException {
-        /**codigo para conectar con las bases de datos**/
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
         session.put("user",11);
         session.put("pass",11);
-        int i=1;
+
         ArrayList<Restaurante> resfiltrados = new ArrayList<>();
         ArrayList<Restaurante> respuesta;
 
@@ -590,8 +561,6 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
             System.out.println("el vector esta vacio");
             throw new FiltrosException();
         }
-
-
     }
 
     public void reservarRestaurante (String nombre, String accion){

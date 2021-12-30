@@ -1,7 +1,6 @@
 package main.java;
 
-import javax.swing.*;
-
+/**Excepcion que salta durante el registro cuando el usuario ya esta registrado*/
 public class RegistroException extends Exception
 {
 

@@ -17,6 +17,7 @@ enum Postre{
 enum Bebida{
     Agua, Refresco, Vino, Cerveza;}
 
+/**clase que genera el objeto pedido cuando el usuario marca la opcion de pedir comida por adelantado*/
 public class Pedido
 {
     private PrimerPlato primerPlato;

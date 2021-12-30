@@ -1,8 +1,9 @@
 package main.java;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.time.LocalDate;
+
+
+/**Objeto cliente que guarda los datos de un usuario al que se le puede asociar una tarjeta de crédito*/
 
 public class Cliente extends Usuario implements Serializable {
 
@@ -43,6 +44,8 @@ public class Cliente extends Usuario implements Serializable {
         this.apellidos=apellidos;
     }
 
+    /**Seter para asociar una tarjeta de crédito
+     * @throws ExceptionFecha  si se introduce una fecha anterior a la actual*/
     public void setTarjeta(String nombre, String numero, int cvv, String fechaCad) throws ExceptionFecha {
             this.tarjeta=new TarjetaCredito(nombre, numero, cvv, fechaCad);
     }

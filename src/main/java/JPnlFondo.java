@@ -1,7 +1,6 @@
-package main.java;//import grep.SwingLink;
+package main.java;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
 
 /**
@@ -12,18 +11,13 @@ import java.io.File;
 public class JPnlFondo extends JPanel
 {
 
-    //public JLabel jlblesp2;
-    //public JLabel jlblesp1;
-    //GridBagLayout layout = new GridBagLayout();
-   // GridBagConstraints config = new GridBagConstraints();
-
-    JLabel nombre, lbltitulo;
+    JLabel nombre;
 
 
     /**
-     * Constructor de la clase que inicializa los parametros que heredan sus clases hijas
+     * Constructor de la clase fondo que inicializa los parametros que heredan sus clases hijas
      */
-    public JPnlFondo(){//String titulo) {
+    public JPnlFondo(){
 
         this.setLayout(null);
         this.setPreferredSize(new Dimension(getMaximumSize().width,100));
@@ -47,17 +41,6 @@ public class JPnlFondo extends JPanel
 
         nombre.setBounds(130,15,100,80);
         this.add(nombre);
-
-
-        /* lbltitulo=new JLabel(titulo);
-        lbltitulo.setFont(new Font("Lirio", Font.ITALIC, 30));
-        lbltitulo.setForeground(Color.BLACK);
-        lbltitulo.setHorizontalTextPosition( SwingConstants.CENTER );
-        lbltitulo.setVerticalTextPosition( SwingConstants.BOTTOM );
-        lbltitulo.setBounds(this.getWidth()/2-100,20,200,70);
-        ///this.add(lbltitulo);*/
-
-
 
     }
 

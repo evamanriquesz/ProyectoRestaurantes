@@ -5,11 +5,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**Clase del panel que se genera cuando se desea hacer el pedido de comida por adelantado al realizar la reserva*/
+
 public class PnlHacerPedido extends JPanel implements ActionListener
 {
     JButton btnAceptar, btnCancelar;
     JComboBox pnlPrincipal, pnlSecundario, pnlPostre, pnlBebida;
     JCheckBox pago;
+
+    /**Constructor del panel que muestra las opciones de los platos a pedir*/
     public PnlHacerPedido()
     {
 
@@ -114,7 +119,6 @@ public class PnlHacerPedido extends JPanel implements ActionListener
         btnCancelar.setBounds(350, 600, 150, 50);
         btnCancelar.addActionListener(this);
         this.add(btnCancelar);
-
 
     }
 

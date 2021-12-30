@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.Date;
 
+/**Clase que guarda la infomracion de una reserva concreta*/
 public class Reserva
 {
     Restaurante restaurante;

@@ -13,6 +13,8 @@ import java.util.HashMap;
 /**panel que se crea cuando se le da al boton de registrarse en la pantalla de inicio de sesion y
  * que se usa para guardar los datos si se quiere crear ua cuenta nueva. hay que conectarlo con la base de datos**/
 
+/**Tambien sirve para el panel que se crea cuando se desea editar el perfil del usuario*/
+
 public class JRegistrarUsuario extends JPanel implements ActionListener {
 
     static String accion;
@@ -24,13 +26,12 @@ public class JRegistrarUsuario extends JPanel implements ActionListener {
     JCheckBox infoTarjeta;
 
     JButton btnAceptar, btnCancelar, btnAceptar2;
-    private SwingUtilities Swingutilities;
 
     static Cliente c;
     static TarjetaCredito t;
     JRegistrarUsuario panelInfoTarjeta;
 
-
+/**constructor para registrar un nuevo usuario introduciendo los datos del cliente sin la tarjeta*/
     public JRegistrarUsuario() {
         //super("Registrar usuario");
 
@@ -148,9 +149,9 @@ public class JRegistrarUsuario extends JPanel implements ActionListener {
         btnCancelar.setBounds(350, 550, 150, 50);
         btnCancelar.addActionListener(this);
         this.add(btnCancelar);
-
-
     }
+
+    /**Constructor para registrar / añadir tarjeta de crédito*/
 
     public JRegistrarUsuario(String tarjeta) {
         this.setLayout(null);
@@ -259,11 +260,25 @@ public class JRegistrarUsuario extends JPanel implements ActionListener {
         return txtEmail.getText();
     }
 
+
+    /**Funcion que describe la funcionalidad de los botones:
+     * si se pulsa cancelar, se cierra la ventana en la que se encuentre
+     *si se pulsa el boton "Aceptar" de la ventana del perfil y no esta marcada la casilla de la tarjeta, se
+     * guardan los nuevos datos del perfil, si esta marcada la casilla, se pasa a la ventana de edicion de los
+     * datos de la tarjeta
+     *si se pulsa el boton aceptar de la ventana de edicion de la tarjeta de crédito, se guardan los nuevos
+     * datos editados tanto del perfil como de la tarjeta de crédito
+     */
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == btnCancelar) {
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.dispose();
+
+
+
         } else if (e.getSource() == btnAceptar) {
             try {
                 if (txtContra.getText().equals(txtRepetirContra.getText())) {
@@ -274,10 +289,14 @@ public class JRegistrarUsuario extends JPanel implements ActionListener {
                         JInicioSesion.crearPanelPeque("REGISTRO TARJETA", panelInfoTarjeta);
 
                     } else {
-                        registrarUsuario(accion, c.getId(),c.getPassword(), c.getPassword(), c.getTelefono(),c.getCorreo(), c.getNombre(), c.getApellidos());
-                        System.out.println("usuario registrado");
-                        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                        topFrame.dispose();
+                        if(c.getId()!=null &&c.getNombre()!=null &&c.getCorreo()!=null && c.getTelefono()!=0 && c.getApellidos()!=null) {
+                            registrarUsuario(accion, c.getId(), c.getPassword(), c.getPassword(), c.getTelefono(), c.getCorreo(), c.getNombre(), c.getApellidos());
+                            System.out.println("usuario registrado");
+                            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                            topFrame.dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos");
+                        }
                     }
                 } else {
                     JOptionPane.showMessageDialog(JRegistrarUsuario.this, "La contraseña no coincide");
@@ -297,17 +316,20 @@ public class JRegistrarUsuario extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(JRegistrarUsuario.this, "Error, el telefono debe ser numérico.");
                 txtTelefono.requestFocus();
             }
+
         } else if (e.getSource() == btnAceptar2) {
             try {
                 t = new TarjetaCredito(txtNombretarjeta.getText(), txtNumTarjeta.getText(), Integer.parseInt(txtCVV.getText()));
                 t.setFechaCaducidad(LocalDate.of(Integer.parseInt(txtanio.getText()), Integer.parseInt(txtmes.getText()), 1));
                 registrarUsuario(accion, c.getId(),c.getPassword(), c.getPassword(), c.getTelefono(),c.getCorreo(), c.getNombre(), c.getApellidos());
-                if(t.getNtarjeta()!=null) {
+                if(t.getNtarjeta()!=null && t.getNombrePropietario()!=null && t.getCvv()!=0 && t.getFechaCaducidad()!=null) {
                     incluirTarjeta(c.getId(), t.getNombrePropietario(), t.getNtarjeta(), t.getCvv(), t.getFechaCaducidad().toString());
                     JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                     topFrame.dispose();
                     JFrame topFrame2 = (JFrame) SwingUtilities.getWindowAncestor(JPanelPerfil.paneleditar);
                     topFrame2.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos");
                 }
             } catch (ExceptionFecha | RegistroException ef) {
                 JOptionPane.showMessageDialog(this, ef.getMessage());
@@ -320,6 +342,8 @@ public class JRegistrarUsuario extends JPanel implements ActionListener {
 
 
 
+    /**Funcion para acceder a la base de datos y registrar/editar el usuario que se desee
+     * @throws RegistroException cuando el usuario que se introduce ya esta registrado*/
 
     public void registrarUsuario(String accion, String usuario, String contra, String repetirContra, int telefono, String email, String nombre, String apellidos) throws RegistroException {
         Client client = new Client();
@@ -352,6 +376,7 @@ public class JRegistrarUsuario extends JPanel implements ActionListener {
     }
 
 
+    /**Funcion para acceder a la base de datos e incluir/Modificar la tarjeta de crédito del usuario indicado*/
     public void incluirTarjeta(String usuario, String nombre, String numeroTarjeta, int cvv, String fechaCad)
     {
         Client client = new Client();
@@ -376,6 +401,8 @@ public class JRegistrarUsuario extends JPanel implements ActionListener {
         }
     }
 
+
+    /**Funcion para incluir los datos de la tarjeta de credito del usuario que haya iniciado sesion en el apartado del perfil*/
     public void incluirInfoTarjeta()
     {
 

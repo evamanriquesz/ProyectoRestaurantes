@@ -1,17 +1,11 @@
 package main.java;
 
 import icai.dtc.isw.client.Client;
-import icai.dtc.isw.dao.CustomerDAO;
-import main.java.InicioSesionException;
-import main.java.PnlRestaurantes;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.*;
 import java.io.File;
 import java.util.HashMap;
 
@@ -35,9 +29,8 @@ public class JInicioSesion extends JFrame
 
     public static Dimension screenSize =Toolkit. getDefaultToolkit(). getScreenSize();
 
-    public static JPanel panelregistrarse, panelNorte;
+    public static JPanel panelNorte;
     public static JPanelPerfil panelperfil;
-    public JRegistrarUsuario panelregistro;
 
     public static int ancho = screenSize.width-35;;   // screenSize.width-35;//1450;
     public static int alto =screenSize.height-50; //screenSize.height-50;//780;
@@ -238,7 +231,9 @@ public class JInicioSesion extends JFrame
         });
     }
 
-    /**metodo para iniciar sesion que conecta la ventana con la base de datos**/
+    /**metodo para iniciar sesion que conecta la ventana con la base de datos
+     * @throws InicioSesionException  si se introduce un usuario que no este registrado o cuando el usuario o la
+     * contraseña sean incorrectos*/
 
     public static void iniciarSesion(String user, char[] password) throws InicioSesionException {
         pw = new StringBuilder();
@@ -265,11 +260,6 @@ public class JInicioSesion extends JFrame
             crearPanelGrande("Don´t Choose By Yourself");
             informacionCliente(usuario);
 
-            //jPnlRestaurante.setVisible(true);
-
-            //para que cuando se inicie sesion y cambie a la pantalla principal se ponga en modo panalla completa:
-            //this.setPreferredSize(new Dimension(getMaximumSize().width,getMaximumSize().height));
-            //this.setExtendedState(MAXIMIZED_BOTH);
         }
 
         else if (respuesta ==0)
@@ -310,11 +300,9 @@ public class JInicioSesion extends JFrame
     public static void crearPanelGrande (String titulo)
     {
         ventana = new JFrame(titulo);
-
         ventana.setPreferredSize(new Dimension(ancho, alto));
-        panelNorte =new JPnlFondo();
-       // panelNorte.setBounds(0,0,screenSize.width,100);
 
+        panelNorte =new JPnlFondo();
         panelNorte.setBounds(0,0,ancho,100);
 
         JLabel lbltitulo=new JLabel("RESTAURANTES");
@@ -332,16 +320,18 @@ public class JInicioSesion extends JFrame
         //jPnlRestaurante.setBounds(0,101,screenSize.width, screenSize.height-100);
 
         jPnlRestaurante.setBounds(0,101,ancho, alto-100);
+
+        //Info de la ventana que recoge todo
         ventana.add(jPnlRestaurante);
-
         ventana.setResizable(false);
-
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         ventana.pack();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }
+
+
+    /**método que conecta con la base de datos para obtener la informacion del cliente que ha iniciado sesión*/
 
     public static void informacionCliente(String user) {
         Client client = new Client();

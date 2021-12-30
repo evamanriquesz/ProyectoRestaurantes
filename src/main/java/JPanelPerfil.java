@@ -19,13 +19,11 @@ public class JPanelPerfil extends JPanel implements ActionListener {
     JLabel nombre, apellidos, telefono, correo;
     JButton verFavoritos, verReservasAnteriores,editarPerfil,cerrarSesion;
 
-    static String nombrec, apellidosc, telefc,correoc;
-
     JLabel lblnombre, lblapellidos, lbltelefono,lblcorreo;
 
     static JRegistrarUsuario paneleditar;
-    private SwingUtilities Swingutilities;
 
+    /**constructor de la ventana del perfil con sus componentes */
     public JPanelPerfil(){
 
         this.setLayout(null);
@@ -89,25 +87,12 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         cerrarSesion.setBounds(100,570,630,30);
         cerrarSesion.addActionListener(this);
         this.add(cerrarSesion);
-
     }
 
-    public static void rellenarInfo()
-    {
-        nombrec = JInicioSesion.cliente.getNombre();
-
-        apellidosc = JInicioSesion.cliente.getApellidos();
-
-        telefc = String.valueOf(JInicioSesion.cliente.getTelefono());
-
-        correoc = JInicioSesion.cliente.getCorreo();
-
-        JInicioSesion.panelperfil.incluirInfo();
-    }
 
     public void incluirInfo()
     {
-        lblnombre=new JLabel(nombrec);
+        lblnombre=new JLabel(JInicioSesion.cliente.getNombre());
         lblnombre.setFont(new Font("Lirio", Font.BOLD, 20));
         lblnombre.setForeground(Color.BLACK);
         lblnombre.setBounds(250,180,300,30);
@@ -115,7 +100,7 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         lblnombre.setVerticalTextPosition( SwingConstants.BOTTOM );
         this.add(lblnombre);
 
-        lblapellidos =new JLabel(apellidosc);
+        lblapellidos =new JLabel(JInicioSesion.cliente.getApellidos());
         lblapellidos.setFont(new Font("Lirio", Font.BOLD, 20));
         lblapellidos.setForeground(Color.BLACK);
         lblapellidos.setBounds(250,240,300,30);
@@ -123,7 +108,7 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         lblapellidos.setVerticalTextPosition( SwingConstants.BOTTOM );
         this.add(lblapellidos);
 
-        lbltelefono =new JLabel(telefc);
+        lbltelefono =new JLabel(String.valueOf(JInicioSesion.cliente.getTelefono()));
         lbltelefono.setFont(new Font("Lirio", Font.BOLD, 20));
         lbltelefono.setForeground(Color.BLACK);
         lbltelefono.setBounds(250,300,300,30);
@@ -150,10 +135,10 @@ public class JPanelPerfil extends JPanel implements ActionListener {
 
             paneleditar = new JRegistrarUsuario();
 
-            paneleditar.txtNombre.setText(nombrec);
-            paneleditar.txtApellidos.setText(apellidosc);
-            paneleditar.txtTelefono.setText(telefc);
-            paneleditar.txtEmail.setText(correoc);
+            paneleditar.txtNombre.setText(JInicioSesion.cliente.getNombre());
+            paneleditar.txtApellidos.setText(JInicioSesion.cliente.getApellidos());
+            paneleditar.txtTelefono.setText(String.valueOf(JInicioSesion.cliente.getTelefono()));
+            paneleditar.txtEmail.setText(JInicioSesion.cliente.getCorreo());
             paneleditar.txtUsuario.setText(JInicioSesion.usuario);
             paneleditar.txtContra.setText(JInicioSesion.pw.toString());
             paneleditar.txtRepetirContra.setText(JInicioSesion.pw.toString());

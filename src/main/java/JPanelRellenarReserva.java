@@ -15,35 +15,32 @@ import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilCalendarModel;
 
+
+/**Clase que genera el panel para realizar reservas tras seleccionar el restaurante deseado*/
+
 public class JPanelRellenarReserva extends JPanel implements ActionListener {
-    JLabel  lblNombreRestaurante, lblNombreCalle, lblNumeroCalle, lbltitulo;
-    JButton reservar, ok;
+    JLabel  lbltitulo;
 
     JScrollPane barra;
     JList<String> restaurantes;
-    private SwingUtilities Swingutilities;
     public static int id;
-    JButton btnAceptar,btnCancelar;
+    JButton btnAceptar,btnCancelar,reservar, ok;
 
     Calendar c;
 
     JDatePickerImpl datePickerFecha;
     JCheckBox pedido;
-    JDatePanelImpl datePanelFecha;
 
     String accion;
 
 
-
-
-
+/**Constructor para acceder a la base de datos y genera el panel de restaurantes con el mismo nombre*/
     public JPanelRellenarReserva(String nombre,String accion){
         this.setLayout(null);
         this.setBackground(new Color(221, 234, 245, 202));
 
         this.accion =accion;
 
-        /**codigo para conectar con las bases de datos**/
         Client client=new Client();
         HashMap<String,Object> session=new HashMap<String, Object>();
         session.put("user",11);
@@ -103,6 +100,8 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
         this.add(lbltitulo);
     }
 
+
+    /**constructor que genera el panel para rellenar los datos de la reserva una vez seleccionado el restaurante y la direccion deseadas*/
     public JPanelRellenarReserva(String restauranteAReservar, int aux){
 
         this.setLayout(null);
@@ -273,9 +272,8 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
         nombrepersona.setBounds(60,400,220,50);
         this.add(nombrepersona);
 
-        JPanelPerfil.rellenarInfo();
 
-        npersona = new JLabel(JPanelPerfil.nombrec + " " + JPanelPerfil.apellidosc);
+        npersona = new JLabel(JInicioSesion.cliente.getNombre()+ " " + JInicioSesion.cliente.getApellidos());
         npersona.setFont(new Font("Lirio", Font.BOLD, 19));
         npersona.setForeground(Color.BLACK);
         npersona.setHorizontalTextPosition( SwingConstants.CENTER );
@@ -310,10 +308,10 @@ public class JPanelRellenarReserva extends JPanel implements ActionListener {
         btnCancelar.setBounds(350, 500, 150, 50);
         btnCancelar.addActionListener(this);
         this.add(btnCancelar);
-
-
     }
 
+
+    /**Constructor del panel que se crea para visualizar la informacion del restaurante seleccionado*/
     public JPanelRellenarReserva(String restaurante)
     {
         this.setLayout(null);

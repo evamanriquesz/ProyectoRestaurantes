@@ -1,6 +1,6 @@
 package main.java;
 
-/**excepcion que sale en un cuadro de dialogo si se introducen un usuario o contraseña incorrectos al iniciar sesion*/
+/**excepcion que salta en un cuadro de dialogo si se introducen un usuario o contraseña incorrectos al iniciar sesion*/
 
 public class InicioSesionException extends Exception
 {
