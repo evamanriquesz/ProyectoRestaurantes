@@ -93,6 +93,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaFiltrar",listafiltrada);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
+					break;
 
 				case ("/obtenerIguales"):
 					//CustomerControler customerControler1 = new CustomerControler();
@@ -102,6 +103,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaObtenerIguales",listaIguales);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
+					break;
 
 				case("/hacerRegistro"):
 					int k=customerControler.hacerRegistro((String)mensajeIn.getSession().get("accion"),(String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("contra"),(Integer)mensajeIn.getSession().get("telefono"), (String)mensajeIn.getSession().get("email"),(String)mensajeIn.getSession().get("nombre"),(String)mensajeIn.getSession().get("apellidos"));
@@ -110,6 +112,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaRegistro",k);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
+					break;
 
 				case("/incluirTarjeta"):
 					int l=customerControler.incluirTarjeta((String)mensajeIn.getSession().get("usuario"),(String)mensajeIn.getSession().get("nombre"),(String)mensajeIn.getSession().get("numeroTarjeta"),(Integer)mensajeIn.getSession().get("cvv"), (String)mensajeIn.getSession().get("fechaCad"));
@@ -117,6 +120,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaIncluirTarjeta",l);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
+					break;
 
 				case ("/obtenerRestauranteAleatorio"):
 					//CustomerControler customerControler1 = new CustomerControler();
@@ -126,6 +130,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaObtenerRestauranteAleatorio",restauranteAleatorio);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
+					break;
 
 				case("/hacerReserva"):
 					int p =customerControler.hacerReserva((Integer)mensajeIn.getSession().get("codigo"),(String)mensajeIn.getSession().get("cliente"),(Integer)mensajeIn.getSession().get("identificador"), (String)mensajeIn.getSession().get("fecha"),(String)mensajeIn.getSession().get("numero_personas"),(String)mensajeIn.getSession().get("hora"), (boolean)mensajeIn.getSession().get("pagado"));
@@ -133,6 +138,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaReserva",p);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
+					break;
 
 				case("/mostrarReservasAnteriores"):
 					ArrayList<Reserva> reservasAnteriores = customerControler.mostrarReservasAnteriores((String)mensajeIn.getSession().get("usuario"));
@@ -140,6 +146,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaMostrarReservasAnteriores", reservasAnteriores);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
+					break;
 
 				default:
 		    		System.out.println("\nParámetro no encontrado");

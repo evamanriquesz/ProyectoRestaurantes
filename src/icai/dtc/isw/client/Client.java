@@ -29,8 +29,12 @@ public class Client implements Serializable {
 		//quitamos el main y ponemos que esto sea un método.
 
 		//Configure connections
-		String host = PropertiesISW.getInstance().getProperty("host");
-		int port = Integer.parseInt(PropertiesISW.getInstance().getProperty("port"));
+		//String host = PropertiesISW.getInstance().getProperty("host");
+		//int port = Integer.parseInt(PropertiesISW.getInstance().getProperty("port"));
+
+		String host = "127.0.0.1";
+		int port =  8081;
+
 		Logger.getRootLogger().info("Host: "+host+" port"+port);
 		//Create a cliente class
 		Client client=new Client(host, port);

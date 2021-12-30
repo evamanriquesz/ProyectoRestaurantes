@@ -1,9 +1,10 @@
 package main.java;
 
 
+import java.io.Serializable;
 
 /**Clase que guarda la infomracion de una reserva concreta*/
-public class Reserva
+public class Reserva implements Serializable
 {
 
     int codigo, identificador;

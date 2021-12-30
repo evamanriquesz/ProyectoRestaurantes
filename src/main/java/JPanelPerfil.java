@@ -22,6 +22,7 @@ public class JPanelPerfil extends JPanel implements ActionListener {
     JLabel lblnombre, lblapellidos, lbltelefono,lblcorreo;
 
     static JRegistrarUsuario paneleditar;
+    static JMostrarReservasAnteriores panelMostrarReservasAnteriores;
 
     /**constructor de la ventana del perfil con sus componentes */
     public JPanelPerfil(){
@@ -70,6 +71,7 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         verReservasAnteriores.setBackground(new Color(133, 177, 204, 182));
         verReservasAnteriores.setForeground(Color.BLACK);
         verReservasAnteriores.setBounds(450,450,280,50);
+        verReservasAnteriores.addActionListener(this);
         this.add(verReservasAnteriores);
 
         editarPerfil = new JButton("Editar Perfil");
@@ -88,7 +90,6 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         cerrarSesion.addActionListener(this);
         this.add(cerrarSesion);
     }
-
 
     public void incluirInfo()
     {
@@ -161,6 +162,15 @@ public class JPanelPerfil extends JPanel implements ActionListener {
             JInicioSesion.ventana.dispose();
 
             new JInicioSesion();
+        }
+
+        if (e.getSource()==verReservasAnteriores)
+        {
+            panelMostrarReservasAnteriores = new JMostrarReservasAnteriores();
+            panelMostrarReservasAnteriores.mostrarReservasAnteriores(JInicioSesion.cliente.getId());
+            JInicioSesion.crearPanelPeque("RESERVAS ANTERIORES",panelMostrarReservasAnteriores);
+
+
         }
     }
 }

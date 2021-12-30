@@ -13,6 +13,10 @@ import java.util.HashMap;
 
 public class JInicioSesion extends JFrame
 {
+    public static int ancho = 1280;;   // screenSize.width-35;//1450;
+    public static int alto =780; //screenSize.height-50;//780;
+
+
     final static String USER = "postgres";
     final static String PASSWORD = "postgres";
 
@@ -32,8 +36,8 @@ public class JInicioSesion extends JFrame
     public static JPanel panelNorte;
     public static JPanelPerfil panelperfil;
 
-    public static int ancho = screenSize.width-35;;   // screenSize.width-35;//1450;
-    public static int alto =screenSize.height-50; //screenSize.height-50;//780;
+   // public static int ancho = screenSize.width-35;;   // screenSize.width-35;//1450;
+   // public static int alto =screenSize.height-50; //screenSize.height-50;//780;
 
     static String[] args;
 
@@ -353,6 +357,4 @@ public class JInicioSesion extends JFrame
 
         }
     }
-
-
 }
