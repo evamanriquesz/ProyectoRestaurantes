@@ -42,6 +42,8 @@ public class CustomerControler implements  Serializable{
 
 	public ArrayList<Reserva> mostrarReservasAnteriores(String cliente)  {return CustomerDAO.mostrarReservasAnteriores(cliente);}
 
+	public int obtenerCodigoUltimaReserva() {return CustomerDAO.obtenerCodigoUltimaReserva();}
+
 
 	/*
 	public HashMap<String, String> mostrarLista()

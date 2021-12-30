@@ -53,6 +53,7 @@ public class SocketServer extends Thread implements Serializable {
 		    		session.put("RespuestaLogin",i);
 		    		mensajeOut.setSession(session);
 		    		objectOutputStream.writeObject(mensajeOut);
+					break;
 
 				case("/buscarRestaurante"):
 					int j=customerControler.buscarRestaurante((String)mensajeIn.getSession().get("restaurante"));
@@ -61,7 +62,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaBuscarRestaurante",j);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
-
+					break;
 
 				case ("/obtenerListaRestaurantes"):
 					//CustomerControler customerControler1 = new CustomerControler();
@@ -71,7 +72,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaObtenerListaRestaurantes",rest);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
-
+					break;
 
 				case ("/obtenerInfoCliente"):
 					//CustomerControler customerControler1 = new CustomerControler();
@@ -81,7 +82,7 @@ public class SocketServer extends Thread implements Serializable {
 					session.put("RespuestaObtenerInfoCliente",cliente);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
-
+					break;
 
 
 
@@ -144,6 +145,14 @@ public class SocketServer extends Thread implements Serializable {
 					ArrayList<Reserva> reservasAnteriores = customerControler.mostrarReservasAnteriores((String)mensajeIn.getSession().get("usuario"));
 					mensajeOut.setContext("/mostrarReservasAnterioresResponse");
 					session.put("RespuestaMostrarReservasAnteriores", reservasAnteriores);
+					mensajeOut.setSession(session);
+					objectOutputStream.writeObject(mensajeOut);
+					break;
+
+				case("/obtenerCodigoUltimaReserva"):
+					int ultimaReserva = customerControler.obtenerCodigoUltimaReserva();
+					mensajeOut.setContext("/obtenerCodigoUltimaReservaResponse");
+					session.put("RespuestaObtenerCodigoUltimaReserva", ultimaReserva);
 					mensajeOut.setSession(session);
 					objectOutputStream.writeObject(mensajeOut);
 					break;

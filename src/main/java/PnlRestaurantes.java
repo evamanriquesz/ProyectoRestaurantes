@@ -29,6 +29,8 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
 
     JScrollPane barraDesplazamiento;
 
+    static JPanelRellenarReserva pnlRestauranteAleatorio;
+
     JButton btnBuscar,btnGeneradorAleatorio,btnperfil, borrarfiltros, reservar, aceptar, infoRestaurante;
 
     JTextField jtxtBuscar,jtxtbarrio;
@@ -39,6 +41,8 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
     JCheckBox tipo, restaurante, bar, taberna, comidarapida, barrio; //podriamos poner tambien valoraciones, valoraciones, una, dos, tres,cuatro,cinco;
 
     private Dimension dim;
+
+    static Restaurante restauranteAleatorio;
 
     /**constructor del panel principal en el que inicializamos todos los elementos**/
 
@@ -456,12 +460,12 @@ public class PnlRestaurantes extends JPanel implements ActionListener, ChangeLis
         session.put("numeroAleatorio",n);
         client.envio("/obtenerRestauranteAleatorio",session);
 
-        Restaurante restaurante = (Restaurante) session.get("RespuestaObtenerRestauranteAleatorio");
-        if (restaurante==null)
+        restauranteAleatorio = (Restaurante) session.get("RespuestaObtenerRestauranteAleatorio");
+        if (restauranteAleatorio==null)
         {
             System.out.println("no se ha generado bien el restaurante aleatorio ");
         }else{
-            JPanelRellenarReserva pnlRestauranteAleatorio = new JPanelRellenarReserva(restaurante.toString(),1);
+            pnlRestauranteAleatorio = new JPanelRellenarReserva(restauranteAleatorio.toString(),1);
             JInicioSesion.crearPanelPeque("Restaurante Aleatorio", pnlRestauranteAleatorio);
         }
 

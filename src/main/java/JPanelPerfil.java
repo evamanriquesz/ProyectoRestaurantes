@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class JPanelPerfil extends JPanel implements ActionListener {
 
     JLabel nombre, apellidos, telefono, correo;
-    JButton verFavoritos, verReservasAnteriores,editarPerfil,cerrarSesion;
+    JButton  verReservasAnteriores,editarPerfil,cerrarSesion;
 
     JLabel lblnombre, lblapellidos, lbltelefono,lblcorreo;
 
@@ -59,18 +59,11 @@ public class JPanelPerfil extends JPanel implements ActionListener {
         this.add(correo);
 
 
-        verFavoritos= new JButton("Ver Favoritos");
-        verFavoritos.setFont(new Font("Lirio", Font.BOLD, 20));
-        verFavoritos.setForeground(Color.BLACK);
-        verFavoritos.setBackground(new Color(133, 177, 204, 182));
-        verFavoritos.setBounds(100,450,280,50);
-        this.add(verFavoritos);
-
         verReservasAnteriores= new JButton("Ver Reservas Anteriores");
         verReservasAnteriores.setFont(new Font("Lirio", Font.BOLD, 20));
         verReservasAnteriores.setBackground(new Color(133, 177, 204, 182));
         verReservasAnteriores.setForeground(Color.BLACK);
-        verReservasAnteriores.setBounds(450,450,280,50);
+        verReservasAnteriores.setBounds(100,450,630,40);
         verReservasAnteriores.addActionListener(this);
         this.add(verReservasAnteriores);
 

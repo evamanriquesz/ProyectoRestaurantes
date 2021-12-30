@@ -123,7 +123,32 @@ public class PnlHacerPedido extends JPanel implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource()==btnAceptar)
+        {
+            PrimerPlato pp = PrimerPlato.valueOf(pnlPrincipal.getSelectedItem().toString());
+            SegundoPlato sp = SegundoPlato.valueOf(pnlSecundario.getSelectedItem().toString());
+            Postre pos =Postre.valueOf(pnlPostre.getSelectedItem().toString());
+            Bebida b = Bebida.valueOf(pnlBebida.getSelectedItem().toString());
+            Pagado pag;
+            if (pago.isSelected())
+            {
+                pag=Pagado.pagado;
+            }else{
+                pag=Pagado.noPagado;
+            }
+
+            Pedido p= new Pedido(pp,sp,pos,b,pag);
+
+            JPanelRellenarReserva.reservaFinal.setPedido(p);
+        }
+
+        if(e.getSource()==btnCancelar)
+        {
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.dispose();
+        }
 
     }
 }

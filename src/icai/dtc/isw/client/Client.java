@@ -126,6 +126,11 @@ public class Client implements Serializable {
 				session.put("RespuestaMostrarReservasAnteriores", listaReservasAnteriores);
 				break;
 
+			case "/obtenerCodigoUltimaReservaResponse":
+				int codigoUltimaReserva = (Integer) mensajeVuelta.getSession().get("RespuestaObtenerCodigoUltimaReserva");
+				session.put("RespuestaObtenerCodigoUltimaReserva", codigoUltimaReserva);
+				break;
+
 
 
 			default:
