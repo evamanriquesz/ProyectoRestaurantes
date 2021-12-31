@@ -340,7 +340,6 @@ public class CustomerDAO implements Serializable {
 
 	public static int obtenerCodigoUltimaReserva() {
 
-		Reserva ultReserva = new Reserva();
 		int codigo=0;
 
 		Connection con = ConnectionDAO.getInstance().getConnection();
@@ -349,7 +348,6 @@ public class CustomerDAO implements Serializable {
 			while (rs.next())
 			{
 				codigo=rs.getInt(1);
-				ultReserva = new Reserva(Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8),rs.getString(9), rs.getString(10), rs.getString(11));
 			}
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());

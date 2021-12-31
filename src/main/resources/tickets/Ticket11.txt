@@ -1,0 +1,15 @@
+                 TICKET
+==========================================
+Nombre usuario:sofia barquero jimenez
+
+Numero de reserva: 11
+
+Restaurante: RA-MEN KAGURA.CALLE FUENTES,1-PALACIO
+Dia: 09-02-2022
+Hora: 14:00
+Numero de personas: 2
+Pedido de comida por adelantado: NO.
+===============================================
+
+===============================================
+
